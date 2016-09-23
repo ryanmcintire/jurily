@@ -1,0 +1,16 @@
+<h1>
+  <%= current_user %>
+</h1>
+
+<div class="container">
+  <%= react_component("RichTextEditorQuestionForm",
+      props: {
+          user: current_user,
+          hostUrl: questions_path,
+          initialTitle: "Testing title",
+          initialEditorValue: "Testing Value",
+          csrfToken: csrf_meta_tag
+      }) %>
+</div>
+
+

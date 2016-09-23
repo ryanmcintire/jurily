@@ -30,7 +30,7 @@ gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'react_on_rails'
 
-
+gem 'haml-rails'
 
 
 # Use ActiveModel has_secure_password

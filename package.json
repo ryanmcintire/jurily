@@ -9,5 +9,11 @@
     "postinstall": "cd client && npm install",
     "rails-server": "echo 'visit http://localhost:3000/hello_world' && foreman start -f Procfile.dev",
     "test": "rspec"
+  },
+  "dependencies": {
+    "draft-js": "^0.8.1",
+    "draft-js-editor": "^1.7.2",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
   }
 }
