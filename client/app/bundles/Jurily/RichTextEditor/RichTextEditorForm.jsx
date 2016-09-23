@@ -3,14 +3,15 @@ import Superagent from 'superagent';
 
 import RichTextEditor from './RichTextEditor';
 
-export default class RichTextEditorQuestionForm extends React.Component {
+export default class RichTextEditorForm extends React.Component {
 
   static propTypes = {
     user: PropTypes.object,
     hostUrl: PropTypes.string.isRequired,
     initialTitle: PropTypes.string.isRequired,
     initialEditorValue: PropTypes.string.isRequired,
-    csrfToken: PropTypes.string.isRequired
+    csrfToken: PropTypes.string.isRequired,
+    isQuestion: PropTypes.bool.isRequired
   };
 
   constructor(props, ctx) {
@@ -33,7 +34,6 @@ export default class RichTextEditorQuestionForm extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    
     if (this.state.submitRequired) {
       this.submitEditorTextToServer();
     }
@@ -41,6 +41,7 @@ export default class RichTextEditorQuestionForm extends React.Component {
 
   submitEditorTextToServer() {
     this.toggleSubmitRequired();
+    console.log(this.questionSubmitData());
     Superagent
       .post(this.props.hostUrl)
       .send(this.getDataForSubmit())
@@ -53,8 +54,20 @@ export default class RichTextEditorQuestionForm extends React.Component {
   }
 
   getDataForSubmit() {
+    if (this.props.isQuestion == true) return this.questionSubmitData();
+    return this.answerSubmitData();
+  }
+
+  questionSubmitData() {
     return {
       title: this.state.title,
+      body: this.state.editorValue,
+      user: this.props.user
+    }
+  }
+
+  answerSubmitData() {
+    return {
       body: this.state.editorValue,
       user: this.props.user
     }
@@ -93,18 +106,10 @@ export default class RichTextEditorQuestionForm extends React.Component {
           {this.renderErrors()}
         </div>
         <div className="row">
-          <div className="well">
-            Will need to put title here...
-          </div>
+          {this.renderTitle()}
         </div>
         <div className="row">
-          <div className="text-editor-question">
-            <RichTextEditor
-              editorSubmitAction={this.editorSubmitAction.bind(this)}
-              submitting={this.state.submitting}
-            />
-          </div>
-          
+          {this.renderEditor()}
         </div>
         <div className="row">
           <button className="btn btn-default" onClick={this.handleSubmitClick.bind(this)}>Submit</button>
@@ -114,9 +119,44 @@ export default class RichTextEditorQuestionForm extends React.Component {
   }
 
   renderErrors() {
+    if (this.state.errors.length > 0) {
+      return (
+        <div className="alert alert-danger">
+          {this.state.errors}
+        </div>
+      )
+    }
+  }
+
+  handleTitleChange(e) {
+    this.setState({title:e.target.value});
+  }
+
+  renderTitle() {
+    if (this.props.isQuestion) return (
+      <div className="container">
+        <div className="form-group">
+          <label htmlFor="questionTitle">Question Title:</label>
+          <input
+            type="text"
+            className="form-control"
+            id="questionTitle"
+            placeholder="Question Title"
+            value={this.state.title}
+            onChange={this.handleTitleChange.bind(this)}
+          />
+        </div>
+      </div>
+    )
+  }
+
+  renderEditor() {
     return (
-      <div>
-        Errors to go here...
+      <div className="text-editor-question">
+        <RichTextEditor
+          editorSubmitAction={this.editorSubmitAction.bind(this)}
+          submitting={this.state.submitting}
+        />
       </div>
     )
   }

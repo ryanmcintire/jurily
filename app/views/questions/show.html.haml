@@ -1,2 +1,13 @@
-.h1
-  =@question.title
+.row
+  .col-md-9
+    %div.question-title-block
+      %h1= @question.title
+.row
+  .container
+    .col-md-1
+      Vote buttons
+    .col-md-8
+      =raw(@question.body)
+    %div.col-md-3.well
+      Other items here.
+
