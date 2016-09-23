@@ -29,6 +29,7 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'react_on_rails'
+gem 'sanitize'
 
 gem 'haml-rails'
 

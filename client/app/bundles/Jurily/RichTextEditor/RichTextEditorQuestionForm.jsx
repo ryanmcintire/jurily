@@ -6,7 +6,7 @@ import RichTextEditor from './RichTextEditor';
 export default class RichTextEditorQuestionForm extends React.Component {
 
   static propTypes = {
-    user: PropTypes.string.isRequired,
+    user: PropTypes.string,
     hostUrl: PropTypes.string.isRequired,
     initialTitle: PropTypes.string.isRequired,
     initialEditorValue: PropTypes.string.isRequired,
@@ -19,17 +19,17 @@ export default class RichTextEditorQuestionForm extends React.Component {
       editorValue: props.initialEditorValue,
       submitRequired: false,
       submitting: false,
-      titleValue: props.initialTitle,
+      title: props.initialTitle,
       errors: []
     }
   }
 
   toggleSubmitRequired() {
-    this.setState({submitRequired:!this.state.submitRequired});
+    this.setState({submitRequired: !this.state.submitRequired});
   }
 
   toggleSubmitting() {
-    this.setState({submitting:!this.state.submitting});
+    this.setState({submitting: !this.state.submitting});
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -46,7 +46,6 @@ export default class RichTextEditorQuestionForm extends React.Component {
       .set('X-CSRF-Token', this.props.csrfToken)
       .set('Accept', 'application/json')
       .end((err, res) => {
-        this.setState({})
         if (err || !res.ok) this.handleSubmitError(err);
         else this.handleSubmitSuccess(res);
       });
@@ -55,17 +54,23 @@ export default class RichTextEditorQuestionForm extends React.Component {
   getDataForSubmit() {
     return {
       title: this.state.title,
-      text: this.state.editorValue,
+      body: this.state.editorValue,
       user: this.props.user
     }
   }
 
   handleSubmitSuccess(res) {
+    res = JSON.parse(res.text);
     //todo - need to figure out what response body looks like.
     console.log(res);
+    window.location.href = res.forwardingUrl
   }
 
   handleSubmitError(err) {
+    //todo - get path constants
+    if (err.status == 401) {
+      window.location.href = "/users/sign_in";
+    }
     //todo - handle submit error
     console.log(err);
   }
