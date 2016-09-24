@@ -4,10 +4,20 @@
       %h1= @question.title
 .row
   .container
-    .col-md-1
-      Vote buttons
-    .col-md-8
-      =raw(@question.body)
-    %div.col-md-3.well
-      Other items here.
+    .row
+      %div.col-md-9
+        .row
+          .col-md-1
+            Vote buttons
+          .col-md-8
+            =raw(@question.body)
+        - @question.answers.each do |answer|
+          .row
+            .col-md-1
+              Vote buttons
+            .col-md-8
+              = answer.body
+      %div.col-md-3.well
+        Other items here.
+
 
