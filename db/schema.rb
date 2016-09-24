@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160924024911) do
+ActiveRecord::Schema.define(version: 20160924033326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,24 @@ ActiveRecord::Schema.define(version: 20160924024911) do
 
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
+  create_table "user_contact_infos", force: :cascade do |t|
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "user_detail_id"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "street"
+    t.string   "state"
+    t.string   "zipcode"
+  end
+
+  add_index "user_contact_infos", ["user_detail_id"], name: "index_user_contact_infos_on_user_detail_id", using: :btree
+
+  create_table "user_details", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -58,4 +76,5 @@ ActiveRecord::Schema.define(version: 20160924024911) do
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
   add_foreign_key "questions", "users"
+  add_foreign_key "user_contact_infos", "user_details"
 end
