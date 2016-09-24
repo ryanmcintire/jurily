@@ -101,7 +101,7 @@ export default class RichTextEditorForm extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container rich-text-editor-container">
         <div className="row">
           {this.renderErrors()}
         </div>
@@ -112,7 +112,9 @@ export default class RichTextEditorForm extends React.Component {
           {this.renderEditor()}
         </div>
         <div className="row">
-          <button className="btn btn-default" onClick={this.handleSubmitClick.bind(this)}>Submit</button>
+          <button
+            className="btn btn-primary rich-text-editor-submit"
+            onClick={this.handleSubmitClick.bind(this)}>Submit</button>
         </div>
       </div>
     )

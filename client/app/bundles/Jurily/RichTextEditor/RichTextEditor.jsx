@@ -43,9 +43,9 @@ export default class RichTextEditor extends React.Component {
           onChange={this.handleChange.bind(this)}
           placeholder="Type here..."
           readOnly={readOnly}
-          className={cn}
-          editorClassName={cn}
-          toolbarClassName={cn}
+          className="rich-text-editor-base"
+          editorClassName="rich-text-editor-editor"
+          toolbarClassName="rich-text-editor-toolbar"
         />
       </div>
     )

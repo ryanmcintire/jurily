@@ -17,6 +17,14 @@
               Vote buttons
             .col-md-8
               = answer.body
+        .col-md-6
+          =react_component("RichTextEditorForm",
+            props: {user: current_user,
+              hostUrl: answers_path,
+              initialTitle: "",
+              initialEditorValue: "",
+              csrfToken: form_authenticity_token,
+              isQuestion: false})
       %div.col-md-3.well
         Other items here.
 
