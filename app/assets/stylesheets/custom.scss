@@ -19,7 +19,20 @@ body {
 
 
 
+.question-page-content-container {
+  border: 1px solid #dedede;
+  background: #fff;
+  box-shadow: 0px 0px 10px #dedede;
+  position: relative;
+  padding: 20px 10px;
+  margin-bottom: 15px;
+  min-height: 100%;
+  overflow: hidden;
+}
 
+.content-body-container {
+  margin: 0 15px 0 15px;
+}
 
 
 

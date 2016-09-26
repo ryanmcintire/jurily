@@ -5,18 +5,22 @@
 .row
   .container
     .row
-      %div.col-md-9
+      %div.col-md-8
         .row
-          .col-md-1
-            Vote buttons
-          .col-md-8
-            =raw(@question.body)
-        - @question.answers.each do |answer|
-          .row
+          .question-page-content-container
             .col-md-1
               Vote buttons
-            .col-md-8
-              = answer.body
+            .col-md-7
+              .content-body-container
+                =raw(@question.body)
+        - @question.answers.each do |answer|
+          .row
+            .question-page-content-container
+              .col-md-1
+                Vote buttons
+              .col-md-8
+                .content-body-container
+                  = answer.body
         .col-md-6
           =react_component("RichTextEditorForm",
             props: {user: current_user,
@@ -25,7 +29,7 @@
               initialEditorValue: "",
               csrfToken: form_authenticity_token,
               isQuestion: false})
-      %div.col-md-3.well
+      %div.col-md-2.col-md-offset-1.well
         Other items here.
 
 
