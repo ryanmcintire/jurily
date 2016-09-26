@@ -35,19 +35,69 @@ export default class VoteBox extends React.Component {
     return {
       user:this.props.user,
       questionId:this.props.questionId,
-      voteType
+      voteType,
+      currentUserVoted:this.state.currentUserVoted,
+      currentUserVoteType:this.state.currentUserVoteType,
+      score:this.state.score
     };
   }
 
-  
+  setUserVoteStatus(voteData) {
+    if (voteData.currentUserVoted) {
+      if (voteData.currentUserVoteType === voteData.voteType) {
+        voteData.currentUserVoted = false;
+        voteData.currentUserVoteType = null;
+        voteData.score -= 1;
+        return voteData;
+      }
+      else if (voteData.currentUserVoteType !== voteData.voteType) {
+        voteData.score -= 2;
+        return voteData;
+      }
+    }
+    else if (!voteData.currentUserVoted) return voteData;
+  }
 
+  handleSubmitError(err, res) {
+    //todo - handle submit error.
+    console.log("ERROR.");
+  }
+
+  handleSubmitSuccess(res) {
+    const resJson = JSON.parse(res.text);
+    updateVoteData(resJson);
+  }
+
+  updateVoteData(data) {
+    this.setState({
+      user:data.user,
+      questionId:data.questionId,
+      voteType:data.voteType,
+      currentUserVoted:data.currentUserVoted,
+      currentUserVoteType:data.currentUserVoteType,
+      score:data.score
+    });
+  }
+
+  sendUserVoteData(voteData) {
+    Superagent
+      .post(this.props.hostUrl)
+      .send(voteData)
+      .set('X-CSRF-Token', this.props.csrfToken)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        if (err || !res.ok) this.handleSubmitError(err, res);
+        else this.handleSubmitSuccess(res);
+      });
+  }
 
   handleVoteClick(e) {
     e.preventDefault();
     this.checkLoginStatus();
-    const voteData = this.getVoteData(e.currentTarget.classList);
-    this.setUserVoteStatus(voteData);
-    
+    let voteData = this.getVoteData(e.currentTarget.classList);
+    voteData = this.setUserVoteStatus(voteData);
+    this.sendUserVoteData(voteData);
+    this.updateVoteData(voteData);
   }
 
   render() {
