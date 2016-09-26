@@ -9,7 +9,7 @@
         .row
           .question-page-content-container
             .col-md-1
-              Vote buttons
+              =react_component("VoteBox")
             .col-md-7
               .content-body-container
                 =raw(@question.body)
@@ -17,7 +17,7 @@
           .row
             .question-page-content-container
               .col-md-1
-                Vote buttons
+                =react_component("VoteBox")
               .col-md-8
                 .content-body-container
                   = answer.body
