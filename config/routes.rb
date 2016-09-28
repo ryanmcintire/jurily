@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'hello_world', to: 'hello_world#index'
   devise_for :users
 
+  post 'vote', to: 'votes#vote', as: 'vote', defaults: {:format => :json}
+
   root to: 'welcome#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -9,7 +9,12 @@
         .row
           .question-page-content-container
             .col-md-1
-              =react_component("VoteBox")
+              =react_component("VoteBox",
+                props: {user: current_user,
+                  elementId: @question.id,
+                  elementType: "question",
+                  csrfToken: form_authenticity_token,
+                  hostUrl: vote_path})
             .col-md-7
               .content-body-container
                 =raw(@question.body)
@@ -17,7 +22,12 @@
           .row
             .question-page-content-container
               .col-md-1
-                =react_component("VoteBox")
+                =react_component("VoteBox",
+                props: {user: current_user,
+                  elementId: answer.id,
+                  elementType: "answer",
+                  csrfToken: form_authenticity_token,
+                  hostUrl: vote_path})
               .col-md-8
                 .content-body-container
                   = answer.body
@@ -28,7 +38,8 @@
               initialTitle: "",
               initialEditorValue: "",
               csrfToken: form_authenticity_token,
-              isQuestion: false})
+              isQuestion: false,
+              })
       %div.col-md-2.col-md-offset-1.well
         Other items here.
 

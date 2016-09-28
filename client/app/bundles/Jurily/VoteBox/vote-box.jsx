@@ -3,13 +3,16 @@ import Superagent from 'superagent';
 
 const UPVOTE = "upvote";
 const DOWNVOTE = "downvote";
+const QUESTION = "question";
+const ANSWER = "answer";
 const VOTE_TYPES = [UPVOTE, DOWNVOTE];
 
 export default class VoteBox extends React.Component {
 
   static PropTypes = {
     user: PropTypes.object,
-    questionId: PropTypes.string.isRequired,
+    elementId: PropTypes.string.isRequired,
+    elementType: PropTypes.string.isRequired,
     csrfToken: PropTypes.string.isRequired,
     hostUrl: PropTypes.string.isRequired
   };
@@ -28,17 +31,19 @@ export default class VoteBox extends React.Component {
   }
 
   getVoteData(classList) {
+    console.log('getting vote data');
     let voteType = "";
     if (classList.contains("vote-button-up")) voteType = UPVOTE;
     else if (classList.contains("vote-button-down")) voteType = DOWNVOTE;
     else {/*todo - handle error. */ console.log("ERROR!");}
     return {
-      user:this.props.user,
-      questionId:this.props.questionId,
+      user: this.props.user,
+      elementId: this.props.elementId,
+      elementType: this.props.elementType,
       voteType,
-      currentUserVoted:this.state.currentUserVoted,
-      currentUserVoteType:this.state.currentUserVoteType,
-      score:this.state.score
+      currentUserVoted: this.state.currentUserVoted,
+      currentUserVoteType: this.state.currentUserVoteType,
+      score: this.state.score
     };
   }
 
@@ -65,17 +70,16 @@ export default class VoteBox extends React.Component {
 
   handleSubmitSuccess(res) {
     const resJson = JSON.parse(res.text);
-    updateVoteData(resJson);
+    this.updateVoteData(resJson);
   }
 
+
+  //todo - configure so that you're not updating props...
   updateVoteData(data) {
     this.setState({
-      user:data.user,
-      questionId:data.questionId,
-      voteType:data.voteType,
-      currentUserVoted:data.currentUserVoted,
-      currentUserVoteType:data.currentUserVoteType,
-      score:data.score
+      currentUserVoteType: data.voteType,
+      currentUserVoted: data.currentUserVoted,
+      score: data.score
     });
   }
 
@@ -92,6 +96,7 @@ export default class VoteBox extends React.Component {
   }
 
   handleVoteClick(e) {
+    console.log('CLICK!');
     e.preventDefault();
     this.checkLoginStatus();
     let voteData = this.getVoteData(e.currentTarget.classList);
