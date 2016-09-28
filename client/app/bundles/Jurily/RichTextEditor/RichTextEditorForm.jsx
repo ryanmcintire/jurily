@@ -11,7 +11,8 @@ export default class RichTextEditorForm extends React.Component {
     initialTitle: PropTypes.string.isRequired,
     initialEditorValue: PropTypes.string.isRequired,
     csrfToken: PropTypes.string.isRequired,
-    isQuestion: PropTypes.bool.isRequired
+    isQuestion: PropTypes.bool.isRequired,
+    questionId: PropTypes.string
   };
 
   constructor(props, ctx) {
@@ -69,7 +70,8 @@ export default class RichTextEditorForm extends React.Component {
   answerSubmitData() {
     return {
       body: this.state.editorValue,
-      user: this.props.user
+      user: this.props.user,
+      questionId: this.props.questionId
     }
   }
 
