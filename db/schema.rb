@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928050116) do
+ActiveRecord::Schema.define(version: 20160929175628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 20160928050116) do
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
+
+  create_table "bar_admissions", force: :cascade do |t|
+    t.integer  "user_detail_id"
+    t.date     "date_admitted"
+    t.integer  "status"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "jurisdiction"
+  end
+
+  add_index "bar_admissions", ["user_detail_id"], name: "index_bar_admissions_on_user_detail_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -54,6 +65,8 @@ ActiveRecord::Schema.define(version: 20160928050116) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "user_contact_info_id"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "user_details", ["user_contact_info_id"], name: "index_user_details_on_user_contact_info_id", using: :btree
@@ -92,6 +105,7 @@ ActiveRecord::Schema.define(version: 20160928050116) do
 
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
+  add_foreign_key "bar_admissions", "user_details"
   add_foreign_key "questions", "users"
   add_foreign_key "user_contact_infos", "user_details"
   add_foreign_key "user_details", "user_contact_infos"

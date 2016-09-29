@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_detail_id: 
+  date_admitted: 2016-09-29
+  status: 1
+
+two:
+  user_detail_id: 
+  date_admitted: 2016-09-29
+  status: 1

@@ -145,6 +145,7 @@
     <orderEntry type="library" scope="PROVIDED" name="actionmailer (v4.2.7, ruby-2.2.5-p319) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionpack (v4.2.7, ruby-2.2.5-p319) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionview (v4.2.7, ruby-2.2.5-p319) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="active_enum (v0.9.1, ruby-2.2.5-p319) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activejob (v4.2.7, ruby-2.2.5-p319) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activemodel (v4.2.7, ruby-2.2.5-p319) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activerecord (v4.2.7, ruby-2.2.5-p319) [gem]" level="application" />

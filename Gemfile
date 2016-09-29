@@ -25,7 +25,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 
 gem 'bootstrap-sass'
-#gem 'twitter-bootstrap-rails'
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'react_on_rails'
@@ -36,6 +35,8 @@ gem 'haml-rails'
 gem 'font-awesome-rails'
 
 gem 'active_enum'
+
+gem 'simple_form'
 
 
 # Use ActiveModel has_secure_password
