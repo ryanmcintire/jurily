@@ -35,6 +35,8 @@ gem 'haml-rails'
 
 gem 'font-awesome-rails'
 
+gem 'active_enum'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -1,0 +1,1 @@
+States = YAML.load_file("#{Rails.root}/config/predefined/jurisdictions.yml")
