@@ -7,31 +7,35 @@
     .row
       %div.col-md-8
         .row
-          .question-page-content-container
-            .col-md-1
-              =react_component("VoteBox",
-                props: {user: current_user,
-                  elementId: @question.id,
-                  elementType: "question",
-                  csrfToken: form_authenticity_token,
-                  hostUrl: vote_path})
-            .col-md-7
-              .content-body-container
-                =raw(@question.body)
+          .panel.panel-default
+            .panel-body
+              .col-md-1
+                =react_component("VoteBox",
+                  props: {user: current_user,
+                    elementId: @question.id,
+                    elementType: "question",
+                    csrfToken: form_authenticity_token,
+                    hostUrl: vote_path})
+              .col-md-7
+                .content-body-container
+                  =raw(@question.body)
 
         - @question.answers.each do |answer|
           .row
-            .question-page-content-container
-              .col-md-1
-                =react_component("VoteBox",
-                props: {user: current_user,
-                  elementId: answer.id,
-                  elementType: "answer",
-                  csrfToken: form_authenticity_token,
-                  hostUrl: vote_path})
-              .col-md-8
-                .content-body-container
-                  = raw(answer.body)
+            .panel.panel-default
+              .panel-body
+                .col-md-1
+                  =react_component("VoteBox",
+                  props: {user: current_user,
+                    elementId: answer.id,
+                    elementType: "answer",
+                    csrfToken: form_authenticity_token,
+                    hostUrl: vote_path})
+                .col-md-8
+                  .content-body-container
+                    = raw(answer.body)
+              .panel-footer
+                User details will go here...
         .col-md-6
           =react_component("RichTextEditorForm",
             props: {user: current_user,
