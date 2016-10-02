@@ -10,14 +10,25 @@ class RegistrationsController < Devise::RegistrationsController
 
 
   def create
-    puts 'howdy'
+    flag = false
+    if params[:user][:admitted] != "1"
+      add_flash_error "You must confirm you are either admitted to practice law or law student."
+      flag = true
+    end
+    if params[:user][:tos_accepted] != "1"
+      add_flash_error "You must accept the terms of service."
+      flag = true
+    end
+
+    redirect_to action: :new and return if flag
+
     super
   end
 
   protected
   def after_sign_up_path_for(resource)
     #todo - set page....
-    new_profile_url
+    edit_user_url(resource)
   end
 
   def sign_up_params
@@ -29,6 +40,15 @@ class RegistrationsController < Devise::RegistrationsController
         ]
     ]
     params.require(resource_name).permit(permitted)
+  end
+
+  private
+  def add_flash_error(msg)
+    if flash[:error].class.name == "Array" and flash[:error].count > 0
+      flash[:error] << msg
+    else
+      flash[:error] = [msg]
+    end
   end
 
 

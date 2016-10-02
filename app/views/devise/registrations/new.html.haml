@@ -23,7 +23,12 @@
         = f.password_field :password_confirmation, class: "form-control"
       .form-group
         = f.check_box :admitted
-        = f.label :admitted, "This a test of the system."
+        = f.label :admitted, "You are a licensed attorney, a current law student, or law school graduate awaiting bar passage."
+        = link_to 'See more details', '#' #todo - class...
+      .form-group
+        = f.check_box :tos_accepted
+        = f.label :tos_accepted, "You agree to the Jurily"
+        = link_to "terms of service", '#' #todo - class....
       = f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary"
 
 = render "devise/shared/links"

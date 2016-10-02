@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :user_detail
 
-  attr_accessor :admitted, :eula_accepted
+  #virtual members for sign up form.
+  attr_accessor :admitted, :tos_accepted
 
 
 end
