@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations"}
 
   resources :answers
   resources :questions
@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   resources :users
 
   get 'hello_world', to: 'hello_world#index'
+
+
+  get 'new_profile', to: 'users#new_profile', as: 'new_profile'
+  post 'create_profile', to: 'users#create_profile', as: 'create_profile'
 
   post 'vote', to: 'votes#vote', as: 'vote', defaults: {:format => :json}
 

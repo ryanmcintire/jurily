@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160929175628) do
+ActiveRecord::Schema.define(version: 20160929231232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,9 +54,9 @@ ActiveRecord::Schema.define(version: 20160929175628) do
     t.integer  "user_detail_id"
     t.string   "address1"
     t.string   "address2"
-    t.string   "street"
     t.string   "state"
     t.string   "zipcode"
+    t.string   "city"
   end
 
   add_index "user_contact_infos", ["user_detail_id"], name: "index_user_contact_infos_on_user_detail_id", using: :btree
@@ -67,9 +67,11 @@ ActiveRecord::Schema.define(version: 20160929175628) do
     t.integer  "user_contact_info_id"
     t.string   "first_name"
     t.string   "last_name"
+    t.integer  "user_id"
   end
 
   add_index "user_details", ["user_contact_info_id"], name: "index_user_details_on_user_contact_info_id", using: :btree
+  add_index "user_details", ["user_id"], name: "index_user_details_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -109,6 +111,7 @@ ActiveRecord::Schema.define(version: 20160929175628) do
   add_foreign_key "questions", "users"
   add_foreign_key "user_contact_infos", "user_details"
   add_foreign_key "user_details", "user_contact_infos"
+  add_foreign_key "user_details", "users"
   add_foreign_key "users", "user_details"
   add_foreign_key "votes", "users"
 end

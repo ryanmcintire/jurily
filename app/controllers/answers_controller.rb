@@ -1,5 +1,7 @@
 class AnswersController < ApplicationController
+
   def create
+    respond_if_not_logged_in
     question = Question.find(params[:questionId])
     answer = Answer.new(user: get_user, body: get_body)
     question.answers << answer

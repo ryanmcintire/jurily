@@ -40,8 +40,11 @@
             %li= link_to "Link1", "/path1"
             %li= link_to "Link2", "/path2"
             %li= link_to "Link3", "/path3"
-            %li= link_to "Sign in", user_session_path if !current_user
-            %li= link_to "Sign out", destroy_user_session_path, :method => :delete if current_user
+            -if !current_user
+              %li= link_to "Sign in", user_session_url
+              %li= link_to "Sign up", new_user_registration_url
+            -if current_user
+              %li= link_to "Sign out", destroy_user_session_url, :method => :delete if current_user
     %div.container
       .row
         %div.col-lg-12.content-body

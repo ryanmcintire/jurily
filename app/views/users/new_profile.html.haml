@@ -1,0 +1,28 @@
+%h4
+  Create new profile
+%h5
+  %p
+    Now that you've successfully created your account, you can set up your account profile.
+  %p
+    Note - you must specify either a bar admission or a law school currently attending in order to answer
+    any questions on the site.
+
+.panel
+  .panel-body
+    =simple_form_for @user do |f|
+      .panel-heading
+        Personal Information
+        =f.simple_fields_for :user_detail do |d|
+          .panel-body
+            =d.input :first_name
+            =d.input :last_name
+            =d.simple_fields_for :user_contact_info do |c|
+              =c.input :address1
+              =c.input :address2
+              =c.input :state
+              =c.input :zipcode
+      .panel-heading
+        Bar Admissions
+        .panel-body
+
+
