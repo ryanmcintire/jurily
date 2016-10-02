@@ -1,1 +1,34 @@
-="Profile page for #{@detail.full_name}"
+.container
+  .profile-title
+    %h3
+      = @detail.full_name
+  .row
+    .panel.panel-default.profile-panel
+      .panel-heading.profile-panel-heading
+        %h4 Details
+      .panel-body.profile-panel-body
+        = "Decide what personal details go here..."
+  .row
+    .panel.panel-default.profile-panel
+      .panel-heading.profile-panel-heading
+        %h4 Organization Details
+      .panel-body.profile-panel-body
+        - #todo - organization  details.
+        %p Insert details about organization.
+        %p (Possibly include organization history...)
+  .row
+    .panel.panel-default.profile-panel
+      .panel-heading.profile-panel-heading
+        %h4 Bar Admissions
+      .panel-body.profile-panel-body
+        - #todo bar admissions.
+        %p Bar admission detail will go here.
+  .row
+    .panel.panel-default.profile-panel
+      .panel-heading.profile-panel-heading
+        %h4 Legal Education
+      .panel-body.profile-panel-body
+        %p Legal education details to go here.
+        %p Possibly education history...
+
+

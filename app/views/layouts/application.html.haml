@@ -37,9 +37,7 @@
         %a.navbar-brand{:href => "#"} Jurily
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
-            %li= link_to "Link1", "/path1"
-            %li= link_to "Link2", "/path2"
-            %li= link_to "Link3", "/path3"
+            %li= link_to "New Question", new_question_url
             -if !current_user
               %li= link_to "Sign in", user_session_url
               %li= link_to "Sign up", new_user_registration_url
