@@ -1,0 +1,2 @@
+module LawschoolDetailsHelper
+end

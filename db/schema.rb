@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160929231232) do
+ActiveRecord::Schema.define(version: 20161002231437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,17 @@ ActiveRecord::Schema.define(version: 20160929231232) do
   end
 
   add_index "bar_admissions", ["user_detail_id"], name: "index_bar_admissions_on_user_detail_id", using: :btree
+
+  create_table "lawschool_details", force: :cascade do |t|
+    t.string   "school_name"
+    t.boolean  "currently_attending"
+    t.integer  "user_detail_id"
+    t.date     "year_graduated"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "lawschool_details", ["user_detail_id"], name: "index_lawschool_details_on_user_detail_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -108,6 +119,7 @@ ActiveRecord::Schema.define(version: 20160929231232) do
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
   add_foreign_key "bar_admissions", "user_details"
+  add_foreign_key "lawschool_details", "user_details"
   add_foreign_key "questions", "users"
   add_foreign_key "user_contact_infos", "user_details"
   add_foreign_key "user_details", "user_contact_infos"

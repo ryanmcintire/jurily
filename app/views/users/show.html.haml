@@ -22,7 +22,12 @@
         %h4 Bar Admissions
       .panel-body.profile-panel-body
         - #todo bar admissions.
-        %p Bar admission detail will go here.
+        - if @detail.bar_admissions.count == 0
+          No bar admissions added! Click
+          = link_to "here", root_url, class: "in-text-url"
+          to add your first!
+        - elsif @detail.bar_admissions.count > 0
+          %p let's list!
   .row
     .panel.panel-default.profile-panel
       .panel-heading.profile-panel-heading

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :questions
   resources :answer, only: [:create]
   resources :users
+  resources :lawschool_details, only: [:new, :create]
+  resources :bar_admissions, only: [:new, :create]
 
   get 'hello_world', to: 'hello_world#index'
 
