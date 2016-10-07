@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :answer, only: [:create]
   resources :users
   resources :lawschool_details, only: [:new, :create]
-  resources :bar_admissions, only: [:new, :create]
+  resources :bar_admissions, except: [:show]
 
   get 'hello_world', to: 'hello_world#index'
 

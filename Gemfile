@@ -38,6 +38,9 @@ gem 'active_enum'
 
 gem 'simple_form'
 
+gem 'bootstrap-datepicker-rails'
+
+gem 'ransack'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

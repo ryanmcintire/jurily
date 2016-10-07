@@ -1,0 +1,6 @@
+- #todo - refactor this logic into controller.
+- @q = Question.ransack(params[:q])
+
+= search_form_for @q, :html => {:class => "navbar-form"} do |f|
+  = f.search_field :body_cont, :class => "form-control", :placeholder => "Search"
+  = f.submit 'Submit', :class => "btn btn-default"

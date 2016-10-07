@@ -1,0 +1,14 @@
+.navbar.navbar-default.navbar-static-top
+  .container
+    %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    .navbar-header
+      = link_to "Jurily", root_url, class: "navbar-brand"
+    .navbar-collapse.collapse.navbar-responsive-collapse
+      %ul.nav.navbar-nav
+        %li= link_to "New Question", new_question_url
+      = render :partial => 'layouts/search'
+      = render :partial => 'layouts/authlink'
+
