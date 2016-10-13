@@ -1,16 +1,39 @@
 .container
-  .profile-title
-    .row
-      .col-md-5
-        %h3= @detail.full_name
-        - if current_user && current_user == @user
-          %h5= link_to "(Edit Profile)", edit_user_url(current_user)
   .row
-    .panel.panel-default.profile-panel
-      .panel-heading.profile-panel-heading
-        %h4 Details
-      .panel-body.profile-panel-body
-        "Decide what personal details go here..."
+    .col-md-12
+      .panel.panel-default
+        .panel-heading
+          %h3= @detail.full_name
+          - if current_user && current_user == @user
+            %h5= link_to "(Edit Profile)", edit_user_url(current_user)
+        .panel-body
+          = render 'user_personal_details', detail: @detail
+  .row
+    .col-md-6
+      .panel.panel-default
+        .panel-heading
+          %h4 Recent Questions
+        .panel-body
+          =render 'questions_partial', questions: @user.recent_questions(5)
+    .col-md-6
+      .panel.panel-default
+        .panel-heading
+          %h4 Recent Answers
+        .panel-body
+          =render 'answers_partial', answers: @user.recent_answers(5)
+  .row
+    .col-md-6
+      .panel.panel-default
+        .panel-heading
+          %h4 Top Questions
+        .panel-body
+          =render 'questions_partial', questions: @user.top_questions(5)
+    .col-md-6
+      .panel.panel-default
+        .panel-heading
+          %h4 Top Answers
+        .panel-body
+          =render 'answers_partial', answers: @user.top_answers(5)
   .row
     .panel.panel-default.profile-panel
       .panel-heading.profile-panel-heading

@@ -6,5 +6,10 @@ class Question < ActiveRecord::Base
   has_many :answers
   has_many :votes, as: :votable
 
+  def score
+    tally = 0
+    self.votes.each {|vote| tally += vote.value}
+    tally
+  end
 
 end

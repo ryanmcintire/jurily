@@ -1,0 +1,9 @@
+
+%ul.list-group
+- questions.each do |question|
+  %li.list-group-item
+    %span.badge= question.score
+    = link_to truncate(question.title, length: 60, separator: ' '),
+        question_url(question)
+More questions
+-# todo - create user question view
