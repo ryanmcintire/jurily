@@ -3,6 +3,7 @@ class UserDetail < ActiveRecord::Base
   has_one :user_contact_info
   has_many :bar_admissions
   has_many :lawschool_details
+  has_many :user_employments
 
   #todo - should I add
   accepts_nested_attributes_for :user_contact_info
