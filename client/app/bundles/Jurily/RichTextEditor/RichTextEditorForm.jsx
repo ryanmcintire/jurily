@@ -12,7 +12,10 @@ export default class RichTextEditorForm extends React.Component {
     initialEditorValue: PropTypes.string.isRequired,
     csrfToken: PropTypes.string.isRequired,
     isQuestion: PropTypes.bool.isRequired,
-    questionId: PropTypes.string
+    questionId: PropTypes.string,
+    baseClassName: PropTypes.string.isRequired,
+    editorClassName: PropTypes.string.isRequired,
+    toolbarClassName: PropTypes.string.isRequired
   };
 
   constructor(props, ctx) {
@@ -103,7 +106,7 @@ export default class RichTextEditorForm extends React.Component {
 
   render() {
     return (
-      <div className="container rich-text-editor-container">
+      <div class="container col-md-6">
         <div className="row">
           {this.renderErrors()}
         </div>
@@ -114,9 +117,12 @@ export default class RichTextEditorForm extends React.Component {
           {this.renderEditor()}
         </div>
         <div className="row">
-          <button
-            className="btn btn-primary rich-text-editor-submit"
-            onClick={this.handleSubmitClick.bind(this)}>Submit</button>
+          <div className="container">
+            <button
+              className="btn btn-primary rich-text-editor-submit"
+              onClick={this.handleSubmitClick.bind(this)}>Submit
+            </button>
+          </div>
         </div>
       </div>
     )
@@ -133,35 +139,46 @@ export default class RichTextEditorForm extends React.Component {
   }
 
   handleTitleChange(e) {
-    this.setState({title:e.target.value});
+    this.setState({title: e.target.value});
   }
 
   renderTitle() {
     if (this.props.isQuestion) return (
-      <div className="container">
-        <div className="form-group">
-          <label htmlFor="questionTitle">Question Title:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="questionTitle"
-            placeholder="Question Title"
-            value={this.state.title}
-            onChange={this.handleTitleChange.bind(this)}
-          />
-        </div>
-      </div>
+        <form className="form-horizontal question-title">
+          <div className="form-group">
+            <label htmlFor="questionTitle" className="col-md-3 control-label form-input-label">Question Title:</label>
+            <div className="col-md-9">
+              <input
+                type="text"
+                className="form-control"
+                id="questionTitle"
+                placeholder="What is your question?  Be concise and specific."
+                value={this.state.title}
+                onChange={this.handleTitleChange.bind(this)}
+              />
+            </div>
+          </div>
+        </form>
     )
   }
 
   renderEditor() {
     return (
-      <div className="text-editor-question">
+      <div className="form-group text-editor-form-group">
         <RichTextEditor
           editorSubmitAction={this.editorSubmitAction.bind(this)}
           submitting={this.state.submitting}
+          baseClassName={this.props.baseClassName}
+          editorClassName={this.props.editorClassName}
+          toolbarClassName={this.props.toolbarClassName}
+          placeholder={this.getPlaceholder()}
         />
       </div>
     )
+  }
+
+  getPlaceholder() {
+    if (this.props.isQuestion) return "Type further question details here...";
+    return "Type answer here...";
   }
 }

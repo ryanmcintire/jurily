@@ -1,0 +1,15 @@
+- if bar_admissions == nil || bar_admissions.count == 0
+  User is not admitted to any bar.
+- elsif bar_admissions.count > 0
+  %table.table.table-striped.bar-admission-table
+    %thead
+      %tr
+        %th Jurisdiction
+        %th Bar Number
+        %th Date Admitted
+      %tbody
+        - bar_admissions.each do |bar_admission|
+          %tr
+            %td= bar_admission.jurisdiction.titleize
+            %td= bar_admission.bar_number
+            %td= bar_admission.date_admitted

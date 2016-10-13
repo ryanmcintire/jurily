@@ -1,19 +1,21 @@
 .container
   .profile-title
-    %h3
-      = @detail.full_name
+    .row
+      .col-md-5
+        %h3= @detail.full_name
+        - if current_user && current_user == @user
+          %h5= link_to "(Edit Profile)", edit_user_url(current_user)
   .row
     .panel.panel-default.profile-panel
       .panel-heading.profile-panel-heading
         %h4 Details
       .panel-body.profile-panel-body
-        = "Decide what personal details go here..."
+        "Decide what personal details go here..."
   .row
     .panel.panel-default.profile-panel
       .panel-heading.profile-panel-heading
         %h4 Organization Details
       .panel-body.profile-panel-body
-        - #todo - organization  details.
         %p Insert details about organization.
         %p (Possibly include organization history...)
   .row
@@ -21,35 +23,10 @@
       .panel-heading.profile-panel-heading
         %h4 Bar Admissions
       .panel-body.profile-panel-body
-        - #todo bar admissions.
-        - if @detail.bar_admissions.count == 0
-          No bar admissions added! Click
-          = link_to "here", new_bar_admission_url, class: "in-text-url"
-          to add your first!
-        - elsif @detail.bar_admissions.count > 0
-          %table.table.table-striped
-            %thead
-              %tr
-                %th Jurisdiction
-                %th Bar Number
-                %th Date Admitted
-                %th
-            %tbody
-              - @detail.bar_admissions.each do |ba|
-                %tr
-                  %td
-                    = ba.jurisdiction.titleize
-                  %td
-                    = ba.bar_number
-                  %td
-                    = ba.date_admitted
-                  %td
-                    = link_to "Edit", edit_bar_admission_url(ba), class: "btn btn-success btn-sm"
-                    = link_to "Delete", bar_admissions_url(ba), method: :delete, class: "btn btn-danger btn-sm"
-          .row
-            .container
-              = link_to "Add Another", new_bar_admission_url, class: "btn btn-primary"
-
+        - if current_user && current_user == @user
+          = render 'bar_admissions/current_user_bar_admissions_table', :bar_admissions => @detail.bar_admissions
+        - else
+          = render 'bar_admissions/user_bar_admissions_table', :bar_admissions => @detail.bar_admissions
 
   .row
     .panel.panel-default.profile-panel

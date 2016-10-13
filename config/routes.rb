@@ -10,11 +10,14 @@ Rails.application.routes.draw do
 
   get 'hello_world', to: 'hello_world#index'
 
-
   get 'new_profile', to: 'users#new_profile', as: 'new_profile'
   post 'create_profile', to: 'users#create_profile', as: 'create_profile'
 
   post 'vote', to: 'votes#vote', as: 'vote', defaults: {:format => :json}
+
+  get 'search', to: 'search#search', as: 'search'
+
+
 
   root to: 'welcome#home'
   # The priority is based upon order of creation: first created -> highest priority.

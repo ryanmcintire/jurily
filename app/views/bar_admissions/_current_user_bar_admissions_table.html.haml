@@ -1,0 +1,27 @@
+
+- if bar_admissions.count == 0
+  No bar admissions added! Click
+  = link_to "here", new_bar_admission_url, class: "in-text-url"
+  to add your first!
+- elsif bar_admissions.count > 0
+  .container.col-md-12
+    .row
+      %table.table.table-striped.bar-admission-table
+        %thead
+          %tr
+            %th Jurisdiction
+            %th Bar Number
+            %th Date Admitted
+            %th
+        %tbody
+          - @detail.bar_admissions.each do |bar_admission|
+            %tr
+              %td= bar_admission.jurisdiction.titleize
+              %td= bar_admission.bar_number
+              %td= bar_admission.date_admitted
+              %td
+                = link_to "Edit", edit_bar_admission_url(bar_admission), class: "btn btn-success btn-sm"
+                = link_to "Delete", bar_admissions_url(bar_admission), method: :delete, class: "btn btn-danger btn-sm"
+    .row
+      .container
+        = link_to "Add Another", new_bar_admission_url, class: "btn btn-primary"

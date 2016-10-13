@@ -40,9 +40,9 @@ gem 'simple_form'
 
 gem 'bootstrap-datepicker-rails'
 
-gem 'ransack'
-
 gem 'pg_search'
+
+gem 'kaminari'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

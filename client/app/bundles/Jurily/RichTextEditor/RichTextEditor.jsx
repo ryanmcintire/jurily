@@ -6,7 +6,11 @@ export default class RichTextEditor extends React.Component {
 
   static PropTypes = {
     editorSubmitAction: PropTypes.func.isRequired,
-    submitting: PropTypes.bool.isRequired
+    submitting: PropTypes.bool.isRequired,
+    baseClassName: PropTypes.string.isRequired,
+    editorClassName: PropTypes.string.isRequired,
+    toolbarClassName: PropTypes.string.isRequired,
+    placeholder: PropTypes.string.isRequired
   };
 
   constructor(props, ctx) {
@@ -41,11 +45,11 @@ export default class RichTextEditor extends React.Component {
         <ReactRTE
           value={value}
           onChange={this.handleChange.bind(this)}
-          placeholder="Type here..."
+          placeholder={this.props.placeholder}
           readOnly={readOnly}
-          className="rich-text-editor-base"
-          editorClassName="rich-text-editor-editor"
-          toolbarClassName="rich-text-editor-toolbar"
+          className={this.props.baseClassName}
+          editorClassName={this.props.editorClassName}
+          toolbarClassName={this.props.toolbarClassName}
         />
       </div>
     )

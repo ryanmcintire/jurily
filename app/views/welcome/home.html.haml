@@ -1,2 +1,13 @@
 .h1
   Welcome
+.container
+  -@questions.each do |question|
+    = render 'shared/question_short', question: question
+    -#.panel.panel-default
+    -#  .panel-heading
+    -#    = link_to truncate(question.title, length: 200, seperator: ''),
+    -#      question_url(question)
+    -#  .panel-body
+    -#    = raw (question.body).truncate(500, seperator: ' ')
+  %p
+    = paginate @questions

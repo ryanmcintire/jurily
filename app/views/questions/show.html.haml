@@ -1,37 +1,37 @@
 .row
   .col-md-9
     %div.question-title-block
-      %h1= @question.title
+      %h3.question-title= @question.title
 .row
   .container
     .row
-      %div.col-md-8
+      %div.col-md-9
         .row
           .panel.panel-default
             .panel-body
-              .col-md-1
+              .col-md-1.votebox-column
                 =react_component("VoteBox",
                   props: {user: current_user,
                     elementId: @question.id,
                     elementType: "question",
                     csrfToken: form_authenticity_token,
                     hostUrl: vote_path})
-              .col-md-7
+              .col-md-11
                 .content-body-container
                   =raw(@question.body)
-
+        %h4 Answers
         - @question.answers.each do |answer|
           .row
             .panel.panel-default
               .panel-body
-                .col-md-1
+                .col-md-1.votebox-column
                   =react_component("VoteBox",
                   props: {user: current_user,
                     elementId: answer.id,
                     elementType: "answer",
                     csrfToken: form_authenticity_token,
                     hostUrl: vote_path})
-                .col-md-8
+                .col-md-11
                   .content-body-container
                     = raw(answer.body)
               .panel-footer
@@ -44,7 +44,10 @@
               initialEditorValue: "",
               csrfToken: form_authenticity_token,
               isQuestion: false,
-              questionId: @question.id.to_s})
+              questionId: @question.id.to_s,
+              baseClassName: "answer-editor-base",
+              editorClassName: "answer-editor-editor",
+              toolbarClassName: "answer-editor-toolbar"})
       %div.col-md-2.col-md-offset-1.well
         Other items here.
 

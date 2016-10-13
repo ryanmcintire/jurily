@@ -119,18 +119,18 @@ export default class VoteBox extends React.Component {
       <div className="vote-box-container">
         <div className="vote-button-container">
           <p>
-            <a className="vote-button-up" onClick={this.handleVoteClick.bind(this)}>
-              <i className="fa fa-chevron-circle-up fa-2x" aria-hidden="true"/>
+            <a className="vote-button-up votebox-vote-button" onClick={this.handleVoteClick.bind(this)}>
+              <i className="fa fa-chevron-circle-up fa-3x" aria-hidden="true"/>
             </a>
           </p>
         </div>
-        <div className="votebox-score-container">
+        <div className="votebox-score-container center-block">
           <p className="votebox-score">{this.state.score}</p>
         </div>
         <div className="vote-button-container">
           <p>
-            <a className="vote-button-down" onClick={this.handleVoteClick.bind(this)}>
-              <i className="fa fa-chevron-circle-down fa-2x" aria-hidden="true"/>
+            <a className="vote-button-down votebox-vote-button" onClick={this.handleVoteClick.bind(this)}>
+              <i className="fa fa-chevron-circle-down fa-3x" aria-hidden="true"/>
             </a>
           </p>
         </div>

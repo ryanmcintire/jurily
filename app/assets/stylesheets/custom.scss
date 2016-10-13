@@ -1,5 +1,8 @@
 body {
-  background-color: #f6f6f6;
+  background-color: #fcfcfc;
+  font-family: "Georgia", "Times New Roman", "Times", serif;
+  font-size: 16px;
+  line-height: 28px;
 }
 
 .content-body {
@@ -11,6 +14,11 @@ body {
   border-bottom-color: #777777;
   padding: 0 0 0 10px;
   margin: 0 0 40px 0;
+}
+
+.question-title {
+  font-family: "Adobe Carlson", "Georgia", "Times New Roman", "Times", serif;
+  margin: 20px;
 }
 
 
@@ -36,7 +44,10 @@ body {
 
 
 
-
+.form-input-label {
+  font-weight: bold;
+  font-size: 0.9em;
+}
 
 
 
@@ -53,14 +64,80 @@ body {
   margin: 15px 0 0 0;
 }
 
-.rich-text-editor-base {
-  width: 600px;
+.question-title {
+  margin: 30px 0 10px 0;
+  padding: 0;
+}
+
+.question-side-panel {
+  margin: 30px 15px 0 40px;
+}
+
+.public-DraftEditor-content {
+  min-height: 150px;
+}
+
+
+.col-md-12 {
+  .question-editor-base {
+    //width: 100% !important;
+    min-height: 500px;
+  }
+
+  .question-editor-editor {
+    //width: 96%;
+    //min-height: 5000px;
+  }
+
+  .question-editor-toolbar {
+    //todo
+  }
+}
+
+.col-md-6 {
+  .answer-editor-base {
+    width: 400px;
+  }
+  .answer-editor-editor {
+    width: 375px;
+  }
+  .answer-editor-toolbar {
+    //todo
+  }
 }
 
 
 
 
 
+
+.rich-text-editor-toolbar {
+
+}
+
+.text-editor-form-group {
+  margin-top: 20px;
+}
+
+
 .form-row {
   margin: 10px 0 10px 0;
+}
+
+
+
+.vote-button-container {
+  margin: auto;
+  width: 50%;
+}
+
+.votebox-score-container {
+  font-size: 20px;
+  text-align: center;
+  margin: 0 0 15px 0;
+}
+
+.votebox-column {
+  margin: 0;
+  padding: 0;
 }

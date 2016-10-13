@@ -1,0 +1,6 @@
+- @results.each do |result|
+  = render 'shared/question_short', question: result
+
+- if @results.count == 0
+  %p No results with your search parameters.
+  %p Try submitting a question or conducting an advanced search.
