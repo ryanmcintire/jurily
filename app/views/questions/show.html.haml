@@ -9,33 +9,40 @@
         .row
           .panel.panel-default
             .panel-body
-              .col-md-1.votebox-column
-                =react_component("VoteBox",
-                  props: {user: current_user,
-                    elementId: @question.id,
-                    elementType: "question",
-                    csrfToken: form_authenticity_token,
-                    hostUrl: vote_path})
-              .col-md-11
-                .content-body-container
-                  =raw(@question.body)
-        %h4 Answers
+              .row
+                .col-md-1.votebox-column
+                  =react_component("VoteBox",
+                    props: {user: current_user,
+                      elementId: @question.id,
+                      elementType: "question",
+                      csrfToken: form_authenticity_token,
+                      hostUrl: vote_path})
+                .col-md-11
+                  .content-body-container
+                    =raw(@question.body)
+              .row
+                .col-md-10.col-md-offset-1.user-info-slot
+                  =link_to @question.user.user_detail.full_name, user_url(@question.user)
+                  %p= @question.user.user_detail.title_display
+        %h4= pluralize(@question.answers.count, 'Answer')
         - @question.answers.each do |answer|
           .row
             .panel.panel-default
               .panel-body
-                .col-md-1.votebox-column
-                  =react_component("VoteBox",
-                  props: {user: current_user,
-                    elementId: answer.id,
-                    elementType: "answer",
-                    csrfToken: form_authenticity_token,
-                    hostUrl: vote_path})
-                .col-md-11
-                  .content-body-container
-                    = raw(answer.body)
-              .panel-footer
-                User details will go here...
+                .row
+                  .col-md-1.votebox-column
+                    =react_component("VoteBox",
+                    props: {user: current_user,
+                      elementId: answer.id,
+                      elementType: "answer",
+                      csrfToken: form_authenticity_token,
+                      hostUrl: vote_path})
+                  .col-md-11
+                    .content-body-container
+                      = raw(answer.body)
+                .row
+                  .col-md-10.col-md-offset-1.user-info-slot
+                    =link_to @question.user.user_detail.full_name
         .col-md-6
           =react_component("RichTextEditorForm",
             props: {user: current_user,

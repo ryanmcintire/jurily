@@ -56,7 +56,9 @@
       .panel-heading.profile-panel-heading
         %h4 Legal Education
       .panel-body.profile-panel-body
-        %p Legal education details to go here.
-        %p Possibly education history...
+        - if current_user && current_user == @user
+          = render 'current_user_lawschool_detail', :lawschool_detail => @detail.lawschool_detail
+        - else
+          =render 'lawschool_detail', :lawschool_detail => @detail.lawschool_detail
 
 

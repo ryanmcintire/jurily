@@ -1,0 +1,8 @@
+- if lawschool_detail.nil?
+  No lawschool details submitted.
+- else
+  = lawschool_detail.school_name
+  - if lawschool_detail.currently_attending
+    Currently attending.
+  - elsif lawschool_detail.year_graduated != nil
+    = "Graduation year: #{lawschool_detail.year_graduated}"
