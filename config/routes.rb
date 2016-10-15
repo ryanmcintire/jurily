@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   resources :answers
   resources :questions
   resources :answer, only: [:create]
-  resources :users
-  resources :lawschool_details, only: [:new, :create]
+  resources :users do
+    resources :lawschool_details, except: [:show, :index]
+  end
   resources :bar_admissions, except: [:show]
 
   get 'hello_world', to: 'hello_world#index'

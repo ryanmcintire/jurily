@@ -6,6 +6,8 @@ class Question < ActiveRecord::Base
   has_many :answers
   has_many :votes, as: :votable
 
+  enum jurisdiction: Jurisdictions::JURISDICTIONS
+
   def score
     tally = 0
     self.votes.each {|vote| tally += vote.value}

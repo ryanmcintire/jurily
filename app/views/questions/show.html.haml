@@ -42,8 +42,9 @@
                       = raw(answer.body)
                 .row
                   .col-md-10.col-md-offset-1.user-info-slot
-                    =link_to @question.user.user_detail.full_name
-        .col-md-6
+                    =link_to answer.user.user_detail.full_name
+                    %p= answer.user.user_detail.title_display
+        .col-md-12
           =react_component("RichTextEditorForm",
             props: {user: current_user,
               hostUrl: answers_path,

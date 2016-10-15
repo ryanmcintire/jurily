@@ -1,0 +1,20 @@
+.container
+  .row
+    .panel.panel-default
+      .panel.panel-heading
+        %h4 Law school details
+      .panel.panel-body
+        = form_for @lawschool_detail, url: user_lawschool_details_url do |f|
+          .row.form-row
+            .col-md-3
+              Lawschool
+            .col-md-6
+              = f.text_field :school_name, :class => "form-control"
+          .row.form-row
+            .col-md-3
+              Year graduated (if applicable)
+            .col-md-6
+              = f.text_field :year_graduated, :class => "form-control"
+          .row.form-row
+            .cold-md-6.col-md-offset-3
+              = f.submit 'Submit', :class => "btn btn-primary"

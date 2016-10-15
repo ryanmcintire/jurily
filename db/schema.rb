@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161013062357) do
+ActiveRecord::Schema.define(version: 20161015001529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20161013062357) do
     t.string   "school_name"
     t.boolean  "currently_attending"
     t.integer  "user_detail_id"
-    t.date     "year_graduated"
+    t.string   "year_graduated"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
   end
@@ -61,11 +61,12 @@ ActiveRecord::Schema.define(version: 20161013062357) do
   add_index "pg_search_documents", ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "title"
     t.string   "body"
     t.integer  "user_id"
+    t.integer  "jurisdiction"
   end
 
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree

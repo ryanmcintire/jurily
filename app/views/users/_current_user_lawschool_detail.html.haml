@@ -1,10 +1,10 @@
 - if lawschool_detail.nil?
   No lawschool details submitted. Click
-  = "here"
+  = link_to "here", new_user_lawschool_detail_url(current_user)
   to add lawschool details.
 - else
   = lawschool_detail.school_name
-  - if lawschool_detail.currently_attending
-    Currently attending.
+  - if lawschool_detail.year_graduated == nil
+    %p= "Not Graduated"
   - elsif lawschool_detail.year_graduated != nil
-    = "Graduation year: #{lawschool_detail.year_graduated}"
+    %p= "Graduation year: #{lawschool_detail.year_graduated}"

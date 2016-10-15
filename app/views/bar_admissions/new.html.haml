@@ -4,7 +4,7 @@
       .panel-heading.bar-admission-panel-heading
         %h4 Add new bar admission
       .panel-body.bar-admission-panel-body
-        = form_for @bar_admission, url: bar_admissions_url(@bar_admission), html: {method: :patch} do |f|
+        = form_for @bar_admission, url: bar_admissions_url(@bar_admission) do |f|
           .row.form-row
             .col-md-2
               Jurisdiction:
