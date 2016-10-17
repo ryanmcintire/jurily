@@ -15,7 +15,9 @@ export default class RichTextEditorForm extends React.Component {
     questionId: PropTypes.string,
     baseClassName: PropTypes.string.isRequired,
     editorClassName: PropTypes.string.isRequired,
-    toolbarClassName: PropTypes.string.isRequired
+    toolbarClassName: PropTypes.string.isRequired,
+    jurisdictionOptions: PropTypes.array
+    //todo - add proptype for jurisdictions.
   };
 
   constructor(props, ctx) {
@@ -25,6 +27,7 @@ export default class RichTextEditorForm extends React.Component {
       submitRequired: false,
       submitting: false,
       title: props.initialTitle,
+      jurisdictionSelectValue: 'Select',
       errors: []
     }
   }
@@ -45,7 +48,6 @@ export default class RichTextEditorForm extends React.Component {
 
   submitEditorTextToServer() {
     this.toggleSubmitRequired();
-    console.log(this.questionSubmitData());
     Superagent
       .post(this.props.hostUrl)
       .send(this.getDataForSubmit())
@@ -63,10 +65,12 @@ export default class RichTextEditorForm extends React.Component {
   }
 
   questionSubmitData() {
+    //todo - need to handle if data is not here properly.  
     return {
       title: this.state.title,
       body: this.state.editorValue,
-      user: this.props.user
+      user: this.props.user,
+      jurisdiction: this.state.jurisdictionSelectValue
     }
   }
 
@@ -100,18 +104,27 @@ export default class RichTextEditorForm extends React.Component {
     this.setState({editorValue});
   }
 
+  handleSelectChange(e) {
+    this.setState({
+      jurisdictionSelectValue:e.target.value
+    });
+  }
+
   handleSubmitClick() {
     this.toggleSubmitting();
   }
 
   render() {
     return (
-      <div class="container col-md-6">
+      <div className="container col-md-12">
         <div className="row">
           {this.renderErrors()}
         </div>
         <div className="row">
           {this.renderTitle()}
+        </div>
+        <div>
+          {this.renderJurisdictionDropdown()}
         </div>
         <div className="row">
           {this.renderEditor()}
@@ -144,21 +157,45 @@ export default class RichTextEditorForm extends React.Component {
 
   renderTitle() {
     if (this.props.isQuestion) return (
-        <form className="form-horizontal question-title">
-          <div className="form-group">
-            <label htmlFor="questionTitle" className="col-md-3 control-label form-input-label">Question Title:</label>
-            <div className="col-md-9">
-              <input
-                type="text"
-                className="form-control"
-                id="questionTitle"
-                placeholder="What is your question?  Be concise and specific."
-                value={this.state.title}
-                onChange={this.handleTitleChange.bind(this)}
-              />
-            </div>
+      <form className="form-horizontal question-title">
+        <div className="form-group">
+          <label htmlFor="questionTitle" className="col-md-3 control-label form-input-label">Question Title:</label>
+          <div className="col-md-9">
+            <input
+              type="text"
+              className="form-control"
+              id="questionTitle"
+              placeholder="What is your question?  Be concise and specific."
+              value={this.state.title}
+              onChange={this.handleTitleChange.bind(this)}
+            />
           </div>
-        </form>
+        </div>
+      </form>
+    )
+  }
+
+  renderJurisdictionDropdown() {
+    if (this.props.isQuestion) return (
+      <form className="form-horizontal question-jurisdiction-dropdown">
+        <div className="form-group">
+          <label htmlFor="jurisdiction" className="col-md-3 control-label form-input-label">Jurisdiction: </label>
+          <div className="col-md-9">
+            <select className="form-control"
+                    value={this.state.jurisdictionSelectValue}
+                    onChange={this.handleSelectChange.bind(this)}>
+              <option>Select One</option>
+              {
+                this.props.jurisdictionOptions.map((jdx) => {
+                  return (
+                    <option value={jdx}>{jdx}</option>
+                  );
+                })
+              }
+            </select>
+          </div>
+        </div>
+      </form>
     )
   }
 

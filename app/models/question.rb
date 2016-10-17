@@ -1,3 +1,5 @@
+require "#{Rails.root}/lib/enums/jurisdictions"
+
 class Question < ActiveRecord::Base
   include PgSearch
   multisearchable :against => [:title, :body]

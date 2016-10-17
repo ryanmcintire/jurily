@@ -5,6 +5,41 @@ body {
   line-height: 28px;
 }
 
+.welcome-home-title {
+  text-align: center;
+}
+
+
+.welcome-home-subtitle {
+  text-align: center;
+}
+
+
+
+.main-layout-footer {
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: #2E2F30;
+  background-color: #2E2F30;
+  display: block;
+  font-size: 12px;
+  font-family: "Georgia", "Times New Roman", "Times", serif;
+  padding: 15px 30px 30px 30px;
+  color: #ffffff;
+  height: 60px;
+}
+
+.footer-copyright {
+  a {
+    color: #ffffff;
+  }
+  a:hover {
+    color: #ffffff;
+  }
+}
+
+
+
 .content-body {
   min-height: 600px;
 }

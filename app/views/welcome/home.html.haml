@@ -1,13 +1,16 @@
-.h1
-  Welcome
-.container
-  -@questions.each do |question|
-    = render 'shared/question_short', question: question
-    -#.panel.panel-default
-    -#  .panel-heading
-    -#    = link_to truncate(question.title, length: 200, seperator: ''),
-    -#      question_url(question)
-    -#  .panel-body
-    -#    = raw (question.body).truncate(500, seperator: ' ')
-  %p
-    = paginate @questions
+.row.h1.welcome-home-title
+  Jurily.com
+.row.h5.welcome-home-subtitle
+  Where lawyers go for legal questions.
+.row
+  .container
+    -@questions.each do |question|
+      = render 'shared/question_short', question: question
+      -#.panel.panel-default
+      -#  .panel-heading
+      -#    = link_to truncate(question.title, length: 200, seperator: ''),
+      -#      question_url(question)
+      -#  .panel-body
+      -#    = raw (question.body).truncate(500, seperator: ' ')
+    %p
+      = paginate @questions

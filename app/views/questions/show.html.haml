@@ -1,7 +1,15 @@
 .row
   .col-md-9
-    %div.question-title-block
+    .question-title-block
       %h3.question-title= @question.title
+      .col-md-3
+        %h5= "Jurisdiction: #{@question.jurisdiction.titleize}"
+      .col-md-3
+        %h5= "Views: #{@question.views}"
+      .col-md-3
+        %h5= "Posted: #{@question.created_at.strftime('%b %d, %Y')}"
+      .col-md-3
+        %h5= "Updated: #{@question.updated_at.strftime('%b %d, %Y')}"
 .row
   .container
     .row
