@@ -175,6 +175,7 @@
     <orderEntry type="library" scope="PROVIDED" name="eventmachine (v1.2.0.1, ruby-2.2.5-p319) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="execjs (v2.7.0, ruby-2.2.5-p319) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.9.14, ruby-2.2.5-p319) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="figaro (v1.1.1, ruby-2.2.5-p319) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="font-awesome-rails (v4.6.3.1, ruby-2.2.5-p319) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="foreman (v0.82.0, ruby-2.2.5-p319) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="formatador (v0.2.5, ruby-2.2.5-p319) [gem]" level="application" />

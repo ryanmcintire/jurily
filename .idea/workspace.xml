@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ff874f0-e660-478f-a86e-737c9edc1e1d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Jurily.iml" afterPath="$PROJECT_DIR$/.idea/Jurily.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/package.json" afterPath="$PROJECT_DIR$/client/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/devise.rb" afterPath="$PROJECT_DIR$/config/initializers/devise.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/registrations_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/registrations_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.haml" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.haml" />
     </list>
     <ignored path="Jurily.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,104 +40,14 @@
     <favorites_list name="Jurily" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.33970407">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="questions_controller.rb" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/controllers/questions_controller.rb">
+          <file leaf-file-name="custom.scss" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="585">
-                  <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="home.html.haml" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/views/welcome/home.html.haml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="75">
-                  <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="application.html.haml" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.haml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="465">
-                  <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="environment.rb" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/config/environment.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="user.rb" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/models/user.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="45">
-                  <caret line="3" column="64" selection-start-line="3" selection-start-column="64" selection-end-line="3" selection-end-column="64" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="20161017011212_add_confirmable_to_devise.rb" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/db/migrate/20161017011212_add_confirmable_to_devise.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="secrets.yml" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/config/secrets.yml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="285">
-                  <caret line="19" column="40" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="40" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="devise.rb" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/config/initializers/devise.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/.gitignore">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="development.rb" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/config/environments/development.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="16" column="52" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+                <state relative-caret-position="345">
+                  <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
                   <folding />
                 </state>
               </provider>
@@ -148,68 +57,18 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="show.html.haml" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/views/questions/show.html.haml">
+          <file leaf-file-name="application.html.haml" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.haml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="345">
-                  <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+                <state relative-caret-position="227">
+                  <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Gemfile" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/Gemfile">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="269">
-                  <caret line="46" column="12" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/webpack.config.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="165">
-                  <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="application.yml" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/config/application.yml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Procfile.dev" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Procfile.dev">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="15">
-                  <caret line="1" column="87" selection-start-line="1" selection-start-column="87" selection-end-line="1" selection-end-column="87" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/package.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="422">
-                  <caret line="36" column="27" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="application.rb" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/config/application.rb">
+          <file leaf-file-name="new.html.haml" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/views/devise/sessions/new.html.haml">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="0">
                   <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -218,21 +77,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/package.json">
+          <file leaf-file-name="_flash.html.haml" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/views/shared/_flash.html.haml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="195">
-                  <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+                <state relative-caret-position="45">
+                  <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="custom.scss" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.scss">
+          <file leaf-file-name="registrations_controller.rb" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/controllers/registrations_controller.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="165">
-                  <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+                <state relative-caret-position="45">
+                  <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -255,7 +114,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
         <option value="$PROJECT_DIR$/app/views/bar_admissions/edit.html.haml" />
         <option value="$PROJECT_DIR$/app/controllers/bar_admissions_controller.rb" />
@@ -298,14 +156,15 @@
         <option value="$PROJECT_DIR$/app/views/questions/show.html.haml" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20161017011212_add_confirmable_to_devise.rb" />
-        <option value="$PROJECT_DIR$/app/views/layouts/application.html.haml" />
         <option value="$PROJECT_DIR$/config/environments/development.rb" />
         <option value="$PROJECT_DIR$/client/webpack.config.js" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" />
         <option value="$PROJECT_DIR$/client/package.json" />
         <option value="$PROJECT_DIR$/config/initializers/devise.rb" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/app/views/layouts/application.html.haml" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/custom.scss" />
+        <option value="$PROJECT_DIR$/app/controllers/registrations_controller.rb" />
       </list>
     </option>
   </component>
@@ -323,10 +182,8 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1916" />
-    <option name="y" value="-119" />
-    <option name="width" value="1831" />
-    <option name="height" value="968" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -354,8 +211,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="RailsProjectView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -374,8 +229,82 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Jurily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Jurily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Jurily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Jurily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shared" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Jurily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Jurily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Jurily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Jurily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="RailsProjectView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -384,8 +313,8 @@
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="settings.editor.selected.configurable" value="reference.idesettings.quicklists" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="FullScreen" value="true" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
+    <property name="FullScreen" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -643,11 +572,12 @@
       <workItem from="1476408243792" duration="7946000" />
       <workItem from="1476490060228" duration="9432000" />
       <workItem from="1476741770762" duration="145000" />
+      <workItem from="1476835840983" duration="425000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132447000" />
+    <option name="totallyTimeSpent" value="134608000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -659,19 +589,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1916" y="-119" width="1831" height="968" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19396311" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16237482" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32983682" sideWeight="0.49427754" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44247788" sideWeight="0.5438793" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44247788" sideWeight="0.5064282" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3224543" sideWeight="0.49642345" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44247788" sideWeight="0.49357182" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23776224" sideWeight="0.46924177" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.54545456" sideWeight="0.53361946" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23776224" sideWeight="0.5307582" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32983682" sideWeight="0.49713877" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -722,27 +652,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/_navbar.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="45" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/search_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/app/bundles/Jurily/RichTextEditor/RichTextEditor.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="50" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/answer.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -927,19 +836,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/questions_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/welcome/home.html.haml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -954,7 +854,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="64" selection-start-line="3" selection-start-column="64" selection-end-line="3" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -970,27 +869,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="40" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/environment.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/registrations_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1001,7 +883,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="52" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1016,7 +897,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1024,7 +904,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1032,15 +911,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1048,7 +918,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="422">
           <caret line="36" column="27" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1064,7 +933,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1072,22 +940,75 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="46" column="12" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state relative-caret-position="360">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Procfile.dev">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="87" selection-start-line="1" selection-start-column="87" selection-end-line="1" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/questions_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="46" column="12" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
+        <state relative-caret-position="345">
+          <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/devise/sessions/new.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/shared/_flash.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/registrations_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>

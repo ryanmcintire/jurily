@@ -30,21 +30,22 @@
   %body
     = render :partial => 'layouts/navbar'
 
-    .container
-      .row
-        .col-lg-12.content-body
-          = yield
-    %footer.main-layout-footer
-      .div.col-xs-12.col-sm-6
-        %p.footer-copyright
-          © 2016 Jurily, all rights reserved.
-      .div.col-xs-12.col-sm-6
-        %p.text-right.footer-copyright
-          = link_to "Privacy Policy ", "#"
-          |
-          = link_to "Terms of Service", "#"
-          |
-          = link_to "Acceptable Use Policy", "#"
+    .content-body
+      .container
+        .row
+          .col-lg-12.content-body
+            = yield
+      %footer.main-layout-footer
+        .div.col-xs-12.col-sm-6
+          %p.footer-copyright
+            © 2016 Jurily, all rights reserved.
+        .div.col-xs-12.col-sm-6
+          %p.text-right.footer-copyright
+            = link_to "Privacy Policy ", "#"
+            |
+            = link_to "Terms of Service", "#"
+            |
+            = link_to "Acceptable Use Policy", "#"
 
 
 

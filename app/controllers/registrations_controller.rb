@@ -45,9 +45,9 @@ class RegistrationsController < Devise::RegistrationsController
   private
   def add_flash_error(msg)
     if flash[:error].class.name == "Array" and flash[:error].count > 0
-      flash[:error] << msg
+      flash.now[:error] << msg
     else
-      flash[:error] = [msg]
+      flash.now[:error] = [msg]
     end
   end
 
