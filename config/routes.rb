@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'hello_world', to: 'hello_world#index'
-  devise_for :users, :controllers => {:registrations => "registrations"}
+  devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
 
   resources :answers
   resources :questions
