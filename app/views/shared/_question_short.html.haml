@@ -4,3 +4,4 @@
         question_url(question)
   .panel-body
     = raw (question.body).truncate(500, seperator: ' ')
+    %p= "Jurisdiction: #{question.jurisdiction}"

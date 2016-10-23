@@ -42,8 +42,10 @@ gem 'bootstrap-datepicker-rails'
 
 gem 'pg_search'
 
+#great paginator
 gem 'kaminari'
 
+#great environment variable setter.
 gem 'figaro'
 
 # Use ActiveModel has_secure_password

@@ -49,6 +49,19 @@ module Jurisdictions
       washington: 47,
       west_virginia: 48,
       wisconsin: 49,
-      wyoming: 50
+      wyoming: 50,
+      first_circuit: 51,
+      second_circuit: 52,
+      third_circuit: 53,
+      fourth_circuit: 54,
+      fifth_circuit: 55,
+      sixth_circuit: 56,
+      seventh_circuit: 57,
+      eighth_circuit: 58,
+      ninth_circuit: 59,
+      tenth_circuit: 60,
+      eleventh_circuit: 61,
+      special: 62,
+      none_specified: 63
   }
 end
