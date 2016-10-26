@@ -75,5 +75,9 @@ group :development do
   gem 'rb-fsevent', :require => false
 end
 
+group :production do
+  gem 'puma'
+end
+
 
 gem 'mini_racer', platforms: :ruby
