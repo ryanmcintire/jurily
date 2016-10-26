@@ -11,3 +11,5 @@
 #todo - Across-site responsive design
 #todo - Add model validations
 #todo - fix pagination for first page....
+#todo - flash confirmation for confirmable.
+#todo - change confirmation message.
