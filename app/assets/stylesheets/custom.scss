@@ -293,3 +293,13 @@ h2 {
   left: 0;
   color: #fff;
 }
+
+.slow-transition-blackblue {
+  color: #000 !important;
+  transition: color .2s linear;
+}
+
+.slow-transition-blackblue:hover {
+  color: #4899B3 !important;
+  text-decoration: none !important;
+}

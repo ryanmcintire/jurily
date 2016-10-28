@@ -2,7 +2,7 @@
 
 %article.question-display.question-home
   %h2.question-title= link_to truncate(question.title, length: 200, seperator: ''),
-    question_url(question)
+    question_url(question), class: 'slow-transition-blackblue'
   .question-votes-container
     .question-score
       %h3= question.score
@@ -13,14 +13,16 @@
       = raw(question.body).truncate(500, seperator: ' ')
     .question-details
       %span.question-home-jurisdiction
-        %i.fa.fa-university
-          %span.question-detail= question.jurisdiction.titleize
+        = link_to '#', class: 'slow-transition-blackblue' do
+          %i.fa.fa-university
+            %span.question-detail= question.jurisdiction.titleize
       %span.question-home-views
         %i.fa.fa-user
           %span.question-detail= pluralize question.views, 'view' #todo - pluralize
       %span.question-home-answers
-        %i.fa.fa-comment
-          %span.question-detail= pluralize question.answers.count, 'answer'
+        = link_to question_url(question), class: 'slow-transition-blackblue' do
+          %i.fa.fa-comment
+            %span.question-detail= pluralize question.answers.count, 'answer'
       %span.question-home-date
         %i.fa.fa-calendar
           %span.question-detail= question.created_at.strftime("%B %-d, %Y")
