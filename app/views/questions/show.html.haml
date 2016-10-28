@@ -5,6 +5,29 @@
       .question-display-inner
         .question-display-content
           =raw(@question.body)
+        .question-display-question-user
+          = link_to @question.user.user_detail.full_name, user_url(@question.user)
+          = @question.user.user_detail.title_display
+    .question-display-answer-divider
+      %h3= pluralize(@question.answers.count, 'Answer')
+    - @question.answers.each do |answer|
+      %article.question-display.single-question
+        .question-display-inner
+          .question-display-answer-user-container
+            %span.question-display-answer-user
+              =answer.user.user_detail.full_name
+            %span.question-display-answer-user-detail
+              =" - #{answer.user.user_detail.title_display}"
+
+            .question-display-answer-date
+              = "Answered: #{answer.created_at.strftime("%d %b %Y")}"
+              - if answer.created_at != answer.updated_at
+                = "   - Updated: #{answer.updated_at.strftime("%d %b %Y")}"
+
+          .question-display-content
+            =raw(answer.body)
+
+
   %aside.col-md-3.sidebar.question-display-sidebar
     .sidebar-widget.sidebar-widget-question-details
       %h3.sidebar-widget-title Details

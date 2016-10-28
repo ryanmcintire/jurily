@@ -318,6 +318,9 @@ h2 {
   color: #2f3239;
   line-height: 26px;
   font-size: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #dedede;
 }
 
 aside {
@@ -353,4 +356,22 @@ aside {
   background-color: #eaeaeb;
   margin-bottom: 10px;
   padding: 10px !important;
+}
+
+.question-display-answer-user-container {
+  border-bottom: 1px solid #dedede;
+  margin: 15px 0;
+}
+
+.question-display-answer-user {
+  padding-top: 10px;
+  font-weight: bold;
+  color: #000;
+}
+
+.question-display-answer-date {
+  color: #929292;
+  font-size: 14px;
+  margin-top: -5px;
+  padding-bottom: 0;
 }
