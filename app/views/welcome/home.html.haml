@@ -4,13 +4,20 @@
   Where lawyers go for legal questions.
 .row
   .container
-    -@questions.each do |question|
-      = render 'shared/question_short', question: question
-      -#.panel.panel-default
-      -#  .panel-heading
-      -#    = link_to truncate(question.title, length: 200, seperator: ''),
-      -#      question_url(question)
-      -#  .panel-body
-      -#    = raw (question.body).truncate(500, seperator: ' ')
-    %p
-      = paginate @questions
+    .col-md-9.home-tab-inner-wrapper
+      -@questions.each do |question|
+        = render 'shared/question_short', question: question
+        -#.panel.panel-default
+        -#  .panel-heading
+        -#    = link_to truncate(question.title, length: 200, seperator: ''),
+        -#      question_url(question)
+        -#  .panel-body
+        -#    = raw (question.body).truncate(500, seperator: ' ')
+      %p
+        = paginate @questions
+    .col-md-3
+      .panel.panel-info
+        .panel-heading
+          Things to come.
+        .panel-body
+          Things to come.

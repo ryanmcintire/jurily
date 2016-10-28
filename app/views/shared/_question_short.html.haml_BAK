@@ -1,0 +1,8 @@
+.panel.panel-default
+  .panel-heading
+    = link_to truncate(question.title, length: 200, seperator: ''),
+        question_url(question)
+  .panel-body
+    = raw (question.body).truncate(500, seperator: ' ')
+  .panel-footer
+    %span.badge.badge-default= question.jurisdiction.to_s.titleize

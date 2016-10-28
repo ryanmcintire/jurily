@@ -13,3 +13,5 @@
 #todo - fix pagination for first page....
 #todo - flash confirmation for confirmable.
 #todo - change confirmation message.
+#todo - Validation of question form.
+#todo - configure webservers in environments
