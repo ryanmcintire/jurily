@@ -1,70 +1,29 @@
 .row
   .col-md-9
-    .question-title-block
-      %h3.question-title= @question.title
-      .col-md-3
-        %h5= "Jurisdiction: #{@question.jurisdiction.titleize}"
-      .col-md-3
-        %h5= "Views: #{@question.views}"
-      .col-md-3
-        %h5= "Posted: #{@question.created_at.strftime('%b %d, %Y')}"
-      .col-md-3
-        %h5= "Updated: #{@question.updated_at.strftime('%b %d, %Y')}"
-.row
-  .container
-    .row
-      %div.col-md-9
-        .row
-          .panel.panel-default
-            .panel-body
-              .row
-                .col-md-1.votebox-column
-                  =react_component("VoteBox",
-                    props: {user: current_user,
-                      elementId: @question.id,
-                      elementType: "question",
-                      csrfToken: form_authenticity_token,
-                      hostUrl: vote_path})
-                .col-md-11
-                  .content-body-container
-                    =raw(@question.body)
-              .row
-                .col-md-10.col-md-offset-1.user-info-slot
-                  =link_to @question.user.user_detail.full_name, user_url(@question.user)
-                  %p= @question.user.user_detail.title_display
-        %h4= pluralize(@question.answers.count, 'Answer')
-        - @question.answers.each do |answer|
-          .row
-            .panel.panel-default
-              .panel-body
-                .row
-                  .col-md-1.votebox-column
-                    =react_component("VoteBox",
-                    props: {user: current_user,
-                      elementId: answer.id,
-                      elementType: "answer",
-                      csrfToken: form_authenticity_token,
-                      hostUrl: vote_path})
-                  .col-md-11
-                    .content-body-container
-                      = raw(answer.body)
-                .row
-                  .col-md-10.col-md-offset-1.user-info-slot
-                    =link_to answer.user.user_detail.full_name
-                    %p= answer.user.user_detail.title_display
-        .col-md-12
-          =react_component("RichTextEditorForm",
-            props: {user: current_user,
-              hostUrl: answers_path,
-              initialTitle: "",
-              initialEditorValue: "",
-              csrfToken: form_authenticity_token,
-              isQuestion: false,
-              questionId: @question.id.to_s,
-              baseClassName: "answer-editor-base",
-              editorClassName: "answer-editor-editor",
-              toolbarClassName: "answer-editor-toolbar"})
-      %div.col-md-2.col-md-offset-1.well
-        Other items here.
+    %article.question-display.single-question
+      %h2.question-display-title= @question.title
+      .question-display-inner
+        .question-display-content
+          =raw(@question.body)
+  %aside.col-md-3.sidebar.question-display-sidebar
+    .sidebar-widget.sidebar-widget-question-details
+      %h3.sidebar-widget-title Details
+      .sidebar-widget-question-detail-element
+        = link_to '#', class: 'slow-transition-blackblue' do
+          %span= @question.jurisdiction.titleize
+      .sidebar-widget-question-detail-element
+        %span= "Views: #{@question.views}"
+      .sidebar-widget-question-detail-element
+        %span= "Created: #{@question.created_at.strftime("%B %-d, %Y")}"
+      .sidebar-widget-question-detail-element
+        %span= "Updated: #{@question.updated_at.strftime("%B %-d, %Y")}"
+    .sidebar-widget.sidebar-widget-related-questions
+      %h3.sidebar-widget-title Related Questions
+      %div= "Todo " # todo
+
+
+
+
+
 
 
