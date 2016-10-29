@@ -2,6 +2,10 @@
   .col-md-9
     %article.question-display.single-question
       %h2.question-display-title= @question.title
+      - if current_user && @question.user.id == current_user.id
+        .question-edit-button
+          %i.fa.fa-pencil
+          = "  Edit"
       .question-display-inner
         .question-display-content-container
           .question-votebox-container
@@ -22,6 +26,10 @@
       %article.question-display.single-question
         .question-display-inner
           .question-display-answer-user-container
+            - if current_user && @question.user.id == current_user.id
+              .answer-edit-button
+                %i.fa.fa-pencil
+                = "  Edit"
             %span.question-display-answer-user
               =answer.user.user_detail.full_name
             %span.question-display-answer-user-detail

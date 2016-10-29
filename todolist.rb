@@ -16,3 +16,4 @@
 #todo - Validation of question form.
 #todo - configure webservers in environments
 #todo - Add ability to edit question.
+#todo - manage employment w/o history (simple update system)

@@ -436,3 +436,29 @@ aside {
   padding-bottom: 10px;
   margin-bottom: 20px;
 }
+
+.question-edit-button {
+  font-size: 12px;
+  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+  margin: 0;
+  padding: 0px 20px;
+  float: right;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background-color: #3db5d8;
+  color: #ffffff;
+}
+
+.answer-edit-button {
+  font-size: 12px;
+  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+  margin: 0;
+  padding: 0px 20px;
+  float: right;
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  background-color: #3db5d8;
+  color: #ffffff;
+}
