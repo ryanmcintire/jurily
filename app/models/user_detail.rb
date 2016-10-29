@@ -5,7 +5,7 @@ class UserDetail < ActiveRecord::Base
   has_one :lawschool_detail
   has_many :user_employments
 
-  #todo - should I add
+  #todo - showuld I add
   accepts_nested_attributes_for :user_contact_info
   accepts_nested_attributes_for :bar_admissions
   accepts_nested_attributes_for :lawschool_detail
@@ -15,7 +15,7 @@ class UserDetail < ActiveRecord::Base
   end
 
   def current_title
-    
+
   end
 
   def title_display

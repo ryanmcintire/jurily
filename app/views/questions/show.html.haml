@@ -3,15 +3,16 @@
     %article.question-display.single-question
       %h2.question-display-title= @question.title
       .question-display-inner
-        .question-votebox-container
-          =react_component("VoteBox",
-                    props: {user: current_user,
-                      elementId: @question.id,
-                      elementType: "question",
-                      csrfToken: form_authenticity_token,
-                      hostUrl: vote_path})
-        .question-display-content
-          =raw(@question.body)
+        .question-content-container
+          .question-votebox-container
+            =react_component("VoteBox",
+                      props: {user: current_user,
+                        elementId: @question.id,
+                        elementType: "question",
+                        csrfToken: form_authenticity_token,
+                        hostUrl: vote_path})
+          .question-display-content
+            =raw(@question.body)
         .question-display-question-user
           = link_to @question.user.user_detail.full_name, user_url(@question.user)
           = @question.user.user_detail.title_display
@@ -39,7 +40,19 @@
                         hostUrl: vote_path})
             .answer-display-content
               =raw(answer.body)
-
+    .col-md-12
+      %h3.question-display-answer-divider-text Submit your own answer:
+    =react_component("RichTextEditorForm",
+            props: {user: current_user,
+              hostUrl: answers_path,
+              initialTitle: "",
+              initialEditorValue: "",
+              csrfToken: form_authenticity_token,
+              isQuestion: false,
+              questionId: @question.id.to_s,
+              baseClassName: "answer-editor-base",
+              editorClassName: "answer-editor-editor",
+              toolbarClassName: "answer-editor-toolbar"})
 
   %aside.col-md-3.sidebar.question-display-sidebar
     .sidebar-widget.sidebar-widget-question-details

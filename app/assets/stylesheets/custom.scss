@@ -256,11 +256,6 @@ h2 {
   line-height: 28px;
 }
 
-.question-content-container {
-  position: relative;
-  margin-left: 101px;
-}
-
 .question-home-content {
   margin-bottom: 20px;
   margin-top: 20px;
@@ -322,10 +317,10 @@ h2 {
   color: #2f3239;
   line-height: 26px;
   font-size: 16px;
-  margin-bottom: 20px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid #dedede;
+  height: 200px;
+  overflow:auto;
 }
+
 
 .answer-display-content {
   color: #2f3239;
@@ -372,6 +367,17 @@ aside {
   padding-left: 30px;
   margin-top: 30px;
   margin-bottom: 20px;
+}
+
+.question-display-question-user {
+  margin-top: 20px;
+  padding: 10px 15px 15px 10px;
+  border-top: 1px solid #dedede;
+}
+
+.question-display-title {
+  padding-bottom: 15px;
+  font-size: 1.4em;
 }
 
 
