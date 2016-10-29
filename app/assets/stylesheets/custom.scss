@@ -313,7 +313,7 @@ h2 {
 
 .question-display-inner {
   margin-left: 0px;
-  padding: 0 20px;
+  //padding: 0 20px;
   height: 100%;
   overflow:auto;
 }
@@ -322,8 +322,11 @@ h2 {
   color: #2f3239;
   line-height: 26px;
   font-size: 16px;
-  height: 200px;
-  overflow:auto;
+  overflow:hidden;
+}
+
+.question-display-content-container {
+  overflow:hidden;
 }
 
 
@@ -408,6 +411,7 @@ aside {
   display: block;
   float: left;
   height: auto;
+  margin-right: 15px;
 }
 
 .vote-box-container {
@@ -461,4 +465,75 @@ aside {
   right: 30px;
   background-color: #3db5d8;
   color: #ffffff;
+}
+
+.content-box {
+  overflow: hidden;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  border: 1px solid #dedede;
+  background: #ffffff;
+  box-shadow: 0 0 5px #dedede;
+}
+
+.content-box-title {
+  padding: 20px 0 10px 10px;
+  margin: 0 20px 20px 0;
+  border-bottom: 2px solid #dedede;
+  font-size: 20px;
+  font-weight: bold;
+  color: #3db5d8;
+  box-shadow: none;
+}
+
+.form-style-1 {
+  label {
+    color: #2f3245;
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    float: left;
+    margin-right: 1%;
+    margin-top: 9px;
+  }
+
+  input {
+    display: block;
+    margin: 0;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  textarea,
+  select {
+    padding: 8px;
+    outline: none;
+    font-size: 13px;
+    font-weight: 300;
+    max-width: 100%;
+    border: 1px solid #dedede;
+    transition: border .25s linear,color .25s linear,background-color .25s linear;
+    background: #f9f9f9;
+    float: right;
+    width: 82%;
+  }
+
+  input[type="text"]:hover, input[type="text"]:focus {
+    border: 1px solid #3db5d8;
+  }
+
+  input[type="password"],
+  input[type="email"],
+  textarea,
+  select:hover {
+
+  }
+
+  .form-layer {
+    margin: 20px 20px;
+    height: 100%;
+    overflow:hidden;
+  }
 }

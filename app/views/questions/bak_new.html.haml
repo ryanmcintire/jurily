@@ -1,0 +1,22 @@
+
+.col-md-9
+
+  =react_component("RichTextEditorQuestionForm",
+    props: {user: current_user,
+      hostUrl: questions_path,
+      initialTitle: "",
+      initialEditorValue: "",
+      csrfToken: form_authenticity_token,
+      isQuestion: true,
+      baseClassName: "answer-editor-base",
+      editorClassName: "answer-editor-editor",
+      toolbarClassName: "answer-editor-toolbar",
+      jurisdictionOptions: @jurisdictions})
+.container.col-md-3.question-side-panel
+  .panel.panel-default
+    .panel-heading
+      Additional materials
+    .panel-body
+      Additional materials to go here.
+
+

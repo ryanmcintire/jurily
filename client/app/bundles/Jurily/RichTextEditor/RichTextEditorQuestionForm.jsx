@@ -1,16 +1,24 @@
+
 import React, {PropTypes} from 'react';
 import Superagent from 'superagent';
 
 import RichTextEditor from './RichTextEditor';
 
-export default class RichTextEditorQuestionForm extends React.Component {
+export default class RichTextEditorForm extends React.Component {
 
   static propTypes = {
     user: PropTypes.object,
     hostUrl: PropTypes.string.isRequired,
     initialTitle: PropTypes.string.isRequired,
     initialEditorValue: PropTypes.string.isRequired,
-    csrfToken: PropTypes.string.isRequired
+    csrfToken: PropTypes.string.isRequired,
+    isQuestion: PropTypes.bool.isRequired,
+    questionId: PropTypes.string,
+    baseClassName: PropTypes.string.isRequired,
+    editorClassName: PropTypes.string.isRequired,
+    toolbarClassName: PropTypes.string.isRequired,
+    jurisdictionOptions: PropTypes.array
+    //todo - add proptype for jurisdictions.
   };
 
   constructor(props, ctx) {
@@ -20,6 +28,7 @@ export default class RichTextEditorQuestionForm extends React.Component {
       submitRequired: false,
       submitting: false,
       title: props.initialTitle,
+      jurisdictionSelectValue: 'Select',
       errors: []
     }
   }
@@ -33,7 +42,6 @@ export default class RichTextEditorQuestionForm extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    
     if (this.state.submitRequired) {
       this.submitEditorTextToServer();
     }
@@ -53,10 +61,25 @@ export default class RichTextEditorQuestionForm extends React.Component {
   }
 
   getDataForSubmit() {
+    if (this.props.isQuestion == true) return this.questionSubmitData();
+    return this.answerSubmitData();
+  }
+
+  questionSubmitData() {
+    //todo - need to handle if data is not here properly.
     return {
       title: this.state.title,
       body: this.state.editorValue,
-      user: this.props.user
+      user: this.props.user,
+      jurisdiction: this.state.jurisdictionSelectValue
+    }
+  }
+
+  answerSubmitData() {
+    return {
+      body: this.state.editorValue,
+      user: this.props.user,
+      questionId: this.props.questionId
     }
   }
 
@@ -82,42 +105,116 @@ export default class RichTextEditorQuestionForm extends React.Component {
     this.setState({editorValue});
   }
 
+  handleSelectChange(e) {
+    this.setState({
+      jurisdictionSelectValue: e.target.value
+    });
+  }
+
   handleSubmitClick() {
     this.toggleSubmitting();
   }
 
+  //todo - render errors outside of the box?
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          {this.renderErrors()}
+      <div className="content-box">
+        <div className="content-box-title">
+          Ask Question
         </div>
-        <div className="row">
-          <div className="well">
-            Will need to put title here...
+        <div className="container">
+          <div className="row">
+            {this.renderErrors()}
           </div>
-        </div>
-        <div className="row">
-          <div className="text-editor-question">
-            <RichTextEditor
-              editorSubmitAction={this.editorSubmitAction.bind(this)}
-              submitting={this.state.submitting}
-            />
+          <form className="form-horizontal">
+            {this.renderTitle()}
+            {this.renderJurisdictionDropdown()}
+            <div className="row">
+              {this.renderEditor()}
+            </div>
+          </form>
+          <div className="row">
+            <div className="container">
+              <button
+                className="btn btn-primary rich-text-editor-submit"
+                onClick={this.handleSubmitClick.bind(this)}>Submit
+              </button>
+            </div>
           </div>
-          
-        </div>
-        <div className="row">
-          <button className="btn btn-default" onClick={this.handleSubmitClick.bind(this)}>Submit</button>
         </div>
       </div>
     )
   }
 
   renderErrors() {
-    return (
-      <div>
-        Errors to go here...
+    if (this.state.errors.length > 0) {
+      return (
+        <div className="alert alert-danger">
+          {this.state.errors}
+        </div>
+      )
+    }
+  }
+
+  handleTitleChange(e) {
+    this.setState({title: e.target.value});
+  }
+
+  renderTitle() {
+    if (this.props.isQuestion) return (
+      <div className="form-group">
+        <label htmlFor="questionTitle" className="control-label col-sm-2 form-input-label">Question Title:</label>
+        <input
+          type="text"
+          className="form-control col-sm-6"
+          id="questionTitle"
+          placeholder="What is your question?  Be concise and specific."
+          value={this.state.title}
+          onChange={this.handleTitleChange.bind(this)}
+        />
       </div>
     )
   }
+
+  renderJurisdictionDropdown() {
+    if (this.props.isQuestion) return (
+      <div className="form-group">
+        <label htmlFor="jurisdiction" className="control-label col-sm-2 form-input-label">Jurisdiction: </label>
+
+        <select className="form-control col-sm-9"
+                value={this.state.jurisdictionSelectValue}
+                onChange={this.handleSelectChange.bind(this)}>
+          <option>Select One</option>
+          {
+            this.props.jurisdictionOptions.map((jdx) => {
+              return (
+                <option value={jdx}>{jdx}</option>
+              );
+            })
+          }
+        </select>
+      </div>
+    )
+  }
+
+  renderEditor() {
+    return (
+      <div className="form-group text-editor-form-group">
+        <RichTextEditor
+          editorSubmitAction={this.editorSubmitAction.bind(this)}
+          submitting={this.state.submitting}
+          baseClassName={this.props.baseClassName}
+          editorClassName={this.props.editorClassName}
+          toolbarClassName={this.props.toolbarClassName}
+          placeholder={this.getPlaceholder()}
+        />
+      </div>
+    )
+  }
+
+  getPlaceholder() {
+    if (this.props.isQuestion) return "Type further question details here...";
+    return "Type answer here...";
+  }
 }
+

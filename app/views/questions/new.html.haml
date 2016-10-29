@@ -1,19 +1,14 @@
-
-.container.col-md-8
-  =react_component("RichTextEditorForm",
-    props: {user: current_user,
-      hostUrl: questions_path,
-      initialTitle: "",
-      initialEditorValue: "",
-      csrfToken: form_authenticity_token,
-      isQuestion: true,
-      baseClassName: "answer-editor-base",
-      editorClassName: "answer-editor-editor",
-      toolbarClassName: "answer-editor-toolbar",
-      jurisdictionOptions: @jurisdictions})
-.container.col-md-3.question-side-panel
-  .panel.panel-default
-    .panel-heading
-      Additional materials
-    .panel-body
-      Additional materials to go here.
+.col-md-9
+  .content-box
+    .content-box-title
+      Ask Question
+    %div.form-style-1{:id=>"question-submit"}
+      %form
+        %p.form-layer
+          %label
+            Question Title
+          %input{type: "text", id:"question-title"}
+        %p.form-layer
+          %label
+            Jurisdiction
+          %input{type: "text", id:"jurisdiction"}
