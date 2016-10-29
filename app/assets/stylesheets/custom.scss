@@ -227,6 +227,8 @@ body {
   background: #fff;
   box-shadow: 0 0 5px #dedede;
   position: relative;
+  height: auto;
+  overflow: auto;
 }
 
 .single-question {
@@ -312,6 +314,8 @@ h2 {
 .question-display-inner {
   margin-left: 0px;
   padding: 0 20px;
+  height: 100%;
+  overflow:auto;
 }
 
 .question-display-content {
@@ -321,6 +325,12 @@ h2 {
   margin-bottom: 20px;
   padding-bottom: 30px;
   border-bottom: 1px solid #dedede;
+}
+
+.answer-display-content {
+  color: #2f3239;
+  line-height: 26px;
+  font-size: 16px;
 }
 
 aside {
@@ -358,6 +368,13 @@ aside {
   padding: 10px !important;
 }
 
+.question-display-answer-divider {
+  padding-left: 30px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+
 .question-display-answer-user-container {
   border-bottom: 1px solid #dedede;
   margin: 15px 0;
@@ -374,4 +391,14 @@ aside {
   font-size: 14px;
   margin-top: -5px;
   padding-bottom: 0;
+}
+
+.question-votebox-container {
+  display: block;
+  float: left;
+  height: auto;
+}
+
+.vote-box-container {
+  width: 75px;
 }
