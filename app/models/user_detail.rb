@@ -14,6 +14,10 @@ class UserDetail < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
 
+  def current_title
+    
+  end
+
   def title_display
     current_position = self.user_employments.where(date_end: nil).order(date_start: :desc).take(1)
     return current_position_stringified(current_position) unless (current_position.nil? || current_position.count == 0)

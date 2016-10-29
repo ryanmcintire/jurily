@@ -28,5 +28,4 @@ class User < ActiveRecord::Base
     self.answers.sort_by {|a| a.score}.reverse[0..(limit-1)]
   end
 
-
 end

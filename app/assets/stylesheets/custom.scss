@@ -402,3 +402,26 @@ aside {
 .vote-box-container {
   width: 75px;
 }
+
+.content-block {
+  overflow: hidden;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  border: 1px solid #dedede;
+  background: #fff;
+  box-shadow: 0 0 5px #dedede;
+}
+
+.user-title {
+  color: #3db5d8;
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.user-title-container {
+  border-bottom: 2px solid #dedede;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
