@@ -22,6 +22,8 @@
           = @question.user.user_detail.title_display
     .question-display-answer-divider
       %h3.question-display-answer-divider-text= pluralize(@question.answers.count, 'Answer')
+      %a{name: "answers"}
+
     - @question.answers.each do |answer|
       %article.question-display.single-question
         .question-display-inner

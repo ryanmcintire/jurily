@@ -1,4 +1,3 @@
-
 import React, {PropTypes} from 'react';
 import Superagent from 'superagent';
 
@@ -122,17 +121,37 @@ export default class RichTextEditorForm extends React.Component {
         <div className="content-box-title">
           Ask Question
         </div>
-        <div className="container">
-          <div className="row">
-            {this.renderErrors()}
-          </div>
-          <form className="form-horizontal">
-            {this.renderTitle()}
-            {this.renderJurisdictionDropdown()}
-            <div className="row">
-              {this.renderEditor()}
-            </div>
+        {this.renderErrors()}
+        <div>
+          <form className="form-style-1">
+            <p className="form-layer">
+              <label>Question Title: </label>
+              <input
+                type="text"
+                id="questionTitle"
+                placeholder="What is your question?  Be concise and specific."
+                value={this.state.title}
+                onChange={this.handleTitleChange.bind(this)}
+              />
+            </p>
+            <p className="form-layer">
+              <label>Jurisdiction: </label>
+              <select value={this.state.jurisdictionSelectValue}
+                      onChange={this.handleSelectChange.bind(this)}>
+                <option>Select One</option>
+                {
+                  this.props.jurisdictionOptions.map((jdx) => {
+                    return (
+                      <option value={jdx}>{jdx}</option>
+                    );
+                  })
+                }
+              </select>
+            </p>
           </form>
+          <p className="form-layer">
+            {this.renderEditor()}
+          </p>
           <div className="row">
             <div className="container">
               <button
@@ -181,8 +200,7 @@ export default class RichTextEditorForm extends React.Component {
       <div className="form-group">
         <label htmlFor="jurisdiction" className="control-label col-sm-2 form-input-label">Jurisdiction: </label>
 
-        <select className="form-control col-sm-9"
-                value={this.state.jurisdictionSelectValue}
+        <select value={this.state.jurisdictionSelectValue}
                 onChange={this.handleSelectChange.bind(this)}>
           <option>Select One</option>
           {

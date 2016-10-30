@@ -20,7 +20,7 @@
         %i.fa.fa-user
           %span.question-detail= pluralize question.views, 'view' #todo - pluralize
       %span.question-home-answers
-        = link_to question_url(question), class: 'slow-transition-blackblue' do
+        = link_to question_url(question, anchor: "answers"), class: 'slow-transition-blackblue' do
           %i.fa.fa-comment
             %span.question-detail= pluralize question.answers.count, 'answer'
       %span.question-home-date

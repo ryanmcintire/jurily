@@ -144,22 +144,6 @@ body {
 }
 
 
-.col-md-12 {
-  .question-editor-base {
-    //width: 100% !important;
-    min-height: 500px;
-  }
-
-  .question-editor-editor {
-    //width: 96%;
-    //min-height: 5000px;
-  }
-
-  .question-editor-toolbar {
-    //todo
-  }
-}
-
 .col-md-6 {
   .answer-editor-base {
     width: 400px;
@@ -172,7 +156,9 @@ body {
   }
 }
 
-
+.question-editor-base {
+  background: #f9f9f9 !important;
+}
 
 
 
@@ -510,9 +496,10 @@ aside {
   select {
     padding: 8px;
     outline: none;
-    font-size: 13px;
-    font-weight: 300;
+    font-size: 16px;
+    font-weight: 400;
     max-width: 100%;
+    border-radius: 0;
     border: 1px solid #dedede;
     transition: border .25s linear,color .25s linear,background-color .25s linear;
     background: #f9f9f9;
@@ -520,15 +507,28 @@ aside {
     width: 82%;
   }
 
-  input[type="text"]:hover, input[type="text"]:focus {
-    border: 1px solid #3db5d8;
+  select {
+    padding: 30px;
+    display: block;
+    margin: 0;
+    box-sizing: border-box;
+    height: 40px;
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
   }
 
-  input[type="password"],
-  input[type="email"],
-  textarea,
-  select:hover {
-
+  input[type="text"]:hover,
+  input[type="text"]:focus,
+  input[type="text"]:hover,
+  input[type="text"]:focus,
+  input[type="text"]:hover,
+  input[type="text"]:focus,
+  textarea:hover,
+  textarea:focus,
+  select:hover,
+  select:focus
+  {
+    border: 1px solid #3db5d8;
   }
 
   .form-layer {
@@ -536,4 +536,13 @@ aside {
     height: 100%;
     overflow:hidden;
   }
+}
+
+.form-alert-danger {
+  margin-right: 20px;
+}
+
+.alert-danger {
+  background-color: #c62f03;
+  border-color: #d52c0f;
 }

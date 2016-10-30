@@ -1,14 +1,31 @@
 .col-md-9
-  .content-box
-    .content-box-title
-      Ask Question
-    %div.form-style-1{:id=>"question-submit"}
-      %form
-        %p.form-layer
-          %label
-            Question Title
-          %input{type: "text", id:"question-title"}
-        %p.form-layer
-          %label
-            Jurisdiction
-          %input{type: "text", id:"jurisdiction"}
+  =react_component("RichTextEditorQuestionForm",
+      props: {user: current_user,
+        hostUrl: questions_path,
+        initialTitle: "",
+        initialEditorValue: "",
+        csrfToken: form_authenticity_token,
+        isQuestion: true,
+        baseClassName: "question-editor-base",
+        editorClassName: "answer-editor-editor",
+        toolbarClassName: "answer-editor-toolbar",
+        jurisdictionOptions: @jurisdictions})
+
+
+
+-#.col-md-9
+-#  .content-box
+-#    .content-box-title
+-#      Ask Question
+-#    .alert.alert-danger.form-alert-danger
+-#      You done fucked up.
+-#    .form-style-1{:id=>"question-submit"}
+-#      %form
+-#        %p.form-layer
+-#          %label
+-#            Question Title
+-#          %input{type: "text", id:"question-title"}
+-#        %p.form-layer
+-#          %label
+-#            Jurisdiction
+-#          %input{type: "text", id:"jurisdiction"}
