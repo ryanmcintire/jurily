@@ -1,3 +1,4 @@
+
 require "#{Rails.root}/lib/enums/jurisdictions"
 
 class QuestionsController < ApplicationController
@@ -20,7 +21,12 @@ class QuestionsController < ApplicationController
 
   def create
     respond_if_not_logged_in
-    @question = Question.new(user: get_user, jurisdiction: get_jurisdiction, title: params[:title], body: get_body)
+    begin
+      @question = Question.new(user: get_user, jurisdiction: get_jurisdiction, title: params[:title], body: get_body)
+    rescue ArgumentError => e
+      send_error_response "Invalid data." and return
+    end
+
     #todo - compare user.
     if @question.save
       response_data = {
@@ -29,6 +35,9 @@ class QuestionsController < ApplicationController
           :forwardingUrl => question_path(@question)
       }
       render status: 200, json: response_data.to_json
+    else
+      #todo - actually parse out the error message.
+      send_error_response "Invalid data." and return
     end
   end
 
@@ -60,7 +69,18 @@ class QuestionsController < ApplicationController
   end
 
   def get_jurisdiction
-    params[:jurisdiction].downcase
+    params[:jurisdiction].downcase.to_s
+        .parameterize
+        .underscore
+        .to_sym
+  end
+
+  def send_error_response(msg)
+    response_data = {
+        success: false,
+        message: msg
+    }
+    render status: 400, json: response_data.to_json
   end
 
 end

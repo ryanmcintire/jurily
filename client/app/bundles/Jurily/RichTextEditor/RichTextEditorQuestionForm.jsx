@@ -27,7 +27,7 @@ export default class RichTextEditorForm extends React.Component {
       submitRequired: false,
       submitting: false,
       title: props.initialTitle,
-      jurisdictionSelectValue: 'Select',
+      jurisdictionSelectValue: 'None Specified',
       errors: []
     }
   }
@@ -66,6 +66,7 @@ export default class RichTextEditorForm extends React.Component {
 
   questionSubmitData() {
     //todo - need to handle if data is not here properly.
+    console.log('and look here!');
     return {
       title: this.state.title,
       body: this.state.editorValue,
@@ -85,7 +86,7 @@ export default class RichTextEditorForm extends React.Component {
   handleSubmitSuccess(res) {
     res = JSON.parse(res.text);
     //todo - need to figure out what response body looks like.
-    console.log(res);
+    this.setState({errors:[]});
     window.location.href = res.forwardingUrl
   }
 
@@ -94,8 +95,19 @@ export default class RichTextEditorForm extends React.Component {
     if (err.status == 401) {
       window.location.href = "/users/sign_in";
     }
-    //todo - handle submit error
-    console.log(err);
+    if (err.status == 400 &&
+      err.response &&
+      err.response.body &&
+      err.response.body.message) {
+        this.addErrorToState(err.response.body.message);
+    }
+  }
+
+  addErrorToState(message) {
+    //todo - robustify addErrorToSTate.
+    this.setState({
+      errors:[message]
+    })
   }
 
   editorSubmitAction(editorValue) {
@@ -105,6 +117,7 @@ export default class RichTextEditorForm extends React.Component {
   }
 
   handleSelectChange(e) {
+    console.log('look here!');
     this.setState({
       jurisdictionSelectValue: e.target.value
     });
@@ -138,7 +151,6 @@ export default class RichTextEditorForm extends React.Component {
               <label>Jurisdiction: </label>
               <select value={this.state.jurisdictionSelectValue}
                       onChange={this.handleSelectChange.bind(this)}>
-                <option>Select One</option>
                 {
                   this.props.jurisdictionOptions.map((jdx) => {
                     return (
@@ -167,6 +179,7 @@ export default class RichTextEditorForm extends React.Component {
 
   renderErrors() {
     if (this.state.errors.length > 0) {
+      console.log('errors should be here...');
       return (
         <div className="alert alert-danger">
           {this.state.errors}

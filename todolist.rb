@@ -19,3 +19,4 @@
 #todo - manage employment w/o history (simple update system)0
 #todo - Add answer to rich text editof ro answer.
 #todo - Wrap text if edit appears in answer and in question.
+#todo - force json error response for json api endpoints

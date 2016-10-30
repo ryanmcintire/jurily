@@ -184,7 +184,6 @@ export default class RichTextEditorForm extends React.Component {
             <select className="form-control"
                     value={this.state.jurisdictionSelectValue}
                     onChange={this.handleSelectChange.bind(this)}>
-              <option>Select One</option>
               {
                 this.props.jurisdictionOptions.map((jdx) => {
                   return (

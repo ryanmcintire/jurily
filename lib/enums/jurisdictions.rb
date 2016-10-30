@@ -1,5 +1,6 @@
 module Jurisdictions
   JURISDICTIONS = {
+      none_specified: 63,
       alabama: 1,
       alaska: 2,
       arizona: 3,
@@ -61,7 +62,6 @@ module Jurisdictions
       ninth_circuit: 59,
       tenth_circuit: 60,
       eleventh_circuit: 61,
-      special: 62,
-      none_specified: 63
+      special: 62
   }
 end

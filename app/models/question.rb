@@ -4,6 +4,9 @@ class Question < ActiveRecord::Base
   include PgSearch
   multisearchable :against => [:title, :body]
 
+  validates :title, :body, :jurisdiction, presence: true
+  validates :title, length: {in: 6..250}  #todo - eval length.
+
   belongs_to :user
   has_many :answers
   has_many :votes, as: :votable
@@ -17,6 +20,9 @@ class Question < ActiveRecord::Base
                                                                                                .underscore
                                                                                                .downcase
                                                                                                .to_sym]}
+
+
+
 
   def score
     tally = 0
