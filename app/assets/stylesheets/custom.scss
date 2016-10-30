@@ -158,6 +158,11 @@ body {
 
 .question-editor-base {
   background: #f9f9f9 !important;
+  transition: border .2s linear;
+}
+
+.question-editor-base:hover, .question-editor-base:focus {
+  border: solid 1px #3db5d8;
 }
 
 
