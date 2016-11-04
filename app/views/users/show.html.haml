@@ -1,11 +1,14 @@
 .row
-  .col-md-9
+  .col-md-12
     .content-block
       .user-title-container
         %h3.user-title= @detail.full_name
+        %h5.user-position-title
+          = @detail.display_title
         - if current_user && current_user == @user
           %h5= link_to "Edit Profile", edit_user_url(current_user)
       .user-work-info-container
-        = "Title: "
-        = "Emplmoyer: "
+        %p= "Answer score: #{@user.answer_score}"
+        %p= "Question score: #{@user.question_score}"
+        %p= "Highest answers: #{@user.top_answer_count}"
 

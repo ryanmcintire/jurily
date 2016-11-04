@@ -137,4 +137,15 @@ export default class VoteBox extends React.Component {
       </div>
     )
   }
+
+  renderVoteButton(direction) {
+    let anchorClass = `vote-button-{direction} votebox-vote-button`;
+    let iClass = `fa fa-chevron-circle-{direction} fa-3x`;
+    //
+    // return(
+    //   // <p>
+    //   //   <a className={this}
+    //   // </p>
+    // )
+  }
 }

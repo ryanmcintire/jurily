@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161017011212) do
+ActiveRecord::Schema.define(version: 20161102003758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,19 +92,22 @@ ActiveRecord::Schema.define(version: 20161017011212) do
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "user_id"
+    t.string   "organization"
+    t.string   "title"
+    t.string   "website_url"
+    t.string   "linkedin_url"
   end
 
   add_index "user_details", ["user_contact_info_id"], name: "index_user_details_on_user_contact_info_id", using: :btree
   add_index "user_details", ["user_id"], name: "index_user_details_on_user_id", using: :btree
 
   create_table "user_employments", force: :cascade do |t|
+    t.string   "title"
+    t.string   "organization"
+    t.string   "organization_website"
     t.integer  "user_detail_id"
-    t.string   "organization_name"
-    t.date     "date_start"
-    t.date     "date_end"
-    t.string   "position_title"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   add_index "user_employments", ["user_detail_id"], name: "index_user_employments_on_user_detail_id", using: :btree

@@ -1,0 +1,33 @@
+.col-md-9
+  .content-box
+    .content-box-title
+      Edit Profile
+    =form_for @user, :html => {class: "form-style-1"} do |user_fields|
+      =fields_for :user_detail, @user.user_detail do |detail_fields|
+        %p.form-layer
+          %label First Name:
+          =detail_fields.text_field :first_name
+        %p.form-layer
+          %label Last Name:
+          =detail_fields.text_field :last_name
+      %p.form-layer
+        %label Email:
+        =user_fields.text_field :email
+      =fields_for :user_detail, @user.user_detail do |detail_fields|
+        %p.form-layer
+          %label Organization:
+          =detail_fields.text_field :organization
+        %p.form-layer
+          %label Title:
+          =detail_fields.text_field :title
+        %p.form-layer
+          %label Website:
+          =detail_fields.text_field :website_url
+        %p.form-layer
+          %label LinkedIn Profile:
+          =detail_fields.text_field :linkedin_url
+      =user_fields.submit 'Update', class: "btn btn-primary"
+%aside.col-md-3
+  .sidebar-widget
+    .sidebar-widget-title
+      Things!

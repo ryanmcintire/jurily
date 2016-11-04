@@ -21,8 +21,13 @@ class Question < ActiveRecord::Base
                                                                                                .downcase
                                                                                                .to_sym]}
 
+  def top_answer
+    self.answers_descending[0]
+  end
 
-
+  def answers_descending
+    self.answers.sort_by {|answer| answer.score}.reverse
+  end
 
   def score
     tally = 0

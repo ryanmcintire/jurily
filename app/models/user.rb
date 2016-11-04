@@ -12,6 +12,26 @@ class User < ActiveRecord::Base
   #virtual members for sign up form.
   attr_accessor :admitted, :tos_accepted
 
+  def answer_score
+    total_score = 0
+    self.answers.each {|a| total_score += a.score}
+    total_score
+  end
+
+  def question_score
+    total_score = 0
+    self.questions.each {|q| total_score += q.score}
+    total_score
+  end
+
+  def top_answer_count
+    count = 0
+    self.answers.each do |a|
+      count += 1 if a.top_answer?
+    end
+    count
+  end
+
   def recent_questions(limit)
     self.questions.order(created_at: :desc).limit(limit)
   end

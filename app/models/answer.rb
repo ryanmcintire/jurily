@@ -11,4 +11,8 @@ class Answer < ActiveRecord::Base
     self.votes.each {|vote| tally += vote.value}
     tally
   end
+
+  def top_answer?
+    self.question.top_answer.id == self.id
+  end
 end

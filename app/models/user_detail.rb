@@ -18,30 +18,13 @@ class UserDetail < ActiveRecord::Base
 
   end
 
-  def title_display
-    current_position = self.user_employments.where(date_end: nil).order(date_start: :desc).take(1)
-    return current_position_stringified(current_position) unless (current_position.nil? || current_position.count == 0)
-    most_recent_position = self.user_employments.order(date_end: :desc).take(1)
-    return most_recent_position_stringified(most_recent_postiion) unless (most_recent_position.nil? || current_position.count == 0)
-    student_detail = self.lawschool_detail
-    return student_detail_stringified(student_detail) unless student_detail.nil?
-    nil
+  def display_title
+    return "#{self.title}, #{self.organization}" unless self.title.blank? or self.organization.blank?
+    return "#{self.title}" unless self.title.blank?
+    return "#{self.organization}" unless self.organization.blank?
+    "No position specified"
   end
+  alias_method :title_display, :display_title
 
   private
-  def current_position_stringified(current_position)
-    return nil if current_position.nil?
-    "#{current_position.position_title}, #{current_position.organization_name}"
-  end
-
-  def most_recent_position_stringified(most_recent_position)
-    return nil if most_recent_position.nil?
-    "#{most_recent_position.position_title}, #{current_position.organization_name}"
-  end
-
-  def student_detail_stringified(student_detail)
-    return "Student, #{student_detail.school_name}" if student_detail.currently_attending
-    return "Graduate, #{student_detail.school_name}" unless student_detail.year_graduated.nil?
-    "Former Student, #{student_detail.school_name}"
-  end
 end

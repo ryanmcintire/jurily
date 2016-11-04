@@ -469,7 +469,7 @@ aside {
 }
 
 .content-box-title {
-  padding: 20px 0 10px 10px;
+  padding: 0 0 10px 10px;
   margin: 0 20px 20px 0;
   border-bottom: 2px solid #dedede;
   font-size: 20px;
@@ -543,6 +543,8 @@ aside {
   }
 }
 
+
+
 .form-alert-danger {
   margin-right: 20px;
 }
@@ -550,4 +552,8 @@ aside {
 .alert-danger {
   background-color: #c62f03;
   border-color: #d52c0f;
+}
+
+.btn {
+  transition: all .2s linear;
 }
