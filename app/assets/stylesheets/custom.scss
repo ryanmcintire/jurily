@@ -239,6 +239,56 @@ body {
 }
 
 
+.home-tabs {
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+  border-bottom: 2px solid #3db5d8;
+  margin-bottom: 30px;
+  padding: 0;
+  display: block;
+}
+
+.home-tabs .tab a {
+  color: #2f3239;
+  font-size: 19px;
+  font-weight: normal;
+  background-color: transparent;
+  float: left;
+  margin-right: 10px;
+  display: block;
+  padding: 10px 16px 11px 16px;
+  cursor: hand;
+  vertical-align: baseline;
+}
+
+.home-tabs .tab a:hover {
+  text-decoration: none;
+}
+
+li.tab {
+  list-style: none;
+  display: inline-block;
+  margin-bottom: 0px;
+  height: 100% !important;
+  vertical-align: baseline;
+  transition: background-color .2s linear;
+}
+
+li.tab:hover {
+  background-color: #dedede;
+}
+
+li.tab.current {
+  background-color: #3db5d8;
+
+  a {
+    color: #ffffff;
+  }
+
+}
+
+
 
 .home-tab-inner-wrapper {
   margin-bottom: 30px;
@@ -610,4 +660,8 @@ aside {
   -webkit-animation-duration: .3s;
   -moz-animation-duration: .3s;
   animation-duration: .3s;
+}
+
+.pagination-block {
+
 }

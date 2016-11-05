@@ -1,10 +1,21 @@
 .row.h1.welcome-home-title
   Jurily.com
 .row.h5.welcome-home-subtitle
-  Where lawyers go for legal questions.
+  Lawyers seeking advice.
 .row
   .container
     .col-md-9.home-tab-inner-wrapper
+      %ul.tabs.home-tabs
+        %li.tab{:class => ("current" if cp(root_url))}
+          =link_to "Current", root_url
+        %li.tab{:class => ("current" if cp(new_user_url))}
+          =link_to "Top Answers", "#"
+        %li.tab{:class => ("current" if cp(new_user_url))}
+          =link_to "Top Questions", "#"
+        %li.tab{:class => ("current" if cp(new_user_url))}
+          =link_to "Recent Answers", "#"
+        %li.tab{:class => ("current" if cp(new_user_url))}
+          =link_to "Recent Questions", "#"
       -@questions.each do |question|
         = render 'shared/question_short', question: question
         -#.panel.panel-default
@@ -13,10 +24,11 @@
         -#      question_url(question)
         -#  .panel-body
         -#    = raw (question.body).truncate(500, seperator: ' ')
-      %p
+      .content-block
         = paginate @questions
     %aside.col-md-3.sidebar
       .sidebar-widget.sidebar-widget-home-ads
         %h3.sidebar-widget-title Sponsors
         %div
           Forthcoming.
+
