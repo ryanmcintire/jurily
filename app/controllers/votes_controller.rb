@@ -10,11 +10,78 @@ class VotesController < ApplicationController
     respond_to do |format|
       format.json { render :json => response_data.to_json }
     end
+  end
+
+  def get_vote
+    vote_data = vote_params
+    element = new_get_element vote_data
+    current_user_vote = get_current_user_vote element
+    response_data = {
+        :score => element.score,
+        :userVote => current_user_vote.nil? ? 0 : current_user_vote.value
+    }
+    respond_to do |format|
+      format.json {render :json => response_data.to_json}
+    end
 
   end
 
   private
   def process_vote
+    vote_data = vote_params
+    element = new_get_element vote_data
+    current_user_vote = get_current_user_vote element
+    if current_user_vote
+      vote = process_existing_vote(vote_data, current_user_vote)
+    else
+      vote = new_new_vote(vote_data)
+    end
+    element.votes << vote if vote
+    if element.save
+      {
+          :score => element.score,
+          :userVote => vote.nil? ? 0 : vote.value
+      }
+    end
+  end
+
+  def process_existing_vote(vote_data, current_user_vote)
+    new_vote = nil
+    new_vote = new_new_vote(vote_data) if vote_data['userVote'] != current_user_vote.value
+    current_user_vote.destroy
+    new_vote
+  end
+
+  def new_new_vote(vote_data)
+    Vote.new(user_id: current_user.id, value: vote_data['userVote'])
+  end
+
+  def get_current_user_vote(element)
+    current_user_vote = element.votes.where(user_id: current_user.id)
+    #todo - better error tracking.
+    current_user_vote[0]
+  end
+
+  def vote_params
+    params.require(:vote).permit(:elementId, :elementType, :user, :userVote)
+  end
+
+  def old_process_vote
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     response_data = {}
     element = get_element_from_params
     #todo - user logged in?
@@ -31,12 +98,11 @@ class VotesController < ApplicationController
     element.votes << vote if vote != nil
 
     if element.save
-      response_data = {
+      {
           :currentUserVoted => current_user_voted?(vote),
           :currentUserVoteType => current_user_vote_type(vote),
           :score => get_score(element.votes)
       }
-      return response_data
     else
       #todo - error...
     end
@@ -69,6 +135,12 @@ class VotesController < ApplicationController
       #todo - error
     end
     vote
+  end
+
+  def new_get_element(vote_data)
+    return Question.find(vote_data['elementId']) if vote_data['elementType'] == 'question'
+    return Answer.find(vote_data['elementId']) if vote_data['elementType'] == 'answer'
+    #todo - handle error
   end
 
   def get_element_from_params

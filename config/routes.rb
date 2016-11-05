@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   post 'create_profile', to: 'users#create_profile', as: 'create_profile'
 
   post 'vote', to: 'votes#vote', as: 'vote', defaults: {:format => :json}
+  get 'vote', to: 'votes#get_vote', as: 'get_vote', defaults: {:format => :json}
 
   get 'search', to: 'search#search', as: 'search'
 

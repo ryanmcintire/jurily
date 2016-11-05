@@ -1,11 +1,12 @@
 import React, {PropTypes} from 'react';
 import Superagent from 'superagent';
 
-const UPVOTE = "upvote";
-const DOWNVOTE = "downvote";
+const UPVOTE = 1;
+const DOWNVOTE = -1;
+const NOVOTE = 0;
 const QUESTION = "question";
 const ANSWER = "answer";
-const VOTE_TYPES = [UPVOTE, DOWNVOTE];
+const VOTE_TYPES = [UPVOTE, DOWNVOTE, NOVOTE];
 
 export default class VoteBox extends React.Component {
 
@@ -21,9 +22,39 @@ export default class VoteBox extends React.Component {
     super(props, ctx);
     this.state = {
       score: 0,
-      currentUserVoted: false,
-      currentUserVoteType: ''
+      userVote: NOVOTE
     }
+  }
+
+  componentDidMount() {
+    this.getInitialVoteData();
+  }
+
+  getInitialVoteData() {
+    Superagent
+      .get(this.props.hostUrl)
+      .query(this.getVoteboxIdInfo())
+      .set('X-CSRF-Token', this.props.csrfToken)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        if (err || !res.ok) this.handleVoteGetError(err, res);
+        else this.new_handleSubmitSuccess(res);
+      });
+  }
+
+  handleVoteGetError(err, res) {
+    //todo - error.
+    console.err(err);
+  }
+
+  getVoteboxIdInfo() {
+    return {
+      vote: {
+        user: this.props.user,
+        elementId: this.props.elementId,
+        elementType: this.props.elementType
+      }
+    };
   }
 
   checkLoginStatus() {
@@ -31,11 +62,12 @@ export default class VoteBox extends React.Component {
   }
 
   getVoteData(classList) {
-    console.log('getting vote data');
     let voteType = "";
     if (classList.contains("vote-button-up")) voteType = UPVOTE;
     else if (classList.contains("vote-button-down")) voteType = DOWNVOTE;
-    else {/*todo - handle error. */ console.log("ERROR!");}
+    else {/*todo - handle error. */
+      console.log("ERROR!");
+    }
     return {
       user: this.props.user,
       elementId: this.props.elementId,
@@ -48,6 +80,7 @@ export default class VoteBox extends React.Component {
   }
 
   setUserVoteStatus(voteData) {
+
     if (voteData.currentUserVoted) {
       if (voteData.currentUserVoteType === voteData.voteType) {
         voteData.currentUserVoted = false;
@@ -96,14 +129,70 @@ export default class VoteBox extends React.Component {
   }
 
   handleVoteClick(e) {
-    console.log('CLICK!');
     e.preventDefault();
     this.checkLoginStatus();
     let voteData = this.getVoteData(e.currentTarget.classList);
     voteData = this.setUserVoteStatus(voteData);
+    console.log('this data will be sent...');
+    console.log(voteData);
     this.sendUserVoteData(voteData);
     this.updateVoteData(voteData);
   }
+
+  new_handleVoteClick(e) {
+    e.preventDefault();
+    this.checkLoginStatus();
+    const voteData = this.new_getVoteData(e.currentTarget.classList);
+    this.new_sendUserVoteData(voteData);
+    this.new_updateVoteData(voteData)
+  }
+
+  new_getVoteData(classList) {
+    const nextVote = this.determineNextVote(this.getVoteType(classList));
+    return {
+      user: this.props.user,
+      elementId: this.props.elementId,
+      elementType: this.props.elementType,
+      userVote: nextVote,
+      score: (this.state.score - this.state.userVote + nextVote)
+    }
+  }
+
+  determineNextVote(nextVote) {
+    //return no vote if vote is same.
+    if (this.state.userVote == nextVote) return NOVOTE;
+    return nextVote;
+  }
+
+  getVoteType(classList) {
+    if (classList.contains("vote-button-up")) return UPVOTE;
+    else if (classList.contains("vote-button-down")) return DOWNVOTE;
+    else return NOVOTE;
+  }
+
+  new_sendUserVoteData(voteData) {
+    Superagent
+      .post(this.props.hostUrl)
+      .send({vote:voteData})
+      .set('X-CSRF-Token', this.props.csrfToken)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        if (err || !res.ok) this.handleSubmitError(err, res);
+        else this.new_handleSubmitSuccess(res);
+      });
+  }
+
+  new_handleSubmitSuccess(res) {
+    this.new_updateVoteData(JSON.parse(res.text));
+  }
+
+  new_updateVoteData(data) {
+    this.setState({
+      score: data.score,
+      userVote: data.userVote
+    });
+  }
+
 
   render() {
     return (
@@ -117,35 +206,31 @@ export default class VoteBox extends React.Component {
   renderVoteBox() {
     return (
       <div className="vote-box-container">
-        <div className="vote-button-container">
-          <p>
-            <a className="vote-button-up votebox-vote-button" onClick={this.handleVoteClick.bind(this)}>
-              <i className="fa fa-chevron-circle-up fa-3x" aria-hidden="true"/>
-            </a>
-          </p>
-        </div>
+        {this.renderVoteButton('up')}
         <div className="votebox-score-container center-block">
           <p className="votebox-score">{this.state.score}</p>
         </div>
-        <div className="vote-button-container">
-          <p>
-            <a className="vote-button-down votebox-vote-button" onClick={this.handleVoteClick.bind(this)}>
-              <i className="fa fa-chevron-circle-down fa-3x" aria-hidden="true"/>
-            </a>
-          </p>
-        </div>
+        {this.renderVoteButton('down')}
       </div>
     )
   }
 
   renderVoteButton(direction) {
-    let anchorClass = `vote-button-{direction} votebox-vote-button`;
-    let iClass = `fa fa-chevron-circle-{direction} fa-3x`;
-    //
-    // return(
-    //   // <p>
-    //   //   <a className={this}
-    //   // </p>
-    // )
+    let anchorClass = `vote-button-${direction} votebox-vote-button ${this.isActive(direction)}`;
+    let iClass = `fa fa-chevron-circle-${direction} fa-3x votebox-vote-button`;
+    return (
+      <div className="vote-button-container">
+        <p>
+          <a className={anchorClass} onClick={this.new_handleVoteClick.bind(this)}>
+            <i className={iClass} aria-hidden="true"/>
+          </a>
+        </p>
+      </div>
+    );
+  }
+
+  isActive(direction) {
+    if (direction == 'up' && this.state.userVote == UPVOTE) return 'vote-active';
+    if (direction == 'down' && this.state.userVote == DOWNVOTE) return 'vote-active';
   }
 }

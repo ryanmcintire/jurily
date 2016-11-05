@@ -4,7 +4,8 @@ class Answer < ActiveRecord::Base
 
   belongs_to :question
   belongs_to :user
-  has_many :votes, as: :votable
+  #todo - evaluate how you want to delete votes eventually...
+  has_many :votes, as: :votable, dependent: :destroy
 
   def score
     tally = 0

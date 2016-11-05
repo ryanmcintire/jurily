@@ -1,4 +1,5 @@
 #todo - styling on user profile page.
+#todo - edit signup email sender
 #todo - add tags to question.
 #todo - Possible links on new question?
 #todo - user picture?
@@ -20,3 +21,8 @@
 #todo - Add "member since" to user profile title section
 #todo - sort answers in order highest score to lowest.
 #todo - enable editing answers / questions
+#todo - load votes on page load.
+#todo - db checks to make sure user votes only once.
+#todo - pluralize votes on home page.
+#todo - flash confirmation email message on signup.
+#todo - change successful confirmation to green text.

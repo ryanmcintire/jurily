@@ -199,6 +199,40 @@ body {
   padding: 0;
 }
 
+.votebox-vote-button {
+  transition: color .2s linear;
+  cursor:pointer;cursor:hand;
+}
+
+.vote-button-down:hover {
+  color: #bc1d47;
+}
+
+.vote-button-up:hover {
+  color: #4bad7f;
+}
+
+.vote-active {
+  &.vote-button-down {
+    color: #bc1d47;
+    transition: color .0s linear;
+  }
+  &.vote-button-up {
+    color: #4bad7f;
+    transition: color .0s linear;
+  }
+}
+
+//
+//.votebox-vote-button {
+//  color: #6f6f6f;
+//  transition: color .2s linear;
+//}
+//
+//.votebox-vote-button:hover {
+//
+//}
+
 .btn.nohover:hover {
   cursor:default !important;
   background-color: #008cba !important;
@@ -556,4 +590,24 @@ aside {
 
 .btn {
   transition: all .2s linear;
+}
+
+
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.fade-in {
+  opacity: 0;
+  -webkit-animation: fadeIn ease-in 1;
+  -moz-animation: fadeIn ease-in 1;
+  animation: fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+
+  -webkit-animation-duration: .3s;
+  -moz-animation-duration: .3s;
+  animation-duration: .3s;
 }

@@ -8,8 +8,8 @@ class Question < ActiveRecord::Base
   validates :title, length: {in: 6..250}  #todo - eval length.
 
   belongs_to :user
-  has_many :answers
-  has_many :votes, as: :votable
+  has_many :answers, dependent: :destroy
+  has_many :votes, as: :votable, dependent: :destroy
 
   enum jurisdiction: Jurisdictions::JURISDICTIONS
 

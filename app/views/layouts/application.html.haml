@@ -30,10 +30,12 @@
   %body
     = render :partial => 'layouts/navbar'
 
+
     .content-body
       .container
         .row
           .col-lg-12.content-body
+            = render "shared/flash"
             = yield
     %footer.main-layout-footer
       .div.col-xs-12.col-sm-6
