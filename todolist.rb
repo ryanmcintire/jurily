@@ -28,3 +28,5 @@
 #todo - change successful confirmation to green text.
 #todo - attempt to submit answer redirects if not logged in.
 #todo - proper styling for phone display.
+#todo - seed database
+#todo - unit tests.

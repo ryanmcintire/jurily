@@ -501,11 +501,13 @@ aside {
   border: 1px solid #dedede;
   background: #fff;
   box-shadow: 0 0 5px #dedede;
+  margin-bottom: 15px;
 }
 
 .user-title {
   color: #3db5d8;
   margin: 0;
+  padding-bottom: 10px;
   font-size: 20px;
   font-weight: bold;
 }
@@ -664,4 +666,21 @@ aside {
 
 .pagination {
   width: 8000px;
+}
+
+.content-title-divider {
+  border-bottom: 1px solid #dedede;
+}
+
+.sidebar-widget-accolades-item {
+  color: #2f3239;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #eaeaeb;
+  margin-bottom: 10px;
+  padding: 10px !important;
+}
+
+.widget-item-icon {
+  padding-right: 7px;
 }

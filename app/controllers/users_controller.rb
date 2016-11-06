@@ -5,6 +5,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @detail = @user.user_detail
+    @top_answers_selection = @user.top_answers(5)
+    @top_questions_selection = @user.top_questions(5)
+    @recent_questions_selection = @user.recent_questions(5)
+    @recent_answers_selection = @user.recent_answers(5)
   end
 
   def edit
