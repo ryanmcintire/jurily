@@ -26,3 +26,5 @@
 #todo - pluralize votes on home page.
 #todo - flash confirmation email message on signup.
 #todo - change successful confirmation to green text.
+#todo - attempt to submit answer redirects if not logged in.
+#todo - proper styling for phone display.

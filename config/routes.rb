@@ -20,9 +20,15 @@ Rails.application.routes.draw do
 
   get 'search', to: 'search#search', as: 'search'
 
+  get 'top_answers', to: 'welcome#top_answers', as: 'top_answers'
+  get 'top_questions', to: 'welcome#top_questions', as: 'top_questions'
+  get 'recent_answers', to: 'welcome#recent_answers', as: 'recent_answers'
+  get 'recent_questions', to: 'welcome#recent_questions', as: 'recent_questions'
 
 
   root to: 'welcome#home'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
