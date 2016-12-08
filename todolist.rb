@@ -1,4 +1,3 @@
-#todo - styling on user profile page.
 #todo - edit signup email sender
 #todo - add tags to question.
 #todo - Possible links on new question?
@@ -30,3 +29,4 @@
 #todo - proper styling for phone display.
 #todo - seed database
 #todo - unit tests.
+#todo - jurisdiction link gets questions based on jurisdiction

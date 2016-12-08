@@ -9,13 +9,11 @@
         %li.tab{:class => ("current" if cp(root_url))}
           =link_to "Current", root_url
         %li.tab{:class => ("current" if cp(top_answers_url))}
-          =link_to "Top Answers", top_answers_url
+          =link_to "Hot", top_answers_url
         %li.tab{:class => ("current" if cp(top_questions_url))}
-          =link_to "Top Questions", top_questions_url
-        %li.tab{:class => ("current" if cp(recent_answers_url))}
-          =link_to "Recent Answers", recent_answers_url
-        %li.tab{:class => ("current" if cp(recent_questions_url))}
-          =link_to "Recent Questions", recent_questions_url
+          =link_to "Month", top_questions_url
+        %li.tab{:class => ("current" if cp(top_questions_url))}
+          =link_to "Rewards", top_questions_url
       -@questions.each do |question|
         = render 'shared/question_short', question: question
         -#.panel.panel-default

@@ -6,6 +6,8 @@ class WelcomeController < ApplicationController
   end
 
   def top_answers
+
+    @questions = Question.all.order()
     @questions = Question.order('created_at ASC').page(params[:page]).per(5)
     render :template => 'welcome/home'
   end

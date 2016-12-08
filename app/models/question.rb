@@ -13,6 +13,14 @@ class Question < ActiveRecord::Base
 
   enum jurisdiction: Jurisdictions::JURISDICTIONS
 
+  #todo - master this concept...
+  #scope :top, joins('left join votes on votes.votable_id = votable_id')
+  # scope :top, joins('left join votes on votes.for_id = profiles.user_id').
+  #     select('profiles.*, count(votes.id) as votes_count').
+  #     group('profiles.id').
+  #     order('votes_count desc')
+
+
   #todo - accommodate multiple jdx
   scope :jurisdiction, -> (jurisdiction) {where jurisdiction: Jurisdictions::JURISDICTIONS[jurisdiction
                                                                                                .to_s
