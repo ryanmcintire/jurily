@@ -47,6 +47,14 @@ class Question < ActiveRecord::Base
     Jurisdictions::JURISDICTIONS[jdx]
   end
 
+  def self.top_ranked_questions
+    Question.select("questions.*, SUM(case when votes.votable_type = 'Question' then votes.value else 0 end) vote_score")
+        .joins("LEFT OUTER JOIN votes ON votes.votable_id = questions.id and votes.votable_type = 'Question'")
+        .group("questions.id")
+        .order("vote_score DESC")
+
+  end
+
   private
   def jdx_enum_val(jdx)
     Jurisdictions::JURISDICTIONS[jdx]
