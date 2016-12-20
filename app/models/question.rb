@@ -52,7 +52,6 @@ class Question < ActiveRecord::Base
         .joins("LEFT OUTER JOIN votes ON votes.votable_id = questions.id and votes.votable_type = 'Question'")
         .group("questions.id")
         .order("vote_score DESC")
-
   end
 
   private

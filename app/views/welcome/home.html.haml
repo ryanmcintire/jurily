@@ -6,14 +6,14 @@
   .container
     .col-md-9.home-tab-inner-wrapper
       %ul.tabs.home-tabs
-        %li.tab{:class => ("current" if cp(root_url))}
-          =link_to "Current", root_url
-        %li.tab{:class => ("current" if cp(top_answers_url))}
-          =link_to "Hot", top_answers_url
-        %li.tab{:class => ("current" if cp(top_questions_url))}
-          =link_to "Month", top_questions_url
-        %li.tab{:class => ("current" if cp(top_questions_url))}
-          =link_to "Rewards", top_questions_url
+        %li.tab{:class => ("current" if current_page?(root_url))}
+          =link_to "Top Questions", root_url
+        %li.tab{:class => ("current" if current_page?(recent_questions_url))}
+          =link_to "Latest Questions", recent_questions_url
+        -#%li.tab{:class => ("current" if cp(top_questions_url))}
+        -#  =link_to "Month", top_questions_url
+        -#%li.tab{:class => ("current" if cp(top_questions_url))}
+        -#  =link_to "Rewards", top_questions_url
       -@questions.each do |question|
         = render 'shared/question_short', question: question
         -#.panel.panel-default
