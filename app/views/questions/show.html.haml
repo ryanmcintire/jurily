@@ -3,9 +3,10 @@
     %article.question-display.single-question
       %h2.question-display-title= @question.title
       - if current_user && @question.user.id == current_user.id
-        .question-edit-button
-          %i.fa.fa-pencil
-          = "  Edit"
+        =link_to edit_question_url do
+          .question-edit-button
+            %i.fa.fa-pencilgit
+            = "  Edit"
       .question-display-inner
         .question-display-content-container
           .question-votebox-container
@@ -29,9 +30,14 @@
         .question-display-inner
           .question-display-answer-user-container
             - if current_user && @question.user.id == current_user.id
-              .answer-edit-button
-                %i.fa.fa-pencil
-                = "  Edit"
+              =link_to edit_answer_url do
+                .answer-edit-button
+                  %i.fa.fa-pencil
+                  = "  Edit"
+              =link_to answer_url(answer), method: :delete do
+                .answer-delete-button
+                  %i.fa.fa-trash
+                  = "  Delete"
             %span.question-display-answer-user
               =answer.user.user_detail.full_name
             %span.question-display-answer-user-detail
@@ -78,7 +84,7 @@
         %span= "Updated: #{@question.updated_at.strftime("%B %-d, %Y")}"
     .sidebar-widget.sidebar-widget-related-questions
       %h3.sidebar-widget-title Related Questions
-      %div= "Todo " # todo
+      %div= "Todo "
 
 
 

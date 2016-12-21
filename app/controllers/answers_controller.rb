@@ -1,5 +1,7 @@
 class AnswersController < ApplicationController
 
+  before_action :authenticate_user!, only: :delete
+
   def create
     respond_if_not_logged_in
     question = Question.find(params[:questionId])
@@ -12,6 +14,17 @@ class AnswersController < ApplicationController
           :forwardingUrl => question_path(question)
       }
       render status: 200, json: response_data.to_json
+    end
+  end
+
+  def destroy
+    answer = Answer.find(params[:id])
+    answer.delete
+    if answer.save
+      redirect_to question_url(answer.question)
+    else
+      #todo - flash error msg
+      redirect_to question_url(answer.question)
     end
   end
 

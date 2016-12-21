@@ -16,18 +16,21 @@ export default class RichTextEditorForm extends React.Component {
     baseClassName: PropTypes.string.isRequired,
     editorClassName: PropTypes.string.isRequired,
     toolbarClassName: PropTypes.string.isRequired,
-    jurisdictionOptions: PropTypes.array
+    currentJurisdiction: PropTypes.string,
+    jurisdictionOptions: PropTypes.array,
+    update: PropTypes.bool
     //todo - add proptype for jurisdictions.
   };
 
   constructor(props, ctx) {
     super(props, ctx);
+    console.log(props.initialEditorValue);
     this.state = {
       editorValue: props.initialEditorValue,
       submitRequired: false,
       submitting: false,
       title: props.initialTitle,
-      jurisdictionSelectValue: 'None Specified',
+      jurisdictionSelectValue: props.currentJurisdiction || 'None Specified',
       errors: []
     }
   }
@@ -48,6 +51,23 @@ export default class RichTextEditorForm extends React.Component {
 
   submitEditorTextToServer() {
     this.toggleSubmitRequired();
+    if (this.props.isUpdate) this.submitUpdateText();
+    else this.submitNewText();
+  }
+
+  submitUpdateText() {
+    Superagent
+      .put(this.props.hostUrl)
+      .send(this.getDataForSubmit())
+      .set('X-CSRF-Token', this.props.csrfToken)
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        if (err || !res.ok) this.handleSubmitError(err);
+        else this.handleSubmitSuccess(res);
+      });
+  }
+
+  submitNewText() {
     Superagent
       .post(this.props.hostUrl)
       .send(this.getDataForSubmit())
@@ -238,6 +258,7 @@ export default class RichTextEditorForm extends React.Component {
           editorClassName={this.props.editorClassName}
           toolbarClassName={this.props.toolbarClassName}
           placeholder={this.getPlaceholder()}
+          initialEditorValue={this.props.initialEditorValue}
         />
       </div>
     )

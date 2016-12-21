@@ -3,7 +3,7 @@ require "#{Rails.root}/lib/enums/jurisdictions"
 
 class QuestionsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit]
 
   def index
     @questions = Question.all
@@ -11,18 +11,27 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
-
-
     @jurisdictions = Jurisdictions::JURISDICTIONS.keys.map do |k|
       (k.to_s).titleize
     end
-    puts @jurisdictions
+  end
+
+  def edit
+    @question = Question.find(params[:id])
+    @jurisdictions = Jurisdictions::JURISDICTIONS.keys.map do |k|
+      (k.to_s).titleize
+    end
+    @current_jurisdiction = @question.jurisdiction.to_s.titleize
   end
 
   def create
     respond_if_not_logged_in
     begin
-      @question = Question.new(user: get_user, jurisdiction: get_jurisdiction, title: params[:title], body: get_body)
+      @question = Question.new(
+          user: get_user,
+          jurisdiction: get_jurisdiction,
+          title: params[:title],
+          body: get_body)
     rescue ArgumentError => e
       send_error_response "Invalid data." and return
     end
@@ -37,6 +46,29 @@ class QuestionsController < ApplicationController
       render status: 200, json: response_data.to_json
     else
       #todo - actually parse out the error message.
+      send_error_response "Invalid data." and return
+    end
+  end
+
+  def update
+    respond_if_not_logged_in
+    begin
+      @question = Question.find(params[:id])
+    rescue ArgumentError => e
+      send_error_response "Invalid data." and return
+    end
+    @question.assign_attributes(
+                 jurisdiction: get_jurisdiction,
+                 title: params[:title],
+                 body: get_body)
+    if @question.save
+      response_data = {
+          :success => true,
+          :message => "Question successfully updated.",
+          :forwardingUrl => question_path(@question)
+      }
+      render status: 200, json: response_data.to_json
+    else
       send_error_response "Invalid data." and return
     end
   end
