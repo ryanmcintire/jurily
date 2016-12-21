@@ -22,8 +22,9 @@
         -#      question_url(question)
         -#  .panel-body
         -#    = raw (question.body).truncate(500, seperator: ' ')
-      .content-block
-        = paginate @questions
+      - if (paginate @questions).length >= 65 #todo - get less hackier if paginate style classes change.
+        .content-block
+          = paginate @questions
     %aside.col-md-3.sidebar
       .sidebar-widget.sidebar-widget-home-ads
         %h3.sidebar-widget-title Sponsors
