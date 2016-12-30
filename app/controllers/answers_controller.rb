@@ -28,6 +28,10 @@ class AnswersController < ApplicationController
     end
   end
 
+  def edit
+
+  end
+
   private
   def respond_if_not_logged_in
     if !current_user || current_user.id != params[:user][:id]
