@@ -1,5 +1,6 @@
 class VotesController < ApplicationController
   #before_action :ensure_json_request
+  before_action :authenticate_user!, only: :new_new_vote
   respond_to :json
 
   def vote
@@ -57,6 +58,7 @@ class VotesController < ApplicationController
   end
 
   def get_current_user_vote(element)
+    return nil if current_user.nil?
     current_user_vote = element.votes.where(user_id: current_user.id)
     #todo - better error tracking.
     current_user_vote[0]
