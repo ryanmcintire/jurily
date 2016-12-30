@@ -57,7 +57,10 @@
             .answer-display-content
               =raw(answer.body)
     .col-md-12
-      %h3.question-display-answer-divider-text Submit your own answer:
+      %h3.question-display-answer-divider-text
+        Submit your own answer:
+      .alert.alert-danger
+        WARNING -- Jurily.com in active development; questions and answers on current database not permanent.
     =react_component("RichTextEditorForm",
             props: {user: current_user,
               hostUrl: answers_path,
@@ -69,6 +72,7 @@
               baseClassName: "answer-editor-base",
               editorClassName: "answer-editor-editor",
               toolbarClassName: "answer-editor-toolbar"})
+
 
   %aside.col-md-3.sidebar.question-display-sidebar
     .sidebar-widget.sidebar-widget-question-details
