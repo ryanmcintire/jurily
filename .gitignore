@@ -23,4 +23,9 @@ node_modules
 # Ignore application configuration
 /config/application.yml
 
-.idea
+.idea/
+
+# Ignore files related to server ssl
+server.csr
+server.key
+server.pass.key
