@@ -30,3 +30,6 @@ node_modules
 server.csr
 server.key
 server.pass.key
+*.ca-bundle
+www_jurily_com.crt
+

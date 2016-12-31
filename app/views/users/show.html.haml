@@ -8,14 +8,14 @@
     .content-block
       %h3.user-title.content-title-divider
         Details
-      %p= "Current Position: #{@detail.title}"
-      %p= "Organization: #{@detail.organization}"
+      %p= "Current Position: #{@detail.title ? @detail.title : 'None provided'}"
+      %p= "Organization: #{@detail.organization ? @detail.organization : 'None provided'}"
       %p
         Website:
-        = link_to @detail.website_url, @detail.website_url
+        = @detail.website_url ? link_to(@detail.website_url, @detail.website_url) : 'None provided'
       %p
         LinkedIn Profile:
-        = link_to @detail.linkedin_url, @detail.linkedin_url
+        = @detail.linkedin_url ? link_to(@detail.linkedin_url, @detail.linkedin_url) : 'None provided'
   .row
     .content-block
       %h3.user-title.content-title-divider
