@@ -37,6 +37,7 @@ class QuestionsController < ApplicationController
     end
 
     #todo - compare user.
+
     if @question.save
       response_data = {
           :success => true,

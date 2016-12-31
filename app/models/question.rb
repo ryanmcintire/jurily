@@ -47,8 +47,25 @@ class Question < ActiveRecord::Base
     Jurisdictions::JURISDICTIONS[jdx]
   end
 
+  def self.recent_interest
+    Question.select("questions.*, SUM(CASE WHEN (votes.votable_type = 'Question') AND (votes.created_at >= #{Time.now.beginning_of_month} ) THEN votes.value ELSE 0 END) vote_score", '2016-12-01')
+        .joins("INNER JOIN votes ON votes.votable_id = questions.id and votes.votable_type = 'Question'")
+        .group("questions.id")
+        .order("vote_score DESC")
+  end
+
   def self.top_ranked_questions
     Question.select("questions.*, SUM(case when votes.votable_type = 'Question' then votes.value else 0 end) vote_score")
+        .joins("LEFT OUTER JOIN votes ON votes.votable_id = questions.id and votes.votable_type = 'Question'")
+        .group("questions.id")
+        .order("vote_score DESC")
+  end
+
+  #test method for limiting by array of jdx.
+  #use this as base for other methods as POC, but not to be used elsewhere.
+  def self.test_jdx(jdx)
+    Question.select("questions.*, SUM(case when votes.votable_type = 'Question' then votes.value else 0 end) vote_score")
+        .where(jurisdiction: jdx)
         .joins("LEFT OUTER JOIN votes ON votes.votable_id = questions.id and votes.votable_type = 'Question'")
         .group("questions.id")
         .order("vote_score DESC")
@@ -58,5 +75,6 @@ class Question < ActiveRecord::Base
   def jdx_enum_val(jdx)
     Jurisdictions::JURISDICTIONS[jdx]
   end
+
 
 end
