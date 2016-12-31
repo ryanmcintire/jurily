@@ -78,6 +78,8 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question.views += 1 unless @question.views.nil?
     @question.views = 1 if @question.views.nil?
+    @answers = @question.answers.sort {|x,y| y.score <=> x.score }
+    #todo - I need to have error protection here...
     @question.save
   end
 

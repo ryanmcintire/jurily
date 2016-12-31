@@ -25,11 +25,11 @@
       %h3.question-display-answer-divider-text= pluralize(@question.answers.count, 'Answer')
       %a{name: "answers"}
 
-    - @question.answers.each do |answer|
+    - @answers.each do |answer|
       %article.question-display.single-question
         .question-display-inner
           .question-display-answer-user-container
-            - if current_user && @question.user.id == current_user.id
+            - if current_user && answer.user.id == current_user.id
               =link_to edit_answer_url do
                 .answer-edit-button
                   %i.fa.fa-pencil

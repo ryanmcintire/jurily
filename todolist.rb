@@ -1,5 +1,5 @@
 #todo - fix answer ordering - order by score!
-#todo - fix answering question when not logged in.
+#todo - prevent vote from even tabulating locally if not logged in.
 
 
 
