@@ -86,13 +86,13 @@ export default class RichTextEditorForm extends React.Component {
     res = JSON.parse(res.text);
     //todo - need to figure out what response body looks like.
     console.log(res);
-    window.location.href = res.forwardingUrl
+    window.location.href = res.forwardingUrl;
   }
 
   handleSubmitError(err) {
     //todo - get path constants
     if (err.status == 401) {
-      window.location.href = "/users/sign_in";
+      window.location.href = 'https://' + window.location + "/users/sign_in";
     }
     //todo - handle submit error
     console.log(err);
@@ -110,7 +110,15 @@ export default class RichTextEditorForm extends React.Component {
     });
   }
 
-  handleSubmitClick() {
+  handleSubmitClick(e) {
+    e.preventDefault();
+    if (!this.props.user) {
+      window.location.href = `https://${window.location.host}/users/sign_in`;
+      return;
+    }
+    if (this.props.user) {
+      this.toggleSubmitting();
+    }
     this.toggleSubmitting();
   }
 

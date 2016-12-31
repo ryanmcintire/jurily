@@ -1,3 +1,7 @@
+#todo - fix answer ordering - order by score!
+#todo - fix answering question when not logged in.
+
+
 
 #todo - add tags to question.
 #todo - Possible links on new question?
