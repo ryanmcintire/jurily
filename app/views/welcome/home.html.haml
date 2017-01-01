@@ -6,7 +6,7 @@
   Lawyers seeking advice.
 .row
   .container
-    .col-md-9.home-tab-inner-wrapper
+    .col-md-12.home-tab-inner-wrapper
       %ul.tabs.home-tabs
         %li.tab{:class => ("current" if current_page?(root_url))}
           =link_to "Top Questions", root_url
@@ -27,9 +27,9 @@
       - if (paginate @questions).length >= 65
         .content-block
           = paginate @questions
-    %aside.col-md-3.sidebar
-      .sidebar-widget.sidebar-widget-home-ads
-        %h3.sidebar-widget-title Sponsors
-        %div
-          Forthcoming.
+    -#%aside.col-md-3.sidebar
+    -#  .sidebar-widget.sidebar-widget-home-ads
+    -#    %h3.sidebar-widget-title Sponsors
+    -#    %div
+    -#      Forthcoming.
 
