@@ -1,12 +1,101 @@
 .row
   .col-md-9
-    %article.question-display.single-question
-      %h2.question-display-title= @question.title
-      - if current_user && @question.user.id == current_user.id
-        =link_to edit_question_url do
-          .question-edit-button
-            %i.fa.fa-pencilgit
-            = "  Edit"
+    .row
+      .panel.panel-default
+        .panel-heading
+          .panel-title.pull-left
+            %h3.text-left= @question.title
+          .panel-title.pull-right
+            - if current_user && @question.user.id == current_user.id
+              =link_to edit_question_url do
+                %button.btn.btn-sm.btn-info.pull-right.pull-down
+                  %i.fa.fa-pencil
+                  = "  Edit"
+          .clearfix
+        .panel-body
+          =raw(@question.body)
+        .panel-footer
+          = link_to @question.user.user_detail.full_name, user_url(@question.user)
+          = " - #{@question.user.user_detail.title_display}"
+    .row
+      .col-sm-offset-1
+        %h3.question-display-answer-divider-text= pluralize(@question.answers.count, 'Answer')
+    .row
+      - @answers.each do |answer|
+        .panel.panel-default
+          .panel-heading
+            .col-md-6
+              %strong= answer.user.user_detail.full_name
+              %span= " - #{answer.user.user_detail.title_display}"
+            .col-md-6.text-right
+              %span.small= "Answered: #{answer.created_at.strftime("%d %b %Y")}"
+              - if answer.created_at != answer.updated_at
+                %span.small= "  - Updated: #{answer.updated_at.strftime("%d %b %Y")}"
+            .clearfix
+          .panel-body
+            .row
+              .col-md-12
+                =raw(answer.body)
+            - if current_user && answer.user.id == current_user.id
+              .row
+                .col-md-12
+                  .pull-right
+                    =link_to edit_answer_url do
+                      %button.btn.btn-info
+                        %i.fa.fa-pencil
+                          = " Edit"
+                    =link_to answer_url(answer), method: :delete do
+                      %button.btn.btn-danger
+                        %i.fa.fa-trash
+                          = " Delete"
+    .col-md-12
+      %h3
+        Subit your own answer:
+      .alert.alert-danger
+        WARNING -- Jurily.com in active development; questions and answers on current database not permanent.
+    =react_component("RichTextEditorForm",
+          props: {user: current_user,
+            hostUrl: answers_path,
+            initialTitle: "",
+            initialEditorValue: "",
+            csrfToken: form_authenticity_token,
+            isQuestion: false,
+            questionId: @question.id.to_s,
+            baseClassName: "answer-editor-base",
+            editorClassName: "answer-editor-editor",
+            toolbarClassName: "answer-editor-toolbar"})
+  %aside.col-md-3
+    .panel.panel-info
+      .panel-heading
+        .panel-title
+          Details
+      .panel-body
+        .well.well-sm= @question.jurisdiction.titleize
+        .well.well-sm
+          Views:
+          %span= @question.views
+        .well.well-sm
+          Created:
+          %span= @question.created_at.strftime("%B %-d, %Y")
+        .well.well-sm
+          Updated:
+          %span= @question.updated_at.strftime("%B %-d, %Y")
+
+
+
+
+
+
+
+
+
+
+
+
+
+.row
+  .col-md-9
+    .panel.panel-default
       .question-display-inner
         .question-display-content-container
           .question-votebox-container
