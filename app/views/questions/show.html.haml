@@ -1,19 +1,30 @@
 .row
+  .page_header
+    %h2= @question.title
+    - if current_user && @question.user.id == current_user.id
+      .col-md-2
+        = link_to edit_question_url do
+          %button.btn.btn-small.btn-info
+            %i.fa.fa-pencil
+              = "  Edit"
+      .clearfix
+  %br
+.row
   .col-md-9
     .row
       .panel.panel-default
-        .panel-heading
-          .panel-title.pull-left
-            %h3.text-left= @question.title
-          .panel-title.pull-right
-            - if current_user && @question.user.id == current_user.id
-              =link_to edit_question_url do
-                %button.btn.btn-sm.btn-info.pull-right.pull-down
-                  %i.fa.fa-pencil
-                  = "  Edit"
-          .clearfix
+
         .panel-body
-          =raw(@question.body)
+          .row
+            .col-md-1.col-sm-1.col-xs-2
+              =react_component("VoteBox",
+                          props: {user: current_user,
+                            elementId: @question.id,
+                            elementType: "question",
+                            csrfToken: form_authenticity_token,
+                            hostUrl: vote_path})
+            .col-md-11.col-sm-11.col-xs-10
+              =raw(@question.body)
         .panel-footer
           = link_to @question.user.user_detail.full_name, user_url(@question.user)
           = " - #{@question.user.user_detail.title_display}"
@@ -34,26 +45,33 @@
             .clearfix
           .panel-body
             .row
-              .col-md-12
+              .col-md-1.col-sm-1.col-xs-2
+                =react_component("VoteBox",
+                      props: {user: current_user,
+                        elementId: answer.id,
+                        elementType: "answer",
+                        csrfToken: form_authenticity_token,
+                        hostUrl: vote_path})
+              .col-md-11.col-sm-11.col-xs-10
                 =raw(answer.body)
             - if current_user && answer.user.id == current_user.id
               .row
                 .col-md-12
                   .pull-right
                     =link_to edit_answer_url do
-                      %button.btn.btn-info
+                      %button.btn.btn-sm.btn-info
                         %i.fa.fa-pencil
                           = " Edit"
                     =link_to answer_url(answer), method: :delete do
-                      %button.btn.btn-danger
+                      %button.btn.btn-sm.btn-danger
                         %i.fa.fa-trash
                           = " Delete"
     .col-md-12
       %h3
-        Subit your own answer:
+        Submit your own answer:
       .alert.alert-danger
         WARNING -- Jurily.com in active development; questions and answers on current database not permanent.
-    =react_component("RichTextEditorForm",
+    =react_component("AnswerForm",
           props: {user: current_user,
             hostUrl: answers_path,
             initialTitle: "",
@@ -83,101 +101,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-.row
-  .col-md-9
-    .panel.panel-default
-      .question-display-inner
-        .question-display-content-container
-          .question-votebox-container
-            =react_component("VoteBox",
-                      props: {user: current_user,
-                        elementId: @question.id,
-                        elementType: "question",
-                        csrfToken: form_authenticity_token,
-                        hostUrl: vote_path})
-          .question-display-content
-            =raw(@question.body)
-        .question-display-question-user
-          = link_to @question.user.user_detail.full_name, user_url(@question.user)
-          = @question.user.user_detail.title_display
-    .question-display-answer-divider
-      %h3.question-display-answer-divider-text= pluralize(@question.answers.count, 'Answer')
-      %a{name: "answers"}
-
-    - @answers.each do |answer|
-      %article.question-display.single-question
-        .question-display-inner
-          .question-display-answer-user-container
-            - if current_user && answer.user.id == current_user.id
-              =link_to edit_answer_url do
-                .answer-edit-button
-                  %i.fa.fa-pencil
-                  = "  Edit"
-              =link_to answer_url(answer), method: :delete do
-                .answer-delete-button
-                  %i.fa.fa-trash
-                  = "  Delete"
-            %span.question-display-answer-user
-              =answer.user.user_detail.full_name
-            %span.question-display-answer-user-detail
-              =" - #{answer.user.user_detail.title_display}"
-            .question-display-answer-date
-              = "Answered: #{answer.created_at.strftime("%d %b %Y")}"
-              - if answer.created_at != answer.updated_at
-                = "   - Updated: #{answer.updated_at.strftime("%d %b %Y")}"
-          .answer-content-container
-            .question-votebox-container
-              =react_component("VoteBox",
-                      props: {user: current_user,
-                        elementId: answer.id,
-                        elementType: "answer",
-                        csrfToken: form_authenticity_token,
-                        hostUrl: vote_path})
-            .answer-display-content
-              =raw(answer.body)
-    .col-md-12
-      %h3.question-display-answer-divider-text
-        Submit your own answer:
-      .alert.alert-danger
-        WARNING -- Jurily.com in active development; questions and answers on current database not permanent.
-    =react_component("RichTextEditorForm",
-            props: {user: current_user,
-              hostUrl: answers_path,
-              initialTitle: "",
-              initialEditorValue: "",
-              csrfToken: form_authenticity_token,
-              isQuestion: false,
-              questionId: @question.id.to_s,
-              baseClassName: "answer-editor-base",
-              editorClassName: "answer-editor-editor",
-              toolbarClassName: "answer-editor-toolbar"})
-
-
-  %aside.col-md-3.sidebar.question-display-sidebar
-    .sidebar-widget.sidebar-widget-question-details
-      %h3.sidebar-widget-title Details
-      .sidebar-widget-question-detail-element
-        = link_to '#', class: 'slow-transition-blackblue' do
-          %span= @question.jurisdiction.titleize
-      .sidebar-widget-question-detail-element
-        %span= "Views: #{@question.views}"
-      .sidebar-widget-question-detail-element
-        %span= "Created: #{@question.created_at.strftime("%B %-d, %Y")}"
-      .sidebar-widget-question-detail-element
-        %span= "Updated: #{@question.updated_at.strftime("%B %-d, %Y")}"
-    .sidebar-widget.sidebar-widget-related-questions
-      %h3.sidebar-widget-title Related Questions
-      %div= "Todo "
 
 
 

@@ -3,7 +3,7 @@ import Superagent from 'superagent';
 
 import RichTextEditor from './RichTextEditor';
 
-export default class RichTextEditorForm extends React.Component {
+export default class AnswerForm extends React.Component {
 
   static propTypes = {
     user: PropTypes.object,
@@ -145,6 +145,7 @@ export default class RichTextEditorForm extends React.Component {
             </button>
           </div>
         </div>
+        <br />
       </div>
     )
   }

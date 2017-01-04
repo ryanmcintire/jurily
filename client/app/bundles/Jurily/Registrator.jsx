@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactOnRails from 'react-on-rails';
 
-import RichTextEditorForm from './RichTextEditor/RichTextEditorForm';
-import RichTextEditorQuestionForm from './RichTextEditor/RichTextEditorQuestionForm';
+import AnswerForm from './RichTextEditor/AnswerForm';
+import QuestionForm from './RichTextEditor/QuestionForm';
 import VoteBox from './VoteBox/vote-box';
 
 ReactOnRails.register({
-  RichTextEditorForm,
-  RichTextEditorQuestionForm,
+  AnswerForm,
+  QuestionForm,
   VoteBox
 });

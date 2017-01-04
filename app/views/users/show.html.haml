@@ -1,79 +1,56 @@
-.col-md-9
-  .row
-    .content-block
-      %h3.user-title= @detail.full_name
-      - if current_user && current_user == @user
-        %h5= link_to "Edit Profile", edit_user_url(current_user)
-  .row
-    .content-block
-      %h3.user-title.content-title-divider
+
+.page-header
+  %h2= @detail.full_name
+  - if current_user && current_user == @user
+    %h5= link_to "Edit Profile", edit_user_url(current_user)
+.row
+  .col-md-9
+    .row
+      %h4
         Details
-      %p= "Current Position: #{@detail.title ? @detail.title : 'None provided'}"
-      %p= "Organization: #{@detail.organization ? @detail.organization : 'None provided'}"
       %p
-        Website:
+        %strong
+          Current Position:
+        = @detail.title ? @detail.title : 'None provided'
+      %p
+        %strong Organization:
+        = @detail.organization ? @detail.organization : 'None provided'
+      %p
+        %strong
+          Website:
         = @detail.website_url ? link_to(@detail.website_url, @detail.website_url) : 'None provided'
       %p
-        LinkedIn Profile:
+        %strong
+          LinkedIn Profile:
         = @detail.linkedin_url ? link_to(@detail.linkedin_url, @detail.linkedin_url) : 'None provided'
-  .row
-    .content-block
-      %h3.user-title.content-title-divider
-        Top Answers
-      - if @top_answers_selection.count == 0
-        = "No answers to display"
-      - else
-        - @top_answers_selection.each do |answer|
-          %p
-            = link_to answer.question.title, question_path(answer.question)
-  .row
-    .content-block
-      %h3.user-title.content-title-divider
-        Top Questions
-      - if @top_questions_selection.count == 0
-        = "No questions to display"
-      - else
-        - @top_questions_selection.each do |question|
-          %p
-            = link_to question.title, question_path(question)
-  .row
-    .content-block
-      %h3.user-title.content-title-divider
-        Recent Answers
-      - if @recent_answers_selection.count == 0
-        = "No answers to display"
-      - else
-        - @recent_answers_selection.each do |answer|
-          %p
-            = link_to answer.question.title, question_path(answer.question)
-  .row
-    .content-block
-      %h3.user-title.content-title-divider
-        Top Answers
-      - if @recent_questions_selection.count == 0
-        = "No questions to display"
-      - else
-        - @recent_questions_selection.each do |question|
-          %p
-            = link_to question.title, question_path(question)
+    .col-md-11
+      .row
+        = render :partial => 'top', locals: {group: 'top', type: 'answer', collection: @top_answers_selection}
+      .row
+        = render :partial => 'top', locals: {group: 'top', type: 'question', collection: @top_questions_selection}
+      .row
+        = render :partial => 'top', locals: {group: 'recent', type: 'answer', collection: @recent_answers_selection}
+      .row
+        = render :partial => 'top', locals: {group: 'recent', type: 'question', collection: @recent_questions_selection}
 
-%aside.col-md-3.sidebar
-  .sidebar-widget
-    %h3.sidebar-widget-title Accolades
-    .sidebar-widget-accolades-item
-      %i.fa.fa-trophy.widget-item-icon
-      = "Top #{'Answer'.pluralize}: #{@user.top_answer_count}"
-    .sidebar-widget-accolades-item
-      %i.fa.fa-comment.widget-item-icon
-      = "Answer score: #{@user.answer_score}"
-    .sidebar-widget-accolades-item
-      %i.fa.fa-question-circle.widget-item-icon
-      = "Question score: #{@user.question_score}"
-  .sidebar-widget
-    %h3.sidebar-widget-title Stats
-    .sidebar-widget-accolades-item
-      %i.fa.fa-comment.widget-item-icon
-      = "Answers submitted: #{@user.answers.count}"
-    .sidebar-widget-accolades-item
-      %i.fa.fa-question-circle.widget-item-icon
-      = "Questions asked: #{@user.questions.count}"
+
+  %aside.col-md-3
+    .sidebar-widget
+      %h3.sidebar-widget-title Accolades
+      .sidebar-widget-accolades-item
+        %i.fa.fa-trophy.widget-item-icon
+        = "Top #{'Answer'.pluralize}: #{@user.top_answer_count}"
+      .sidebar-widget-accolades-item
+        %i.fa.fa-comment.widget-item-icon
+        = "Answer score: #{@user.answer_score}"
+      .sidebar-widget-accolades-item
+        %i.fa.fa-question-circle.widget-item-icon
+        = "Question score: #{@user.question_score}"
+    .sidebar-widget
+      %h3.sidebar-widget-title Stats
+      .sidebar-widget-accolades-item
+        %i.fa.fa-comment.widget-item-icon
+        = "Answers submitted: #{@user.answers.count}"
+      .sidebar-widget-accolades-item
+        %i.fa.fa-question-circle.widget-item-icon
+        = "Questions asked: #{@user.questions.count}"

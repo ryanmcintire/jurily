@@ -173,7 +173,7 @@ export default class VoteBox extends React.Component {
   new_sendUserVoteData(voteData) {
     Superagent
       .post(this.props.hostUrl)
-      .send({vote:voteData})
+      .send({vote: voteData})
       .set('X-CSRF-Token', this.props.csrfToken)
       .set('Accept', 'application/json')
       .end((err, res) => {
@@ -205,10 +205,10 @@ export default class VoteBox extends React.Component {
 
   renderVoteBox() {
     return (
-      <div className="vote-box-container">
+      <div className="votebox">
         {this.renderVoteButton('up')}
-        <div className="votebox-score-container center-block">
-          <p className="votebox-score">{this.state.score}</p>
+        <div className="text-center">
+          <p>{this.state.score}</p>
         </div>
         {this.renderVoteButton('down')}
       </div>

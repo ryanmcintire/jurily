@@ -1,33 +1,47 @@
+.page-header
+  %h2= "Edit details for #{@user.user_detail.full_name}"
 .col-md-9
-  .content-box
-    .content-box-title
-      Edit Profile
-    =form_for @user, :html => {class: "form-style-1"} do |user_fields|
-      =fields_for :user_detail, @user.user_detail do |detail_fields|
-        %p.form-layer
-          %label First Name:
-          =detail_fields.text_field :first_name
-        %p.form-layer
-          %label Last Name:
-          =detail_fields.text_field :last_name
-      %p.form-layer
-        %label Email:
-        =user_fields.text_field :email
-      =fields_for :user_detail, @user.user_detail do |detail_fields|
-        %p.form-layer
-          %label Organization:
-          =detail_fields.text_field :organization
-        %p.form-layer
-          %label Title:
-          =detail_fields.text_field :title
-        %p.form-layer
-          %label Website:
-          =detail_fields.text_field :website_url
-        %p.form-layer
-          %label LinkedIn Profile:
-          =detail_fields.text_field :linkedin_url
-      =user_fields.submit 'Update', class: "btn btn-primary"
-%aside.col-md-3
-  .sidebar-widget
-    .sidebar-widget-title
-      Things!
+  =form_for @user, :html => {class: "form-horizontal"} do |user_fields|
+    =fields_for :user_detail, @user.user_detail do |detail_fields|
+      .form-group
+        %label.col-sm-2.control-label First Name:
+        .col-sm-10
+          = detail_fields.text_field :first_name, {class: "form-control"}
+      .form-group
+        %label.col-sm-2.control-label Last Name:
+        .col-sm-10
+          = detail_fields.text_field :last_name, {class: "form-control"}
+    .form-group
+      %label.col-sm-2.control-label Email:
+      .col-sm-10
+        = user_fields.text_field :email, {class: "form-control"}
+    =fields_for :user_detail, @user.user_detail do |detail_fields|
+      .form-group
+        %label.col-sm-2.control-label Organization:
+        .col-sm-10
+          = detail_fields.text_field :organization, {class: "form-control"}
+      .form-group
+        %label.col-sm-2.control-label Title:
+        .col-sm-10
+          = detail_fields.text_field :title, {class: "form-control"}
+      .form-group
+        %label.col-sm-2.control-label Website:
+        .col-sm-10
+          = detail_fields.text_field :website_url, {class: "form-control"}
+      .form-group
+        %label.col-sm-2.control-label LinkedIn Profile:
+        .col-sm-10
+          = detail_fields.text_field :linkedin_url, {class: "form-control"}
+    .form-group
+      .col-sm-offset-2.col-sm-2
+        =user_fields.submit "Update", class: "btn btn-primary"
+      .col-sm-1
+        = link_to user_path(@user) do
+          %button.btn.btn-danger Cancel
+
+
+
+
+
+
+
