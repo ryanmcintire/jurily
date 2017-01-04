@@ -1,0 +1,43 @@
+$tag-color: #fff;
+$tag-background: #5bc0de;
+
+.react-tagsinput {
+  display: inline-flex;
+}
+
+.react-tagsinput span {
+  width: 100%
+}
+
+.react-tagsinput-input {
+  @extend .form-control;
+  width: 100%
+}
+
+.react-tagsinput-tag {
+  @extend .btn;
+  @extend .btn-info;
+  @extend .btn-xs;
+  cursor: default;
+  margin: 0 5px 10px 5px;
+  padding: 2px 5px;
+  display: inline-block;
+  width: length;
+}
+
+.react-tagsinput-remove {
+  cursor: pointer; cursor: hand;
+  font-weight: bold;
+  font-family: serif;
+  color: $tag-color;
+  margin-left: 5px;
+  padding-right: 2px;
+}
+
+.react-tagsinput-remove:hover {
+  color: $tag-color;
+}
+
+.react-tagsinput-remove::before {
+  content: "     x"
+}

@@ -2,8 +2,9 @@ import React, {PropTypes} from 'react';
 import Superagent from 'superagent';
 
 import RichTextEditor from './RichTextEditor';
+import QuestionTags from './QuestionTags';
 
-export default class RichTextEditorForm extends React.Component {
+export default class QuestionForm extends React.Component {
 
   static propTypes = {
     user: PropTypes.object,
@@ -183,6 +184,11 @@ export default class RichTextEditorForm extends React.Component {
                 }
               </select>
             </div>
+            <div className="form-group">
+              <label>Tags: </label>
+              <br />
+              <QuestionTags />
+            </div>
             <br />
             <div className="form-group">
               <label htmlFor="question-editor">Question Detail:</label>
@@ -215,42 +221,6 @@ export default class RichTextEditorForm extends React.Component {
 
   handleTitleChange(e) {
     this.setState({title: e.target.value});
-  }
-
-  renderTitle() {
-    if (this.props.isQuestion) return (
-      <div className="form-group">
-        <label htmlFor="questionTitle" className="">Question Title:</label>
-        <input
-          type="text"
-          className="form-control"
-          id="questionTitle"
-          placeholder="What is your question?  Be concise and specific."
-          value={this.state.title}
-          onChange={this.handleTitleChange.bind(this)}
-        />
-      </div>
-    )
-  }
-
-  renderJurisdictionDropdown() {
-    if (this.props.isQuestion) return (
-      <div className="form-group">
-        <label htmlFor="jurisdiction" className="control-label col-sm-2 form-input-label">Jurisdiction: </label>
-
-        <select value={this.state.jurisdictionSelectValue}
-                onChange={this.handleSelectChange.bind(this)}>
-          <option>Select One</option>
-          {
-            this.props.jurisdictionOptions.map((jdx) => {
-              return (
-                <option value={jdx}>{jdx}</option>
-              );
-            })
-          }
-        </select>
-      </div>
-    )
   }
 
   renderEditor() {
