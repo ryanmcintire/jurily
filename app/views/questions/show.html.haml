@@ -26,7 +26,7 @@
             .col-md-11.col-sm-11.col-xs-10
               =raw(@question.body)
         .panel-footer
-          = link_to @question.user.user_detail.full_name, user_url(@question.user)
+          %strong= link_to @question.user.user_detail.full_name, user_url(@question.user)
           = " - #{@question.user.user_detail.title_display}"
     .row
       .col-sm-offset-1
@@ -36,7 +36,7 @@
         .panel.panel-default
           .panel-heading
             .col-md-6
-              %strong= answer.user.user_detail.full_name
+              %strong= link_to answer.user.user_detail.full_name, user_url(answer.user)
               %span= " - #{answer.user.user_detail.title_display}"
             .col-md-6.text-right
               %span.small= "Answered: #{answer.created_at.strftime("%d %b %Y")}"

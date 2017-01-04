@@ -106,7 +106,7 @@ export default class RichTextEditorForm extends React.Component {
   handleSubmitSuccess(res) {
     res = JSON.parse(res.text);
     //todo - need to figure out what response body looks like.
-    this.setState({errors:[]});
+    this.setState({errors: []});
     window.location.href = res.forwardingUrl
   }
 
@@ -119,14 +119,14 @@ export default class RichTextEditorForm extends React.Component {
       err.response &&
       err.response.body &&
       err.response.body.message) {
-        this.addErrorToState(err.response.body.message);
+      this.addErrorToState(err.response.body.message);
     }
   }
 
   addErrorToState(message) {
     //todo - robustify addErrorToSTate.
     this.setState({
-      errors:[message]
+      errors: [message]
     })
   }
 
@@ -150,14 +150,14 @@ export default class RichTextEditorForm extends React.Component {
   //todo - render errors outside of the box?
   render() {
     return (
-      <div className="content-box">
-        <div className="content-box-title">
-          Ask Question
+      <div>
+        <div className="page-header">
+          <h3>Ask Question</h3>
         </div>
         {this.renderErrors()}
         <div>
-          <form className="form-style-1">
-            <p className="form-layer">
+          <form>
+            <div className="form-group">
               <label>Question Title: </label>
               <input
                 type="text"
@@ -165,12 +165,15 @@ export default class RichTextEditorForm extends React.Component {
                 placeholder="What is your question?  Be concise and specific."
                 value={this.state.title}
                 onChange={this.handleTitleChange.bind(this)}
+                className="form-control"
               />
-            </p>
-            <p className="form-layer">
-              <label>Jurisdiction: </label>
-              <select value={this.state.jurisdictionSelectValue}
-                      onChange={this.handleSelectChange.bind(this)}>
+            </div>
+            <div className="form-group">
+              <label htmlFor="jurisdiction">Jurisdiction: </label>
+              <select id="jurisdiction"
+                      value={this.state.jurisdictionSelectValue}
+                      onChange={this.handleSelectChange.bind(this)}
+                      className="form-control">
                 {
                   this.props.jurisdictionOptions.map((jdx) => {
                     return (
@@ -179,19 +182,21 @@ export default class RichTextEditorForm extends React.Component {
                   })
                 }
               </select>
-            </p>
-          </form>
-          <p className="form-layer">
-            {this.renderEditor()}
-          </p>
-          <div className="row">
-            <div className="container">
-              <button
-                className="btn btn-primary rich-text-editor-submit"
-                onClick={this.handleSubmitClick.bind(this)}>Submit
-              </button>
             </div>
-          </div>
+            <br />
+            <div className="form-group">
+              <label htmlFor="question-editor">Question Detail:</label>
+              {this.renderEditor()}
+            </div>
+            <div className="row">
+              <div className="col-md-3 col-md-offset-10">
+                <button
+                  className="btn btn-primary rich-text-editor-submit"
+                  onClick={this.handleSubmitClick.bind(this)}>Submit
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     )
@@ -215,10 +220,10 @@ export default class RichTextEditorForm extends React.Component {
   renderTitle() {
     if (this.props.isQuestion) return (
       <div className="form-group">
-        <label htmlFor="questionTitle" className="control-label col-sm-2 form-input-label">Question Title:</label>
+        <label htmlFor="questionTitle" className="">Question Title:</label>
         <input
           type="text"
-          className="form-control col-sm-6"
+          className="form-control"
           id="questionTitle"
           placeholder="What is your question?  Be concise and specific."
           value={this.state.title}

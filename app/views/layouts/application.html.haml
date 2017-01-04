@@ -5,7 +5,7 @@
     %meta{:charset => "utf-8"}/
     %meta{:content => "IE=Edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
-    %meta{:content => "An online community for legal professionals and students to share their knowledge and expertise."}
+    %meta{:content => "An online community for legal professionals and students to share their knowledge and expertise.", :name => "description"}
     %title= content_for?(:title) ? yield(:title) : "Jurily"
     = csrf_meta_tags
     = stylesheet_link_tag "application", :media => "all"
@@ -46,9 +46,9 @@
         %p.text-right.footer-copyright
           = link_to "Privacy Policy ", "#"
           |
- = link_to "Terms of Service", "#"
+          = link_to "Terms of Service", "#"
           |
- = link_to "Acceptable Use Policy", "#"
+          = link_to "Acceptable Use Policy", "#"
 
 
 

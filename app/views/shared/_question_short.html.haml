@@ -1,7 +1,7 @@
 
 
 .row
-  .panel.panel-default
+  .panel.panel-default.question-short-panel
     .panel-heading
       .panel-title
         %h4.question-title= link_to truncate(question.title, length: 200, seperator: ''),
@@ -14,14 +14,14 @@
           %i.fa.fa-thumbs-up
             %span.question-detail= pluralize question.score, 'vote'
         .col-sm-2
-          = link_to '#', class: 'slow-transition-blackblue' do
+          = link_to '#' do
             %i.fa.fa-university
               %span.question-detail= question.jurisdiction.titleize
         .col-sm-2
           %i.fa.fa-user
             %span.question-detail= pluralize question.views, 'view'
         .col-sm-2
-          = link_to question_url question, anchor: 'answers', class: 'slow-transition-blackblue' do
+          = link_to question_url question, anchor: 'answers' do
             %i.fa.fa-comment
               %span.question-detail= pluralize question.answers.count, 'answer'
         .col-sm-2
