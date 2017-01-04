@@ -5,6 +5,7 @@
     %meta{:charset => "utf-8"}/
     %meta{:content => "IE=Edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{:content => "An online community for legal professionals and students to share their knowledge and expertise."}
     %title= content_for?(:title) ? yield(:title) : "Jurily"
     = csrf_meta_tags
     = stylesheet_link_tag "application", :media => "all"
@@ -26,7 +27,7 @@
     = javascript_include_tag "application"
     / Le HTML5 shim, for IE6-8 support of HTML elements
     /[if lt IE 9]
-      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" type="text/javascript"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" type="text/javascript"></script>
   %body
     = render :partial => 'layouts/navbar'
 
@@ -45,9 +46,9 @@
         %p.text-right.footer-copyright
           = link_to "Privacy Policy ", "#"
           |
-          = link_to "Terms of Service", "#"
+ = link_to "Terms of Service", "#"
           |
-          = link_to "Acceptable Use Policy", "#"
+ = link_to "Acceptable Use Policy", "#"
 
 
 
