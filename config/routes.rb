@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'vote', to: 'votes#get_vote', as: 'get_vote', defaults: {:format => :json}
 
   get 'search', to: 'search#search', as: 'search'
+  get 'search/advanced', to: 'search#advanced_search', as: 'advanced_search'
 
   get 'top_answers', to: 'welcome#top_answers', as: 'top_answers'
   get 'top_questions', to: 'welcome#top_questions', as: 'top_questions'

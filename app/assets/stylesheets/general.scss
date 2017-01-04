@@ -44,6 +44,10 @@ a:active {
   margin-bottom: 0;
 }
 
+.navbar-form .form-control {
+  min-width: 200px;
+}
+
 .main-layout-footer {
   border-top-width: 1px;
   border-top-style: solid;

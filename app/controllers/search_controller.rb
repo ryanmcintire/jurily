@@ -1,9 +1,10 @@
 class SearchController < ApplicationController
 
   def search
-
-    puts 'testing...'
     handle_simple_search if simple_search
+  end
+
+  def advanced_search
 
   end
 

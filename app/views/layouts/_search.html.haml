@@ -1,8 +1,7 @@
 - #todo - figure out log in styling.
-.input-group
-  = form_tag search_url, method: "get", :class => "navbar-form navbar-left" do
-    .form-group
-      = text_field :q, "simple", :class => "form-control", :placeholder => "Enter search text..."
-    = submit_tag "Search", :class => "btn btn-default btn-sm"
+%li
+  =form_tag search_url, method: "get", :class => "navbar-form navbar-left" do
+    = text_field :q, "simple", :class => "form-control", :placeholder => "Search..."
+%li= link_to "Advanced search", "#", :class => "advanced-search-link"
 
 
