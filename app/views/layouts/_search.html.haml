@@ -2,6 +2,6 @@
 %li
   =form_tag search_url, method: "get", :class => "navbar-form navbar-left" do
     = text_field :q, "simple", :class => "form-control", :placeholder => "Search..."
-%li= link_to "Advanced search", "#", :class => "advanced-search-link"
+%li= link_to "Advanced search", advanced_search_url, :class => "advanced-search-link"
 
 
