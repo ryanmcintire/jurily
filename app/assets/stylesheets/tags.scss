@@ -3,9 +3,10 @@ $tag-background: #5bc0de;
 
 .react-tagsinput {
   display: inline-flex;
+  width: 100%
 }
 
-.react-tagsinput span {
+.react-tagsinput > span {
   width: 100%
 }
 

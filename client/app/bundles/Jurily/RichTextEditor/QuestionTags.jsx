@@ -8,6 +8,7 @@ export default class QuestionTags extends React.Component {
   }
 
   addTags(tags) {
+    this.props.addTags(tags);
     this.setState({tags})
   }
 

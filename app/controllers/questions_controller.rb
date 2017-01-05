@@ -1,4 +1,3 @@
-
 require "#{Rails.root}/lib/enums/jurisdictions"
 
 class QuestionsController < ApplicationController
@@ -28,10 +27,11 @@ class QuestionsController < ApplicationController
     respond_if_not_logged_in
     begin
       @question = Question.new(
-          user: get_user,
-          jurisdiction: get_jurisdiction,
+          user: user_id,
+          jurisdiction: jurisdiction,
           title: params[:title],
-          body: get_body)
+          tags: tags,
+          body: body)
     rescue ArgumentError => e
       send_error_response "Invalid data." and return
     end
@@ -59,9 +59,9 @@ class QuestionsController < ApplicationController
       send_error_response "Invalid data." and return
     end
     @question.assign_attributes(
-                 jurisdiction: get_jurisdiction,
-                 title: params[:title],
-                 body: get_body)
+        jurisdiction: jurisdiction,
+        title: params[:title],
+        body: body)
     if @question.save
       response_data = {
           :success => true,
@@ -78,7 +78,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question.views += 1 unless @question.views.nil?
     @question.views = 1 if @question.views.nil?
-    @answers = @question.answers.sort {|x,y| y.score <=> x.score }
+    @answers = @question.answers.sort { |x, y| y.score <=> x.score }
     #todo - I need to have error protection here...
     @question.save
   end
@@ -94,20 +94,24 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def get_user
+  def user_id
     User.find(params[:user][:id])
     #todo - what if no user??
   end
 
-  def get_body
+  def body
     Sanitize.fragment(params[:body], Sanitize::Config::RELAXED)
   end
 
-  def get_jurisdiction
+  def jurisdiction
     params[:jurisdiction].downcase.to_s
         .parameterize
         .underscore
         .to_sym
+  end
+
+  def tags
+    params[:tags].map { |t| Tag.find_or_create_by(name: t) }
   end
 
   def send_error_response(msg)

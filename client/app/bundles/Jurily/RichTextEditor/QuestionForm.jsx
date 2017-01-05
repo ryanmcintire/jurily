@@ -32,7 +32,8 @@ export default class QuestionForm extends React.Component {
       submitting: false,
       title: props.initialTitle,
       jurisdictionSelectValue: props.currentJurisdiction || 'None Specified',
-      errors: []
+      errors: [],
+      tags: []
     }
   }
 
@@ -87,12 +88,12 @@ export default class QuestionForm extends React.Component {
 
   questionSubmitData() {
     //todo - need to handle if data is not here properly.
-    console.log('and look here!');
     return {
       title: this.state.title,
       body: this.state.editorValue,
       user: this.props.user,
-      jurisdiction: this.state.jurisdictionSelectValue
+      jurisdiction: this.state.jurisdictionSelectValue,
+      tags: this.state.tags
     }
   }
 
@@ -148,6 +149,10 @@ export default class QuestionForm extends React.Component {
     this.toggleSubmitting();
   }
 
+  addTags(tags) {
+    this.setState({tags});
+  }
+
   //todo - render errors outside of the box?
   render() {
     return (
@@ -187,7 +192,7 @@ export default class QuestionForm extends React.Component {
             <div className="form-group">
               <label>Tags: </label>
               <br />
-              <QuestionTags />
+              <QuestionTags addTags={this.addTags.bind(this)} />
             </div>
             <br />
             <div className="form-group">
@@ -210,7 +215,6 @@ export default class QuestionForm extends React.Component {
 
   renderErrors() {
     if (this.state.errors.length > 0) {
-      console.log('errors should be here...');
       return (
         <div className="alert alert-danger">
           {this.state.errors}
