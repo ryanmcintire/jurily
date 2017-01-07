@@ -42,3 +42,9 @@ $tag-background: #5bc0de;
 .react-tagsinput-remove::before {
   content: "     x"
 }
+
+
+.question-display-tags {
+  @extend .react-tagsinput-tag;
+  padding: 2px 10px;
+}

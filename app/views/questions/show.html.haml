@@ -1,19 +1,14 @@
 .row
   .page_header
     %h2= @question.title
-    - if current_user && @question.user.id == current_user.id
-      .col-md-2
-        = link_to edit_question_url do
-          %button.btn.btn-small.btn-info
-            %i.fa.fa-pencil
-              = "  Edit"
-      .clearfix
+    - @question.tags.each do |tag|
+      %button.btn.btn-xs.btn-info.question-display-tags
+        =tag.name
   %br
 .row
   .col-md-9
     .row
       .panel.panel-default
-
         .panel-body
           .row
             .col-md-1.col-sm-1.col-xs-2
@@ -25,6 +20,14 @@
                             hostUrl: vote_path})
             .col-md-11.col-sm-11.col-xs-10
               =raw(@question.body)
+          - if current_user && @question.user.id == current_user.id
+            .row
+              .col-md-12
+                .pull-right
+                  =link_to edit_question_url do
+                    %button.btn.btn-sm.btn-info
+                      %i.fa.fa-pencil
+                        = " Edit"
         .panel-footer
           %strong= link_to @question.user.user_detail.full_name, user_url(@question.user)
           = " - #{@question.user.user_detail.title_display}"
