@@ -5,7 +5,7 @@ class Question < ActiveRecord::Base
   multisearchable :against => [:title, :body]
 
   validates :title, :body, :jurisdiction, presence: true
-  validates :title, length: {in: 6..250}  #todo - eval length.
+  validates :title, length: {in: 6..250} #todo - eval length.
 
   belongs_to :user
   has_many :answers, dependent: :destroy
@@ -23,29 +23,33 @@ class Question < ActiveRecord::Base
 
 
   #todo - accommodate multiple jdx
-  scope :jurisdiction, -> (jurisdiction) {where jurisdiction: Jurisdictions::JURISDICTIONS[jurisdiction
-                                                                                               .to_s
-                                                                                               .parameterize
-                                                                                               .underscore
-                                                                                               .downcase
-                                                                                               .to_sym]}
+  scope :jurisdiction, -> (jurisdiction) { where jurisdiction: Jurisdictions::JURISDICTIONS[jurisdiction
+                                                                                                .to_s
+                                                                                                .parameterize
+                                                                                                .underscore
+                                                                                                .downcase
+                                                                                                .to_sym] }
 
   def top_answer
     self.answers_descending[0]
   end
 
   def answers_descending
-    self.answers.sort_by {|answer| answer.score}.reverse
+    self.answers.sort_by { |answer| answer.score }.reverse
   end
 
   def score
     tally = 0
-    self.votes.each {|vote| tally += vote.value}
+    self.votes.each { |vote| tally += vote.value }
     tally
   end
 
   def self.get_jdx(jdx)
     Jurisdictions::JURISDICTIONS[jdx]
+  end
+
+  def self.questions_by_jurisdiction(jurisdictions)
+    Question.where(jurisdiction: jurisdictions.map { |j| Question.jurisdictions[j] })
   end
 
   def self.recent_interest

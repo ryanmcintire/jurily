@@ -5,7 +5,12 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   def index
-    @questions = Question.all
+    if params[:jurisdictions]
+      @questions = Question.questions_by_jurisdiction([*params[:jurisdictions]])
+    else
+      @questions = Question.all
+    end
+
   end
 
   def new
@@ -20,7 +25,7 @@ class QuestionsController < ApplicationController
     q = Question.find(params[:id])
     @question = {
         id: q.id,
-        tags: q.tags.map {|t| t.name },
+        tags: q.tags.map { |t| t.name },
         title: q.title,
         jurisdiction: q.jurisdiction.to_s.titleize,
         body: q.body
