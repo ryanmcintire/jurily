@@ -13,12 +13,14 @@
       =link_to "Latest Questions", recent_questions_url
 %br
 .row
-  .col-sm-12
-    -@questions.each do |question|
-      = render 'shared/question_short', question: question
+  .container
+    .col-sm-12
+      -@questions.each do |question|
+        = render 'shared/question_short', question: question
 .row
-  .col-sm-8.col-sm-offset-2.text-center
-  - if (paginate @questions).length >= 65
-    .well.text-center
-      = paginate @questions
+  .container
+    .col-sm-8.col-sm-offset-2.text-center
+    - if (paginate @questions).length >= 65
+      .well.text-center
+        = paginate @questions
 
