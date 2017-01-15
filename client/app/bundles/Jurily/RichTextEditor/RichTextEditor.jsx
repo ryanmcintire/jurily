@@ -29,7 +29,6 @@ export default class RichTextEditor extends React.Component {
   }
 
   getInitialEditorValue(props) {
-    console.log(props.initialEditorValue);
     if (props.initialEditorValue == undefined) return ReactRTE.createEmptyValue();
     return ReactRTE.createValueFromString(props.initialEditorValue, 'html');
   }

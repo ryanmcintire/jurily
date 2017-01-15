@@ -25,7 +25,6 @@ export default class QuestionForm extends React.Component {
 
   constructor(props, ctx) {
     super(props, ctx);
-    console.log(props.initialEditorValue);
     this.state = {
       editorValue: props.initialEditorValue,
       submitRequired: false,
@@ -114,6 +113,7 @@ export default class QuestionForm extends React.Component {
 
   handleSubmitError(err) {
     //todo - get path constants
+    console.log('Error!');
     if (err.status == 401) {
       window.location.href = "/users/sign_in";
     }
@@ -126,6 +126,7 @@ export default class QuestionForm extends React.Component {
   }
 
   addErrorToState(message) {
+    console.log('Attempting to add error to state', message);
     //todo - robustify addErrorToSTate.
     this.setState({
       errors: [message]

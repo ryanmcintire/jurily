@@ -1,18 +1,29 @@
+
+.page-header
+  %h3 Ask Question
 .col-md-9
-  =react_component("QuestionForm",
-      props: {user: current_user,
-        hostUrl: questions_path,
-        initialTitle: "",
-        initialEditorValue: "",
-        csrfToken: form_authenticity_token,
-        isQuestion: true,
-        baseClassName: "question-editor-base",
-        editorClassName: "answer-editor-editor",
-        toolbarClassName: "answer-editor-toolbar",
-        jurisdictionOptions: @jurisdictions})
-  %p
-  .alert.alert-danger
-    WARNING -- Jurily.com in active development; questions and answers on current database not permanent.
+  =react_component("QuestionFormRedux",
+    props: {user: current_user, csrfToken: form_authenticity_token,
+    jurisdictions: @jurisdictions})
+%br
+%br
+%br
+-#
+-#.col-md-9
+-#  =react_component("QuestionForm",
+-#      props: {user: current_user,
+-#        hostUrl: questions_path,
+-#        initialTitle: "",
+-#        initialEditorValue: "",
+-#        csrfToken: form_authenticity_token,
+-#        isQuestion: true,
+-#        baseClassName: "question-editor-base",
+-#        editorClassName: "answer-editor-editor",
+-#        toolbarClassName: "answer-editor-toolbar",
+-#        jurisdictionOptions: @jurisdictions})
+-#  %p
+-#  .alert.alert-danger
+-#    WARNING -- Jurily.com in active development; questions and answers on current database not permanent.
 
 -#.col-md-9
 -#  .content-box

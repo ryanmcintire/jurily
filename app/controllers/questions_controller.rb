@@ -2,7 +2,7 @@ require "#{Rails.root}/lib/enums/jurisdictions"
 
 class QuestionsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :create, :edit]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   def index
     @questions = Question.all
@@ -16,18 +16,22 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @question = Question.find(params[:id])
-    @jurisdictions = Jurisdictions::JURISDICTIONS.keys.map do |k|
-      (k.to_s).titleize
-    end
-    @current_jurisdiction = @question.jurisdiction.to_s.titleize
+    @jurisdictions = Jurisdictions::JURISDICTIONS.keys.map { |k| (k.to_s).titleize }
+    q = Question.find(params[:id])
+    @question = {
+        id: q.id,
+        tags: q.tags.map {|t| t.name },
+        title: q.title,
+        jurisdiction: q.jurisdiction.to_s.titleize,
+        body: q.body
+    }
   end
 
   def create
     respond_if_not_logged_in
     begin
       @question = Question.new(
-          user: user_id,
+          user: current_user,
           jurisdiction: jurisdiction,
           title: params[:title],
           tags: tags,
@@ -52,16 +56,18 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    respond_if_not_logged_in
     begin
       @question = Question.find(params[:id])
     rescue ArgumentError => e
       send_error_response "Invalid data." and return
     end
+    respond_if_not_logged_in(@question.user.id)
     @question.assign_attributes(
         jurisdiction: jurisdiction,
         title: params[:title],
-        body: body)
+        body: body,
+        tags: tags
+    )
     if @question.save
       response_data = {
           :success => true,
@@ -84,8 +90,8 @@ class QuestionsController < ApplicationController
   end
 
   private
-  def respond_if_not_logged_in
-    if !current_user || current_user.id != params[:user][:id]
+  def respond_if_not_logged_in(question_user_id=nil)
+    if !current_user or (question_user_id and question_user_id != current_user.id)
       response_data = {
           :success => false,
           :message => "You must be signed in to create a post."

@@ -1,14 +1,18 @@
 .col-md-9
-  =react_component("RichTextEditorQuestionForm",
-      props: {user: current_user,
-        hostUrl: question_path(@question),
-        initialTitle: @question.title,
-        initialEditorValue: @question.body,
-        csrfToken: form_authenticity_token,
-        isQuestion: true,
-        baseClassName: "question-editor-base",
-        editorClassName: "answer-editor-editor",
-        toolbarClassName: "answer-editor-toolbar",
-        jurisdictionOptions: @jurisdictions,
-        currentJurisdiction: @current_jurisdiction,
-        isUpdate: true})
+  =react_component("QuestionFormRedux",
+    props: {user: current_user, csrfToken: form_authenticity_token,
+    jurisdictions: @jurisdictions, question: @question })
+  )
+  -#=react_component("RichTextEditorQuestionForm",
+  -#    props: {user: current_user,
+  -#      hostUrl: question_path(@question),
+  -#      initialTitle: @question.title,
+  -#      initialEditorValue: @question.body,
+  -#      csrfToken: form_authenticity_token,
+  -#      isQuestion: true,
+  -#      baseClassName: "question-editor-base",
+  -#      editorClassName: "answer-editor-editor",
+  -#      toolbarClassName: "answer-editor-toolbar",
+  -#      jurisdictionOptions: @jurisdictions,
+  -#      currentJurisdiction: @current_jurisdiction,
+  -#      isUpdate: true})

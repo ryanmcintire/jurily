@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   get 'recent_answers', to: 'welcome#recent_answers', as: 'recent_answers'
   get 'recent_questions', to: 'welcome#recent_questions', as: 'recent_questions'
 
+  get 'mock', to: 'mock_api#test', as: 'mock'
+  post 'mock', to: 'mock_api#test', as: 'post_mock'
+
 
   root to: 'welcome#home'
 

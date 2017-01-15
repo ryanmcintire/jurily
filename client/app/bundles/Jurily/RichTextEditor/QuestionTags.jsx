@@ -4,7 +4,8 @@ import TagsInput from 'react-tagsinput';
 export default class QuestionTags extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {tags: []};
+    console.log(props.initialTags);
+    this.state = {tags: props.initialTags ? props.initialTags : []};
   }
 
   addTags(tags) {
