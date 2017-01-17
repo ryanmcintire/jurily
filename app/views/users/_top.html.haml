@@ -1,15 +1,16 @@
 %h4
   = "#{group.titleize} #{pluralize(collection.count, type)}"
+  = # todo - add link for more questions.
 %ul.list-group
   -if collection.count == 0
     %li.list-group-item.disabled
-      = "No #{type} to display"
+      %h5= "No #{type} to display"
   - else
     - collection.each do |c|
       = link_to (type == "answer" ? question_url(c.question) : question_url(c)) do
         %li.list-group-item
-          = c.question.title if type == "answer"
-          = c.title if type == "question"
+          %h5= c.question.title if type == "answer"
+          %h5= c.title if type == "question"
 
 
 

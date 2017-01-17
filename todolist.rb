@@ -1,3 +1,5 @@
+#todo - Add page for user's questions / answers.
+
 #todo - prevent vote from even tabulating locally if not logged in.
 #todo - add tags to question.
 

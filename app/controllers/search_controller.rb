@@ -17,8 +17,9 @@ class SearchController < ApplicationController
 
   def handle_simple_search
     #todo - resolve issue finding deleted items
-    question_results = PgSearch.multisearch(params[:q][:simple]).where(:searchable_type => "Question")
-    answer_results = PgSearch.multisearch(params[:q][:simple]).where(:searchable_type => "Answer")
+    @params = params[:q][:simple]
+    question_results = PgSearch.multisearch(@params).where(:searchable_type => "Question")
+    answer_results = PgSearch.multisearch(@params).where(:searchable_type => "Answer")
     @results = []
     question_results.each do |r|
       question = Question.find_by_id(r.searchable_id)

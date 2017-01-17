@@ -1,37 +1,39 @@
-
-.page-header
-  %h2= @detail.full_name
-  - if current_user && current_user == @user
-    %h5= link_to "Edit Profile", edit_user_url(current_user)
+.row
+  .container
+    .page-header
+      %h2= @detail.full_name
+      - if current_user && current_user == @user
+        %h5= link_to "Edit Profile", edit_user_url(current_user)
 .row
   .col-md-9
     .row
-      %h4
-        Details
-      %p
-        %strong
-          Current Position:
-        = @detail.title ? @detail.title : 'None provided'
-      %p
-        %strong Organization:
-        = @detail.organization ? @detail.organization : 'None provided'
-      %p
-        %strong
-          Website:
-        = @detail.website_url ? link_to(@detail.website_url, @detail.website_url) : 'None provided'
-      %p
-        %strong
-          LinkedIn Profile:
-        = @detail.linkedin_url ? link_to(@detail.linkedin_url, @detail.linkedin_url) : 'None provided'
-    .col-md-11
-      .row
-        = render :partial => 'top', locals: {group: 'top', type: 'answer', collection: @top_answers_selection}
-      .row
-        = render :partial => 'top', locals: {group: 'top', type: 'question', collection: @top_questions_selection}
-      .row
-        = render :partial => 'top', locals: {group: 'recent', type: 'answer', collection: @recent_answers_selection}
-      .row
-        = render :partial => 'top', locals: {group: 'recent', type: 'question', collection: @recent_questions_selection}
+      .container
+        %h3
+          Details
+        %p
+          %strong
+            Current Position:
+          = @detail.title ? @detail.title : 'None provided'
+        %p
+          %strong Organization:
+          = @detail.organization ? @detail.organization : 'None provided'
+        %p
+          %strong
+            Website:
+          = @detail.website_url ? link_to(@detail.website_url, @detail.website_url) : 'None provided'
+        %p
+          %strong
+            LinkedIn Profile:
+          = @detail.linkedin_url ? link_to(@detail.linkedin_url, @detail.linkedin_url) : 'None provided'
+    %hr
+    .row
+      = render :partial => 'top', locals: {group: 'top', type: 'answer', collection: @top_answers_selection}
+    .row
+      = render :partial => 'top', locals: {group: 'top', type: 'question', collection: @top_questions_selection}
+    .row
+      = render :partial => 'top', locals: {group: 'recent', type: 'answer', collection: @recent_answers_selection}
+    .row
+      = render :partial => 'top', locals: {group: 'recent', type: 'question', collection: @recent_questions_selection}
 
 
   %aside.col-md-3
