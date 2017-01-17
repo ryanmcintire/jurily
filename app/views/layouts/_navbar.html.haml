@@ -1,13 +1,13 @@
 .navbar.navbar-default.navbar-static-top
-  .container-fluid
-    %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
-      %span.icon-bar
-      %span.icon-bar
-      %span.icon-bar
+  .container
     .navbar-header
+      %button.navbar-toggle.collapsed{'data-toggle': 'collapse', 'data-target': '.navbar-collapse', type: 'button'}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
       = link_to "Jurily.com (beta)", root_url, class: "navbar-brand"
-    .navbar-collapse.collapse.in
-      %ul.nav.navbar-nav
+    .navbar-collapse.collapse
+      %ul.nav.navbar-nav.navbar-left
         %li= link_to "New Question", new_question_url
         = render :partial => 'layouts/search'
       = render :partial => 'layouts/authlink'
