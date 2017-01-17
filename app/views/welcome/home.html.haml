@@ -9,6 +9,8 @@
   %ul.nav.nav-tabs
     %li.tab{:class => ("active" if current_page?(root_url))}
       =link_to "Top Questions", root_url
+    %li.tab{:class => ("active" if current_page?(recent_interest_questions_url))}
+      =link_to "Most Interesting", recent_interest_questions_url
     %li.tab{:class => ("active" if current_page?(recent_questions_url))}
       =link_to "Latest Questions", recent_questions_url
 %br
