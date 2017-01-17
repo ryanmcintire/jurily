@@ -6,17 +6,19 @@
       %small BETA
     %h5.text-center Lawyer's seeking advice.
 .row
-  %ul.nav.nav-tabs
-    %li.tab{:class => ("active" if current_page?(root_url))}
-      =link_to "Top Questions", root_url
-    %li.tab{:class => ("active" if current_page?(recent_interest_questions_url))}
-      =link_to "Most Interesting", recent_interest_questions_url
-    %li.tab{:class => ("active" if current_page?(recent_questions_url))}
-      =link_to "Latest Questions", recent_questions_url
+  .container
+    %ul.nav.nav-tabs
+      %li.tab{:class => ("active" if current_page?(root_url))}
+        =link_to "Top Questions", root_url
+      %li.tab{:class => ("active" if current_page?(recent_interest_questions_url))}
+        =link_to "Most Interesting", recent_interest_questions_url
+      %li.tab{:class => ("active" if current_page?(recent_questions_url))}
+        =link_to "Latest Questions", recent_questions_url
+- # Needed to separate tabs from first question.
 %br
 .row
   .container
-    .col-sm-12
+    .col-md-12
       -@questions.each do |question|
         = render 'shared/question_short', question: question
 .row
