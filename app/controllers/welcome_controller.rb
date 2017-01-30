@@ -8,7 +8,7 @@ class WelcomeController < ApplicationController
 
   def home
     #todo - use following query as pattern when you've decided on method for limiting home page.
-    @questions = pagify Question.top_ranked_questions
+    @questions = pagify Question.top_ranked
   end
   #
   # def top_answers
@@ -28,7 +28,7 @@ class WelcomeController < ApplicationController
   # end
 
   def recent_questions
-    @questions = pagify Question.recent_questions
+    @questions = pagify Question.recent
     render :template => 'welcome/home'
   end
 

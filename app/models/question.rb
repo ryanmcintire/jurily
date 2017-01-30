@@ -47,11 +47,11 @@ class Question < ActiveRecord::Base
     Jurisdictions::JURISDICTIONS[jdx]
   end
 
-  def self.questions_by_jurisdiction(jurisdictions)
+  def self.by_jurisdiction(jurisdictions)
     Question.where(jurisdiction: jurisdictions.map { |j| Question.jurisdictions[j] })
   end
 
-  def self.recent_questions
+  def self.recent
     Question.order('created_at DESC')
   end
 
@@ -63,7 +63,7 @@ class Question < ActiveRecord::Base
         .order("vote_score DESC")
   end
 
-  def self.top_ranked_questions
+  def self.top_ranked
     Question.select("questions.*, SUM(case when votes.votable_type = 'Question' then votes.value else 0 end) vote_score")
         .joins("LEFT OUTER JOIN votes ON votes.votable_id = questions.id and votes.votable_type = 'Question'")
         .group("questions.id")

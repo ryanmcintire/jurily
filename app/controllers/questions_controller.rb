@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
 
   def index
     if params[:jurisdictions]
-      @questions = Question.questions_by_jurisdiction([*params[:jurisdictions]])
+      @questions = Question.by_jurisdiction([*params[:jurisdictions]])
     else
       @questions = Question.all
     end
