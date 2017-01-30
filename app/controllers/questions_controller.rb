@@ -1,4 +1,5 @@
 require "#{Rails.root}/lib/enums/jurisdictions"
+require 'pp'
 
 class QuestionsController < ApplicationController
 
@@ -34,11 +35,12 @@ class QuestionsController < ApplicationController
 
   def create
     respond_if_not_logged_in
+
     begin
       @question = Question.new(
           user: current_user,
           jurisdiction: jurisdiction,
-          title: params[:title],
+          title: params[:question][:title],
           tags: tags,
           body: body)
     rescue ArgumentError => e
@@ -67,6 +69,7 @@ class QuestionsController < ApplicationController
       send_error_response "Invalid data." and return
     end
     respond_if_not_logged_in(@question.user.id)
+
     @question.assign_attributes(
         jurisdiction: jurisdiction,
         title: params[:title],
@@ -111,18 +114,18 @@ class QuestionsController < ApplicationController
   end
 
   def body
-    Sanitize.fragment(params[:body], Sanitize::Config::RELAXED)
+    Sanitize.fragment(params[:question][:body], Sanitize::Config::RELAXED)
   end
 
   def jurisdiction
-    params[:jurisdiction].downcase.to_s
+    params[:question][:jurisdiction].downcase.to_s
         .parameterize
         .underscore
         .to_sym
   end
 
   def tags
-    params[:tags].map { |t| Tag.find_or_create_by(name: t) }
+    params[:question][:tags].map { |t| Tag.find_or_create_by(name: t) }
   end
 
   def send_error_response(msg)
