@@ -6,12 +6,8 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   def index
-    if params[:jurisdictions]
-      @questions = Question.by_jurisdiction([*params[:jurisdictions]])
-    else
-      @questions = Question.all
-    end
-
+    @questions = Question.where(nil) # creates anonymous scope.
+    @questions = @questions.by_jurisdiction(*params[:jurisdiction]) if params[:jurisdiction].present?
   end
 
   def new

@@ -29,6 +29,9 @@ class Question < ActiveRecord::Base
                                                                                                 .downcase
                                                                                                 .to_sym] }
 
+  scope :by_jurisdiction, -> (jurisdictions) { where(jurisdiction: jurisdictions.map { |j| Question.jurisdictions[j] }) }
+
+
   def top_answer
     self.answers_descending[0]
   end
@@ -45,10 +48,6 @@ class Question < ActiveRecord::Base
 
   def self.get_jdx(jdx)
     Jurisdictions::JURISDICTIONS[jdx]
-  end
-
-  def self.by_jurisdiction(jurisdictions)
-    Question.where(jurisdiction: jurisdictions.map { |j| Question.jurisdictions[j] })
   end
 
   def self.recent
