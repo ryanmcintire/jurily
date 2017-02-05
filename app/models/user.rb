@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :answers
   has_one :user_detail
+  has_one :filter
 
   accepts_nested_attributes_for :user_detail
 

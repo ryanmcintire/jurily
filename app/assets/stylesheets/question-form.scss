@@ -5,4 +5,9 @@
 
 .question-editor-base {
   min-height: 200px;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.question-form-editor-base {
+  min-height: 200px;
 }

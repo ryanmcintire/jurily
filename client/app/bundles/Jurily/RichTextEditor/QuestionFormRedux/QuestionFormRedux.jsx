@@ -10,8 +10,6 @@ import QuestionFormContainer from './containers/QuestionFormContainer';
 const QuestionFormRedux = (props, ctx) => {
   const {user, csrfToken, jurisdictions, question} = props;
   const initialState = {};
-  console.log('next line = context!');
-  console.log(ctx);
   const store = createStore(reducers, initialState, applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
   return (
     <Provider store={store}>

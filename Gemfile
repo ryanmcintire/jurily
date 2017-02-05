@@ -34,7 +34,7 @@ gem 'haml-rails'
 
 gem 'font-awesome-rails'
 
-gem 'active_enum'
+gem 'active_enum', '0.9.1'
 
 gem 'simple_form'
 
@@ -48,6 +48,7 @@ gem 'kaminari'
 #great environment variable setter.
 gem 'figaro'
 
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -59,7 +60,7 @@ gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+
   gem 'rspec-rails', '~> 3.0.0'
   gem 'factory_girl_rails'
   gem 'capybara'

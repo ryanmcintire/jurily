@@ -44,7 +44,6 @@ export default class VoteBox extends React.Component {
 
   handleVoteGetError(err, res) {
     //todo - error.
-    console.err(err);
   }
 
   getVoteboxIdInfo() {
@@ -66,7 +65,7 @@ export default class VoteBox extends React.Component {
     if (classList.contains("vote-button-up")) voteType = UPVOTE;
     else if (classList.contains("vote-button-down")) voteType = DOWNVOTE;
     else {/*todo - handle error. */
-      console.log("ERROR!");
+
     }
     return {
       user: this.props.user,
@@ -98,7 +97,7 @@ export default class VoteBox extends React.Component {
 
   handleSubmitError(err, res) {
     //todo - handle submit error.
-    console.log("ERROR.");
+
   }
 
   handleSubmitSuccess(res) {
@@ -133,8 +132,6 @@ export default class VoteBox extends React.Component {
     this.checkLoginStatus();
     let voteData = this.getVoteData(e.currentTarget.classList);
     voteData = this.setUserVoteStatus(voteData);
-    console.log('this data will be sent...');
-    console.log(voteData);
     this.sendUserVoteData(voteData);
     this.updateVoteData(voteData);
   }

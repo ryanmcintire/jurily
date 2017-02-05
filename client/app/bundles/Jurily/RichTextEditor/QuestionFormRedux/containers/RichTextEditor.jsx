@@ -31,6 +31,10 @@ export default class RichTextEditor extends React.Component {
         value={value}
         readOnly={readOnly}
         onChange={this.handleChange.bind(this)}
+        placeholder="Provide further details regarding your question."
+        className="question-editor-base"
+        editorClassName="question-form-editor"
+        toolbarClassName="question-form-toolbar"
       />
     )
   }

@@ -4,7 +4,7 @@
 .col-md-9
   =react_component("QuestionFormRedux",
     props: {user: current_user, csrfToken: form_authenticity_token,
-    jurisdictions: @jurisdictions})
+    jurisdictions: @jurisdictions, question: @question})
 %br
 %br
 %br

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170105055254) do
+ActiveRecord::Schema.define(version: 20170131061717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 20170105055254) do
   end
 
   add_index "bar_admissions", ["user_detail_id"], name: "index_bar_admissions_on_user_detail_id", using: :btree
+
+  create_table "filters", force: :cascade do |t|
+    t.text     "jurisdictions"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "filters", ["user_id"], name: "index_filters_on_user_id", using: :btree
 
   create_table "lawschool_details", force: :cascade do |t|
     t.string   "school_name"
@@ -144,10 +153,12 @@ ActiveRecord::Schema.define(version: 20170105055254) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.integer  "filter_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["filter_id"], name: "index_users_on_filter_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["user_detail_id"], name: "index_users_on_user_detail_id", using: :btree
 
@@ -166,6 +177,7 @@ ActiveRecord::Schema.define(version: 20170105055254) do
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
   add_foreign_key "bar_admissions", "user_details"
+  add_foreign_key "filters", "users"
   add_foreign_key "lawschool_details", "user_details"
   add_foreign_key "questions", "users"
   add_foreign_key "user_contact_infos", "user_details"

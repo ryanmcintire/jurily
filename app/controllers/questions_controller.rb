@@ -121,7 +121,11 @@ class QuestionsController < ApplicationController
   end
 
   def tags
-    params[:question][:tags].map { |t| Tag.find_or_create_by(name: t) }
+    if params[:question][:tags]
+      params[:question][:tags].map { |t| Tag.find_or_create_by(name: t) }
+    else
+      []
+    end
   end
 
   def send_error_response(msg)
