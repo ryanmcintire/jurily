@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  before_create :randomize_id
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
@@ -7,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :answers
   has_one :user_detail
   has_one :filter
+
 
   accepts_nested_attributes_for :user_detail
 
@@ -47,6 +50,13 @@ class User < ActiveRecord::Base
 
   def top_answers(limit)
     self.answers.sort_by {|a| a.score}.reverse[0..(limit-1)]
+  end
+
+  private
+  def randomize_id
+    begin
+      self.id = SecureRandom.random_number(2_147_483_647)
+    end while User.where(id: self.id).exists? || self.id < 1_000_000
   end
 
 end

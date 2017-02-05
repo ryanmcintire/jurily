@@ -1,5 +1,7 @@
 class Answer < ActiveRecord::Base
   include PgSearch
+  before_create :randomize_id
+
   multisearchable :against => :body
 
   belongs_to :question
@@ -15,5 +17,12 @@ class Answer < ActiveRecord::Base
 
   def top_answer?
     self.question.top_answer.id == self.id
+  end
+
+  private
+  def randomize_id
+    begin
+      self.id = SecureRandom.random_number(2_147_483_647)
+    end while User.where(id: self.id).exists? || self.id < 1_000_000
   end
 end

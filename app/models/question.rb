@@ -2,6 +2,7 @@ require "#{Rails.root}/lib/enums/jurisdictions"
 
 class Question < ActiveRecord::Base
   include PgSearch
+  before_create :randomize_id
   multisearchable :against => [:title, :body]
 
   validates :title, :body, :jurisdiction, presence: true
@@ -72,6 +73,12 @@ class Question < ActiveRecord::Base
   private
   def jdx_enum_val(jdx)
     Jurisdictions::JURISDICTIONS[jdx]
+  end
+
+  def randomize_id
+    begin
+      self.id = SecureRandom.random_number(2_147_483_647)
+    end while User.where(id: self.id).exists? || self.id < 1_000_000
   end
 
 

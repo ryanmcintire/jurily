@@ -69,21 +69,6 @@ class VotesController < ApplicationController
   end
 
   def old_process_vote
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     response_data = {}
     element = get_element_from_params
     #todo - user logged in?
