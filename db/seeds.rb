@@ -30,7 +30,7 @@ end
 
 
 #create questions
-5000.times do |index|
+500.times do |index|
   puts "Question #{index}"
   question = Question.new(
                          title: FFaker::Lorem.sentence(20),
@@ -40,33 +40,36 @@ end
                          user: User.order("RANDOM()").first
   )
   question.created_at = (rand*3000).days.ago
+  question.updated_at = question.created_at
   question.save!
 end
 
-Question.all.each do |question|
-  puts "Voting on question #{question.id}"
+Question.all.each_with_index do |question, index|
+  puts "Voting on question #{index}"
   users = User.order("RANDOM()").limit(200)
-  rand(0..200).times do |index|
+  rand(0..100).times do |index|
     question.votes << Vote.new(user_id: users[index].id, value: [-1,1].sample)
   end
   question.save!
 end
 
-Question.all.each do |question|
-  puts "Answering question #{question.id}"
+Question.all.each_with_index do |question, index|
+  puts "Answering question #{index}"
   users = User.order("RANDOM()").limit(6)
   rand(0..6).times do |index|
     answer = Answer.new(user_id: users[index].id, body: FFaker::HTMLIpsum.p(rand(1..10)))
     answer.created_at = rand(question.created_at..Time.now)
+    answer.updated_at = answer.created_at
+    question.answers << answer
   end
   question.save!
 end
 
-Question.all.each do |question|
+Question.all.each_with_index do |question, index|
+  puts "Generating votes for answers on question #{index}"
   question.answers.each do |answer|
-    puts "Voting on answer #{answer.id} to question #{question.id}"
     users = User.order("RANDOM()").limit(200)
-    rand(0..200).times do |index|
+    rand(0..50).times do |index|
       answer.votes << Vote.new(user_id: users[index].id, value: [1,-1].sample)
     end
     answer.save!
