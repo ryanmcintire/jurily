@@ -11,7 +11,9 @@ class Question < ActiveRecord::Base
   belongs_to :user
   has_many :answers, dependent: :destroy
   has_many :votes, as: :votable, dependent: :destroy
-  has_and_belongs_to_many :tags
+  #has_and_belongs_to_many :tags
+  has_many :question_tags
+  has_many :tags, through: :question_tags
 
   enum jurisdiction: Jurisdictions::JURISDICTIONS
 
@@ -29,6 +31,8 @@ class Question < ActiveRecord::Base
                                                                                                 .underscore
                                                                                                 .downcase
                                                                                                 .to_sym] }
+
+  scope :by_tag_names, -> (tag_names) { joins(:tags).merge(Tag.by_name(tag_names)) }
 
   scope :by_jurisdiction, -> (jurisdictions) { where(jurisdiction: jurisdictions.map { |j| Question.jurisdictions[j] }) }
 
