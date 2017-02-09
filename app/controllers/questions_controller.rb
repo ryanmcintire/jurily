@@ -6,9 +6,15 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   def index
-    @questions = Question.where(nil) # creates anonymous scope.
-    @questions = @questions.by_jurisdiction(*params[:jurisdiction]) if params[:jurisdiction].present?
-    @questions = @questions.by_tag_name(*params[:tag]) if params[:tag].present?
+    # @questions = Question.where(nil) # creates anonymous scope.
+    # @questions = @questions.by_jurisdiction(*params[:jurisdiction]) if params[:jurisdiction].present?
+    # @questions = @questions.by_tag_name(*params[:tag]) if params[:tag].present?
+    @filtered = initialize_filterrific(
+        Question,
+        params[:filterrific]
+    ) or return
+    @questions = @filtered.find.page(params[:page])
+
   end
 
   def new
@@ -137,4 +143,7 @@ class QuestionsController < ApplicationController
     render status: 400, json: response_data.to_json
   end
 
+rescue ActiveRecord::RecordNotFound => e
+  puts 'Had to reset filter params'
+  redirect_to(reset_filterrific_url(format: :html)) and return
 end

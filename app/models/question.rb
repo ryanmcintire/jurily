@@ -32,10 +32,19 @@ class Question < ActiveRecord::Base
                                                                                                 .downcase
                                                                                                 .to_sym] }
 
-  scope :by_tag_names, -> (tag_names) { joins(:tags).merge(Tag.by_name(tag_names)) }
+  scope :by_tag_names, -> tag_names { joins(:tags).merge(Tag.by_name(tag_names)) }
 
   scope :by_jurisdiction, -> (jurisdictions) { where(jurisdiction: jurisdictions.map { |j| Question.jurisdictions[j] }) }
 
+
+  filterrific(
+      #default_settings: {sorted_by: 'created_at_desc'},
+      available_filters: [
+          #:sorted_by,
+          :by_tag_names,
+          :by_jurisdiction
+      ]
+  )
 
   def top_answer
     self.answers_descending[0]

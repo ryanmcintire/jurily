@@ -48,6 +48,8 @@ gem 'kaminari'
 #great environment variable setter.
 gem 'figaro'
 
+gem 'filterrific'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
