@@ -2,28 +2,37 @@ require "#{Rails.root}/lib/enums/jurisdictions"
 
 class Question < ActiveRecord::Base
   include PgSearch
+
+  multisearchable against: [:title, :body]
+  pg_search_scope :search_title_body,
+                  against: [:title, :body],
+                  using: {
+                      tsearch: {
+                          highlight: {
+                              start_sel: '<b>',
+                              stop_sel: '</b>'
+                          }
+                      }
+                  }
+                  # todo - associated_against + highlighting breaks search
+                  # todo - Will need to figure out a way to create a searchable object.
+                  # associated_against: {
+                  #     answers: :body
+                  # }
+
   before_create :randomize_id
-  multisearchable :against => [:title, :body]
+
 
   validates :title, :body, :jurisdiction, presence: true
-  validates :title, length: {in: 6..250} #todo - eval length.
+  validates :title, length: {in: 6..250}
 
   belongs_to :user
   has_many :answers, dependent: :destroy
   has_many :votes, as: :votable, dependent: :destroy
-  #has_and_belongs_to_many :tags
   has_many :question_tags
   has_many :tags, through: :question_tags
 
   enum jurisdiction: Jurisdictions::JURISDICTIONS
-
-  #todo - master this concept...
-  #scope :top, joins('left join votes on votes.votable_id = votable_id')
-  # scope :top, joins('left join votes on votes.for_id = profiles.user_id').
-  #     select('profiles.*, count(votes.id) as votes_count').
-  #     group('profiles.id').
-  #     order('votes_count desc')
-
 
   scope :jurisdiction, -> (jurisdiction) { where jurisdiction: Jurisdictions::JURISDICTIONS[jurisdiction
                                                                                                 .to_s
@@ -33,14 +42,13 @@ class Question < ActiveRecord::Base
                                                                                                 .to_sym] }
 
   scope :by_tag_names, -> tag_names { joins(:tags).merge(Tag.by_name(tag_names)) }
-
   scope :by_jurisdiction, -> (jurisdictions) { where(jurisdiction: jurisdictions.map { |j| Question.jurisdictions[j] }) }
-
 
   filterrific(
       #default_settings: {sorted_by: 'created_at_desc'},
       available_filters: [
           #:sorted_by,
+          :search_title_body,
           :by_tag_names,
           :by_jurisdiction
       ]
