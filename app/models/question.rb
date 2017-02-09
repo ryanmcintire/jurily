@@ -42,7 +42,7 @@ class Question < ActiveRecord::Base
                                                                                                 .to_sym] }
 
   scope :by_tag_names, -> tag_names { joins(:tags).merge(Tag.by_name(tag_names)) }
-  scope :by_jurisdiction, -> (jurisdictions) { where(jurisdiction: jurisdictions.map { |j| Question.jurisdictions[j] }) }
+  scope :by_jurisdiction, -> (*jurisdictions) { where(jurisdiction: jurisdictions.map { |j| Question.jurisdictions[j] }) }
 
   filterrific(
       #default_settings: {sorted_by: 'created_at_desc'},
