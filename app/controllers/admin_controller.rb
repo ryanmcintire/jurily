@@ -1,4 +1,5 @@
 class AdminController < ApplicationController
+  before_action :is_admin?
 
   def dashboard
 
@@ -15,6 +16,12 @@ class AdminController < ApplicationController
   private
   def pagify(query)
     query.page(params[:page]).per(30)
+  end
+
+  def is_admin?
+    if !current_user.try(:admin?)
+      redirect_to new_user_session_url
+    end
   end
 
 end
