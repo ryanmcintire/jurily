@@ -1,0 +1,27 @@
+.container-fluid
+  .row
+    .col-xs-12.table-responsive
+      %table.table-striped
+        %thead.text-center
+          %tr
+            %th ID
+            %th Email
+            %th First Name
+            %th Last Name
+            %th Created at
+            %th User detail id
+        %tbody
+          -@users.each do |user|
+            %tr
+              %td= link_to user.id, user_url(user)
+              %td= mail_to user.email
+              %td= user.user_detail.first_name
+              %td= user.user_detail.last_name
+              %td= user.created_at.strftime("%Y-%m-%d")
+              %td= user.user_detail.id
+.row
+  .container
+    .col-sm-8.col-sm-offset-2.text-center
+    - if (paginate @users).length >= 65
+      .well.text-center
+        = paginate @users

@@ -5,10 +5,13 @@ Rails.application.routes.draw do
   resources :answers
   resources :questions
   resources :answer, only: [:create]
-  resources :users do
-    resources :lawschool_details, except: [:show, :index]
-  end
+  resources :users
   resources :bar_admissions, except: [:show]
+  scope :admin do
+    get '', to: 'admin#dashboard'
+    get 'user_list', to: 'admin#user_list'
+    get 'question_list', to: 'admin#question_list'
+  end
 
   get 'hello_world', to: 'hello_world#index'
 
