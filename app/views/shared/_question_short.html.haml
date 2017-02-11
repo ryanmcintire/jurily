@@ -14,7 +14,7 @@
           %i.fa.fa-thumbs-up
             %span.question-detail= pluralize question.score, 'vote'
         .col-sm-2
-          = link_to "#{questions_url}?jurisdictions[]=#{question.jurisdiction}" do
+          = link_to questions_url(filter: {by_jurisdictions: question.jurisdiction}) do
             %i.fa.fa-university
               %span.question-detail= question.jurisdiction.titleize
         .col-sm-2

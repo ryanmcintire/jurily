@@ -11,10 +11,10 @@ class QuestionsController < ApplicationController
     # @questions = @questions.by_tag_name(*params[:tag]) if params[:tag].present?
     @filtered = initialize_filterrific(
         Question,
-        params[:question_filter]
+        params[:filter]
     ) or return
     @questions = @filtered.find.page(params[:page])
-
+    puts @questions
   end
 
   def new

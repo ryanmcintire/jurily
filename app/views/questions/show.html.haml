@@ -2,8 +2,9 @@
   .page_header
     %h2= @question.title
     - @question.tags.each do |tag|
-      %button.btn.btn-xs.btn-info.question-display-tags
-        =tag.name
+      = link_to questions_url(filter: {by_tag_names: tag.name}) do
+        %button.btn.btn-xs.btn-info.question-display-tags
+          =tag.name
   %br
 .row
   .col-md-9
