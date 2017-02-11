@@ -6,6 +6,10 @@ $default-font-stack: "Georgia", "Times New Roman", "Times", serif;
 
 $footer-color: #ffffff;
 
+html, body {
+  height: 100%
+}
+
 body, h1, h2, h3, h4, h5, h6 {
   font-family: $default-font-stack;
 }
@@ -19,7 +23,15 @@ body {
 .content-body {
   background-color: #fff;
   padding: 20px 20px 30px 20px;
-  min-height: 600px;
+  min-height: 90%;
+}
+
+footer {
+  clear: both;
+  position: relative;
+  z-index: 10;
+  height: 5em;
+  margin-top: -5em;
 }
 
 
