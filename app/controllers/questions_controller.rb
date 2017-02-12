@@ -6,11 +6,11 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   def index
-    @questions = Question.where(nil) # creates anonymous scope.
-    @questions = @questions.by_jurisdiction(*filter(:jurisdiction)) if filter(:jurisdiction).present?
-    @questions = @questions.by_tag_name(*filter(:tag)) if filter([:tag]).present?
-    @questions = @questions.sort_by_score
-    @questions = @questions.page(params[:page]).per(10)
+    # @questions = Question.where(nil) # creates anonymous scope.
+    # @questions = @questions.by_jurisdiction(*filter(:jurisdiction)) if filter(:jurisdiction).present?
+    # @questions = @questions.by_tag_name(*filter(:tag)) if filter([:tag]).present?
+    @questions = Question.sort_by_score(filter).page(params[:page]).per(10)
+    # @questions = @questions.page(params[:page]).per(10)
   end
 
   def new
@@ -139,8 +139,8 @@ class QuestionsController < ApplicationController
     render status: 400, json: response_data.to_json
   end
 
-  def filter(key)
-    params[:filter][key]
+  def filter
+    params[:filter]
   end
 
 end

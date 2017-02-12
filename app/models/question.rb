@@ -43,11 +43,16 @@ class Question < ActiveRecord::Base
 
   scope :by_tag_names, -> tag_names { joins(:tags).merge(Tag.by_name(tag_names)) }
   scope :by_jurisdictions, -> (*jurisdictions) { where(jurisdiction: jurisdictions.map { |j| Question.jurisdictions[j] }) }
-  scope :sort_by_score, -> () {
-    select("questions.*, SUM(case when votes.votable_type = 'Question' then votes.value else 0 end) vote_score").
+
+  scope :sort_by_score2, -> () {
+    joins(:votes).where('votes.votable_id = questions.id').order('sum(votes.value)')
+  }
+
+  scope :sort_by_score, -> (filter) {
+    q = with_filter(select("questions.*, SUM(case when votes.votable_type = 'Question' then votes.value else 0 end) vote_score").
         joins("LEFT OUTER JOIN votes ON votes.votable_id = questions.id and votes.votable_type = 'Question'").
-        group("questions.id").
-        order("vote_score DESC")
+        group("questions.id"), filter)
+    q.order("vote_score DESC")
   }
 
   def top_answer
@@ -96,6 +101,14 @@ class Question < ActiveRecord::Base
     begin
       self.id = SecureRandom.random_number(2_147_483_647)
     end while User.where(id: self.id).exists? || self.id < 1_000_000
+  end
+
+  def self.with_filter(query, filter)
+    subq = query
+    return subq if filter.nil?
+    subq = subq.joins(:tags).merge(Tag.by_name(filter[:tags])) if filter[:tags].present?
+    subq = subq.where(jurisdiction: [*filter[:jurisdictions]].map { |j| Question.jurisdictions[j] }) if filter[:jurisdictions].present?
+    return subq
   end
 
 
