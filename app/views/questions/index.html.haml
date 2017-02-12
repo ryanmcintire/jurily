@@ -15,3 +15,10 @@
           - else
             = link_to "Click here", new_user_registration_url
             to sign up and ask the first one!
+
+.row
+  .container
+    .col-sm-8.col-sm-offset-2.text-center
+      - if (paginate @questions).length >= 65
+        .well.text-center
+          = paginate @questions

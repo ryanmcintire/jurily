@@ -10,6 +10,7 @@ class QuestionsController < ApplicationController
     @questions = @questions.by_jurisdiction(*filter(:jurisdiction)) if filter(:jurisdiction).present?
     @questions = @questions.by_tag_name(*filter(:tag)) if filter([:tag]).present?
     @questions = @questions.sort_by_score
+    @questions = @questions.page(params[:page]).per(10)
   end
 
   def new
