@@ -1,6 +1,6 @@
 .row
   .container
-    - if @questions.count > 0
+    - if @questions.length > 0
       -@questions.each do |question|
         = render 'shared/question_short', question: question
     - else

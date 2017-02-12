@@ -48,6 +48,7 @@ gem 'kaminari'
 #great environment variable setter.
 gem 'figaro'
 
+gem 'filterer'
 
 
 # Use ActiveModel has_secure_password

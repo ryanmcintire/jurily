@@ -14,11 +14,11 @@ class Question < ActiveRecord::Base
                           }
                       }
                   }
-                  # todo - associated_against + highlighting breaks search
-                  # todo - Will need to figure out a way to create a searchable object.
-                  # associated_against: {
-                  #     answers: :body
-                  # }
+  # todo - associated_against + highlighting breaks search
+  # todo - Will need to figure out a way to create a searchable object.
+  # associated_against: {
+  #     answers: :body
+  # }
 
   before_create :randomize_id
 
@@ -43,6 +43,12 @@ class Question < ActiveRecord::Base
 
   scope :by_tag_names, -> tag_names { joins(:tags).merge(Tag.by_name(tag_names)) }
   scope :by_jurisdictions, -> (*jurisdictions) { where(jurisdiction: jurisdictions.map { |j| Question.jurisdictions[j] }) }
+  scope :sort_by_score, -> () {
+    select("questions.*, SUM(case when votes.votable_type = 'Question' then votes.value else 0 end) vote_score").
+        joins("LEFT OUTER JOIN votes ON votes.votable_id = questions.id and votes.votable_type = 'Question'").
+        group("questions.id").
+        order("vote_score DESC")
+  }
 
   def top_answer
     self.answers_descending[0]

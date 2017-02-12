@@ -7,9 +7,9 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = Question.where(nil) # creates anonymous scope.
-    @questions = @questions.by_jurisdiction(*params[:jurisdiction]) if params[:jurisdiction].present?
-    @questions = @questions.by_tag_name(*params[:tag]) if params[:tag].present?
-
+    @questions = @questions.by_jurisdiction(*filter(:jurisdiction)) if filter(:jurisdiction).present?
+    @questions = @questions.by_tag_name(*filter(:tag)) if filter([:tag]).present?
+    @questions = @questions.sort_by_score
   end
 
   def new
@@ -138,7 +138,8 @@ class QuestionsController < ApplicationController
     render status: 400, json: response_data.to_json
   end
 
-rescue ActiveRecord::RecordNotFound => e
-  puts 'Had to reset filter params'
-  redirect_to(reset_filterrific_url(format: :html)) and return
+  def filter(key)
+    params[:filter][key]
+  end
+
 end
