@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 #create users
-300.times do |index|
+500.times do |index|
   puts "User #{index}"
   user_detail = UserDetail.new(
                               first_name: FFaker::Name.first_name,
@@ -30,7 +30,7 @@ end
 
 
 #create questions
-500.times do |index|
+2000.times do |index|
   puts "Question #{index}"
   question = Question.new(
                          title: FFaker::Lorem.sentence(20),
@@ -47,7 +47,7 @@ end
 Question.all.each_with_index do |question, index|
   puts "Voting on question #{index}"
   users = User.order("RANDOM()").limit(200)
-  rand(0..100).times do |index|
+  rand(0..200).times do |index|
     question.votes << Vote.new(user_id: users[index].id, value: [-1,1].sample)
   end
   question.save!
@@ -55,8 +55,8 @@ end
 
 Question.all.each_with_index do |question, index|
   puts "Answering question #{index}"
-  users = User.order("RANDOM()").limit(6)
-  rand(0..6).times do |index|
+  users = User.order("RANDOM()").limit(300)
+  rand(0..12).times do |index|
     answer = Answer.new(user_id: users[index].id, body: FFaker::HTMLIpsum.p(rand(1..10)))
     answer.created_at = rand(question.created_at..Time.now)
     answer.updated_at = answer.created_at
@@ -68,9 +68,9 @@ end
 Question.all.each_with_index do |question, index|
   puts "Generating votes for answers on question #{index}"
   question.answers.each do |answer|
-    users = User.order("RANDOM()").limit(200)
-    rand(0..50).times do |index|
-      answer.votes << Vote.new(user_id: users[index].id, value: [1,-1].sample)
+    users = User.order("RANDOM()").limit(300)
+    rand(0..70).times do |index|
+      answer.votes << Vote.new(user_id: users[index].id, value: [1,1,1-1].sample)
     end
     answer.save!
   end
