@@ -4,7 +4,7 @@ class Answer < ActiveRecord::Base
 
   multisearchable :against => :body
 
-  belongs_to :question
+  belongs_to :question, counter_cache: true
   belongs_to :user
   #todo - evaluate how you want to delete votes eventually...
   has_many :votes, as: :votable, dependent: :destroy
