@@ -6,15 +6,10 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   def index
-    # @questions = Question.where(nil) # creates anonymous scope.
-    # @questions = @questions.by_jurisdiction(*params[:jurisdiction]) if params[:jurisdiction].present?
-    # @questions = @questions.by_tag_name(*params[:tag]) if params[:tag].present?
-    @filtered = initialize_filterrific(
-        Question,
-        params[:filter]
-    ) or return
-    @questions = @filtered.find.page(params[:page])
-    puts @questions
+    @questions = Question.where(nil) # creates anonymous scope.
+    @questions = @questions.by_jurisdiction(*params[:jurisdiction]) if params[:jurisdiction].present?
+    @questions = @questions.by_tag_name(*params[:tag]) if params[:tag].present?
+
   end
 
   def new

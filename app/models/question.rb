@@ -44,16 +44,6 @@ class Question < ActiveRecord::Base
   scope :by_tag_names, -> tag_names { joins(:tags).merge(Tag.by_name(tag_names)) }
   scope :by_jurisdictions, -> (*jurisdictions) { where(jurisdiction: jurisdictions.map { |j| Question.jurisdictions[j] }) }
 
-  filterrific(
-      #default_settings: {sorted_by: 'created_at_desc'},
-      available_filters: [
-          #:sorted_by,
-          :search_title_body,
-          :by_tag_names,
-          :by_jurisdictions
-      ]
-  )
-
   def top_answer
     self.answers_descending[0]
   end
