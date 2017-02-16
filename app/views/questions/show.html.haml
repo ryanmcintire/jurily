@@ -20,7 +20,14 @@
                             csrfToken: form_authenticity_token,
                             hostUrl: vote_path})
             .col-md-11.col-sm-11.col-xs-10
-              =raw(@question.body)
+              .row
+                .container.col-md-11.col-sm-11.col-xs-10
+                  =raw(@question.body)
+              .row
+                .container.pull-right.col-md-11.col-sm-11.col-xs-10
+                  = social_share_button_tag(@question.title,
+                    url: question_url(@question), title: @question.title, desc: truncate(strip_tags(@question.body),
+                    length: 200, separator: ' '))
           - if current_user && @question.user.id == current_user.id
             .row
               .col-md-12
@@ -57,7 +64,14 @@
                         csrfToken: form_authenticity_token,
                         hostUrl: vote_path})
               .col-md-11.col-sm-11.col-xs-10
-                =raw(answer.body)
+                .row
+                  .container.col-md-11.col-sm-11.col-xs-10
+                    =raw(answer.body)
+                .row
+                  .container.col-md-11.col-sm-11.col-xs-10
+                    = social_share_button_tag(@question.title,
+                      url: question_url(@question), title: @question.title, desc: truncate(strip_tags(answer.body),
+                      length: 200, separator: ' '))
             - if current_user && answer.user.id == current_user.id
               .row
                 .col-md-12

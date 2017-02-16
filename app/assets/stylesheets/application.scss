@@ -13,6 +13,7 @@
  *
  *
  *= require font-awesome
+ *= require social-share-button
  */
 @import "bootstrap-sprockets";
 @import "yeti_variables";
@@ -23,5 +24,6 @@
 @import "votebox";
 @import "question-form";
 @import "answer-form";
+@import "share-buttons";
 @import "tags";
 @import "spinner";
